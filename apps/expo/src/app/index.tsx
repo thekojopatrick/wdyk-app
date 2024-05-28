@@ -83,7 +83,7 @@ function CreatePost() {
           });
         }}
       >
-        <Text className="text-foreground">Create</Text>
+        <Text className="text-primary-foreground">Create</Text>
       </Pressable>
       {error?.data?.code === "UNAUTHORIZED" && (
         <Text className="mt-2 text-destructive">
@@ -116,7 +116,7 @@ export default function Index() {
           onPress={() => void utils.post.all.invalidate()}
           className="flex items-center rounded-lg bg-primary p-2"
         >
-          <Text className="text-foreground"> Refresh posts</Text>
+          <Text className="text-primary-foreground"> Refresh posts</Text>
         </Pressable>
 
         <View className="py-2">
