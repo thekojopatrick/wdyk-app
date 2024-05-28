@@ -5,9 +5,9 @@ import { Link, Stack } from "expo-router";
 
 export default function Index() {
   return (
-    <SafeAreaView className="bg-background">
+    <SafeAreaView>
       <Stack.Screen options={{ title: "Home Page" }} />
-      <View className="h-full w-full bg-background p-4">
+      <View className="h-full w-full p-4">
         <Text className="pb-2 text-center text-5xl font-bold text-foreground">
           <Text className="text-primary">T3</Text> Turbo
         </Text>
