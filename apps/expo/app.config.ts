@@ -1,11 +1,15 @@
 import type { ConfigContext, ExpoConfig } from "expo/config";
 
+import { ClientEnv, Env } from "./env";
+
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: "expo",
-  slug: "expo",
-  scheme: "expo",
-  version: "0.1.0",
+  name: Env.NAME,
+  description: `${Env.NAME} Mobile App`,
+  owner: Env.EXPO_ACCOUNT_OWNER,
+  scheme: Env.SCHEME,
+  slug: "wdyk-app",
+  version: Env.VERSION.toString(),
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "automatic",
@@ -19,24 +23,45 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    bundleIdentifier: "your.bundle.identifier",
     supportsTablet: true,
+    bundleIdentifier: Env.BUNDLE_ID,
   },
   android: {
-    package: "your.bundle.identifier",
+    package: Env.PACKAGE,
     adaptiveIcon: {
       foregroundImage: "./assets/icon.png",
       backgroundColor: "#1F104A",
     },
   },
-  // extra: {
-  //   eas: {
-  //     projectId: "",
-  //   },
-  // },
   experiments: {
     tsconfigPaths: true,
     typedRoutes: true,
   },
-  plugins: ["expo-router"],
+  plugins: [
+    "expo-router",
+    [
+      "app-icon-badge",
+      {
+        enabled: Env.APP_ENV !== "production",
+        badges: [
+          {
+            text: Env.APP_ENV,
+            type: "banner",
+            color: "white",
+          },
+          {
+            text: Env.VERSION.toString(),
+            type: "ribbon",
+            color: "white",
+          },
+        ],
+      },
+    ],
+  ],
+  extra: {
+    ...ClientEnv,
+    eas: {
+      projectId: Env.EAS_PROJECT_ID,
+    },
+  },
 });
