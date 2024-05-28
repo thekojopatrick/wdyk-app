@@ -31,7 +31,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   // extra: {
   //   eas: {
-  //     projectId: "your-eas-project-id",
+  //     projectId: "",
   //   },
   // },
   experiments: {

@@ -53,7 +53,7 @@ function CreatePost() {
   return (
     <View className="mt-4 flex gap-2">
       <TextInput
-        className=" items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
+        className=" items-center rounded-md border border-input bg-background px-3 py-4 text-lg leading-[1.25] text-foreground"
         value={title}
         onChangeText={setTitle}
         placeholder="Title"
@@ -64,7 +64,7 @@ function CreatePost() {
         </Text>
       )}
       <TextInput
-        className="items-center rounded-md border border-input bg-background px-3  text-lg leading-[1.25] text-foreground"
+        className="items-center rounded-md border border-input bg-background px-3 py-4  text-lg leading-[1.25] text-foreground"
         value={content}
         onChangeText={setContent}
         placeholder="Content"
@@ -75,7 +75,7 @@ function CreatePost() {
         </Text>
       )}
       <Pressable
-        className="flex items-center rounded bg-primary p-2"
+        className="flex items-center rounded bg-primary p-2 py-4"
         onPress={() => {
           mutate({
             title,
