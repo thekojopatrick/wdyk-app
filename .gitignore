@@ -51,3 +51,5 @@ dist/
 # turbo
 .turbo
 .env.staging
+.env.production
+.env.development
