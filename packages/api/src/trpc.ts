@@ -11,7 +11,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import type { Session } from "@acme/auth";
-import { db } from "@acme/database";
+import { db } from "@acme/db";
 
 /**
  * 1. CONTEXT

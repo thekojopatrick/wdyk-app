@@ -313,9 +313,9 @@ importers:
       '@acme/auth':
         specifier: workspace:*
         version: link:../../packages/auth
-      '@acme/database':
+      '@acme/db':
         specifier: workspace:*
-        version: link:../../packages/database
+        version: link:../../packages/db
       '@acme/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -401,9 +401,9 @@ importers:
       '@acme/auth':
         specifier: workspace:*
         version: link:../auth
-      '@acme/database':
+      '@acme/db':
         specifier: workspace:*
-        version: link:../database
+        version: link:../db
       '@acme/validators':
         specifier: workspace:*
         version: link:../validators
@@ -438,9 +438,9 @@ importers:
 
   packages/auth:
     dependencies:
-      '@acme/database':
+      '@acme/db':
         specifier: workspace:*
-        version: link:../database
+        version: link:../db
       '@auth/drizzle-adapter':
         specifier: ^1.1.0
         version: 1.1.0
@@ -485,7 +485,7 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  packages/database:
+  packages/db:
     dependencies:
       '@prisma/client':
         specifier: ^5.14.0
