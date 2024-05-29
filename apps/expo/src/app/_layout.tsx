@@ -13,6 +13,8 @@ import { useColorScheme } from "nativewind";
 
 import "../styles.css";
 
+import { APIProvider } from "@/api";
+
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
@@ -37,12 +39,12 @@ function Providers({ children }: { children: React.ReactNode }) {
       className={theme.dark ? `dark` : undefined}
     >
       <ThemeProvider value={theme}>
-        <TRPCProvider>
+        <APIProvider>
           <BottomSheetModalProvider>
             {children}
             <FlashMessage position="top" />
           </BottomSheetModalProvider>
-        </TRPCProvider>
+        </APIProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
