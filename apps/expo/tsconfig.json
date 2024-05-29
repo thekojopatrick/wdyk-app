@@ -11,7 +11,14 @@
     "types": ["nativewind/types"],
     "checkJs": false
   },
-  "include": ["src", "*.ts", "*.js", ".expo/types/**/*.ts", "expo-env.d.ts"],
+  "include": [
+    "src",
+    "*.ts",
+    "*.js",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    ".eslintrc.config.mjs"
+  ],
   "exclude": [
     "node_modules",
     "babel.config.js",

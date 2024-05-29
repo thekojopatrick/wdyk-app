@@ -6,7 +6,8 @@
   "exports": {
     "./base": "./base.js",
     "./nextjs": "./nextjs.js",
-    "./react": "./react.js"
+    "./react": "./react.js",
+    "./expo": "./expo.js"
   },
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
@@ -16,10 +17,16 @@
   "dependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
     "eslint-config-turbo": "^1.13.3",
+    "eslint-plugin-i18n-json": "^4.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "beta",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-tailwindcss": "^3.17.0",
+    "eslint-plugin-testing-library": "^6.2.2",
+    "eslint-plugin-unicorn": "^53.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "typescript-eslint": "^7.10.0"
   },
   "devDependencies": {
