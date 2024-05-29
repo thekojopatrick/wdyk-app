@@ -38,6 +38,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     typedRoutes: true,
   },
   plugins: [
+    "expo-font",
+    "expo-localization",
     "expo-router",
     [
       "app-icon-badge",
