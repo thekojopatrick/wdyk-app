@@ -3,7 +3,7 @@ import React from "react";
 import { Text } from "react-native";
 import { cleanup, fireEvent, render, screen } from "@/core/test-utils";
 
-import { Button } from "./button";
+import { Button } from "./Button";
 
 afterEach(cleanup);
 

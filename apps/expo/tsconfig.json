@@ -8,8 +8,8 @@
     },
     "jsx": "react-native",
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "types": ["nativewind/types", "jest", "node"],
-    "checkJs": false
+    "types": ["nativewind/types", "jest", "node", "@testing-library/jest-dom"],
+    "checkJs": true
   },
   "include": [
     "src",

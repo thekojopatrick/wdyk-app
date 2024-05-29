@@ -1,8 +1,7 @@
-import * as React from 'react';
-import type { SvgProps } from 'react-native-svg';
-import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
-
-import colors from '../colors';
+import type { SvgProps } from "react-native-svg";
+import * as React from "react";
+import Svg, { ClipPath, Defs, G, Path } from "react-native-svg";
+import colors from "@/theme/colors";
 
 export const Support = ({
   color = colors.neutral[500],
