@@ -7,7 +7,7 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
 
   if (!session?.user) {
-    return redirect("/");
+    return redirect("/login");
   }
 
   return (
