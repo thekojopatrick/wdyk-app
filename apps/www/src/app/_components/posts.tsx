@@ -106,7 +106,7 @@ export function PostList(props: {
 
   return (
     <div className="flex w-full flex-col gap-4">
-      {posts.map((p) => {
+      {posts.map((p: { id: string; title: string; content: string }) => {
         return <PostCard key={p.id} post={p} />;
       })}
     </div>
