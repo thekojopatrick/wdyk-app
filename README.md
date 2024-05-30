@@ -1,4 +1,4 @@
-# What do you know(Wdyk) ? App
+# What do you know (Wdyk)? App
 
 A Nextjs and Expo application designed to help users improve their spelling skills through an interactive spelling bee game. The app fetches words and provides pronunciation for users to guess and spell correctly. It includes features like immediate feedback, highlighting correct and incorrect answers, and a "guess the word" game mode with homophones.
 
@@ -6,6 +6,16 @@ A Nextjs and Expo application designed to help users improve their spelling skil
 This app was setup using the `create-t3-turbo` starter. Visit 
 
 [create-t3-turbo-with-prisma-template](https://github.com/thekojopatrick/t3-turbo-with-prisma-template.git) 
+
+## Features
+  - Authentication
+  - User Profile 
+  - Interactive spelling bee game
+  - Immediate feedback on spelling attempts
+  - Quiz
+  - "Guess the word" mode with homophones
+  - Progress tracking and scoring
+
 
 ## Installation
 
