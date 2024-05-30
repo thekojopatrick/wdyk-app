@@ -16,13 +16,22 @@ This app was setup using the `create-t3-turbo` starter. Visit
   - "Guess the word" mode with homophones
   - Progress tracking and scoring
 
+## Screenshots
+[Include screenshots of the app]
 
 ## Installation
 
-Use Turbo's CLI to init your project (use PNPM as package manager):
+### Prerequisites
+ - Use Turbo's CLI to init your project (use PNPM as package manager):
+ - Node.js
+ - Expo CLI
+
+### Steps
+    Clone the repository
 
 ```bash
-npx create-turbo@latest -e https://github.com/t3-oss/create-t3-turbo
+git clone https://github.com/Eadith-Studios/what-do-you-know.git
+cd what-do-you-know
 ```
 
 ## About
