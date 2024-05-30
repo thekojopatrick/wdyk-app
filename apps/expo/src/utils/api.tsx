@@ -30,7 +30,7 @@ const getBaseUrl = () => {
   const localhost = debuggerHost?.split(":")[0];
 
   if (!localhost) {
-    // return "https://turbo.t3.gg";
+    //return "https://wdyk-app.vercel.app/";
     throw new Error(
       "Failed to get localhost. Please point to your production server.",
     );
