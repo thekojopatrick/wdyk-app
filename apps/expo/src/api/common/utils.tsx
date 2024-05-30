@@ -8,6 +8,7 @@ import type { PaginateQuery } from "../types";
 type KeyParams = {
   [key: string]: any;
 };
+
 export const DEFAULT_LIMIT = 10;
 
 export function getQueryKey<T extends KeyParams>(key: string, params?: T) {
@@ -40,10 +41,10 @@ export function getUrlParameters(
   return params;
 }
 
-export const getPreviousPageParam: GetNextPageParamFunction<
-  PaginateQuery<unknown>
-> = (page) => getUrlParameters(page.previous)?.offset ?? null;
+// export const getPreviousPageParam: GetNextPageParamFunction<
+//   PaginateQuery<unknown>
+// > = (page) => getUrlParameters(page.previous)?.offset ?? null;
 
-export const getNextPageParam: GetPreviousPageParamFunction<
-  PaginateQuery<unknown>
-> = (page) => getUrlParameters(page.next)?.offset ?? null;
+// export const getNextPageParam: GetPreviousPageParamFunction<
+//   PaginateQuery<unknown>
+// > = (page) => getUrlParameters(page.next)?.offset ?? null;
