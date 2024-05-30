@@ -14,9 +14,10 @@
     "format": "prisma format prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "db:generate": "prisma generate",
+    "db:generate": "pnpm with-env prisma generate",
     "studio": "prisma studio",
-    "db:push": "pnpm with-env prisma db push",
+    "dev": "pnpm with-env prisma studio --port 5556",
+    "db:push": "pnpm with-env prisma db push --skip-generate",
     "with-env": "dotenv -e ../../.env --"
   },
   "devDependencies": {
