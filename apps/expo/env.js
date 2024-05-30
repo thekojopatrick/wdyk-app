@@ -88,6 +88,8 @@ const buildTime = z.object({
   EAS_PROJECT_ID: z.string(),
   // ADD YOUR BUILD TIME ENV VARS HERE
   SECRET_KEY: z.string(),
+  EXPO_PUBLIC_SUPABASE_URL: z.string(),
+  EXPO_PUBLIC_SUPABASE_ANON_KEY: z.string(),
 });
 
 /**
@@ -115,6 +117,8 @@ const _buildTimeEnv = {
   EAS_PROJECT_ID,
   // ADD YOUR ENV VARS HERE TOO
   SECRET_KEY: process.env.SECRET_KEY,
+  EXPO_PUBLIC_SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL,
+  EXPO_PUBLIC_SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
 };
 
 /**
