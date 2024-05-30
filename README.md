@@ -3,9 +3,9 @@
 A Nextjs and Expo application designed to help users improve their spelling skills through an interactive spelling bee game. The app fetches words and provides pronunciation for users to guess and spell correctly. It includes features like immediate feedback, highlighting correct and incorrect answers, and a "guess the word" game mode with homophones.
 
 ## Note
-This app was setup using the `create-t3-turbo` starter.To Learn more visit
+This app was setup using the `create-t3-turbo` starter. Visit 
 
-[use-as-template](https://github.com/thekojopatrick/t3-turbo-with-prisma-template.git) 
+[create-t3-turbo-with-prisma-template](https://github.com/thekojopatrick/t3-turbo-with-prisma-template.git) 
 
 ## Installation
 
