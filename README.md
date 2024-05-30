@@ -1,15 +1,13 @@
 # What do you know ? (Wdyk?)
 
 ## Note
-This app was setup using the `create-t3-turbo` starter.To Learn more visit [use-as-template](https://github.com/thekojopatrick/t3-turbo-primsa-template.git) 
+This app was setup using the `create-t3-turbo` starter.To Learn more visit
+
+[use-as-template](https://github.com/thekojopatrick/t3-turbo-with-prisma-template.git) 
 
 ## Installation
 
-There are two ways of initializing an app using the `create-t3-turbo` starter. You can either use this repository as a template:
-
-![use-as-template](https://github.com/t3-oss/create-t3-turbo/assets/51714798/bb6c2e5d-d8b6-416e-aeb3-b3e50e2ca994)
-
-or use Turbo's CLI to init your project (use PNPM as package manager):
+Use Turbo's CLI to init your project (use PNPM as package manager):
 
 ```bash
 npx create-turbo@latest -e https://github.com/t3-oss/create-t3-turbo
