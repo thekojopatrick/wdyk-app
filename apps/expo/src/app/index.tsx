@@ -10,7 +10,7 @@ export default function Index() {
       <Stack.Screen options={{ title: "Home" }} />
       <View className="h-full w-full p-4">
         <Text className="pb-2 text-center text-5xl font-bold text-foreground">
-          <Text className="text-primary">T3</Text> Turbo
+          <Text className="text-primary">Wdyk</Text>
         </Text>
         <View style={styles.container}>
           <View style={styles.main}>
