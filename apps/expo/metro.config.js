@@ -9,8 +9,8 @@ module.exports = withTurborepoManagedCache(
     withNativeWind(getDefaultConfig(__dirname), {
       input: "./src/styles.css",
       configPath: "./tailwind.config.ts",
-    })
-  )
+    }),
+  ),
 );
 
 /**
@@ -35,12 +35,18 @@ function withMonorepoPaths(config) {
   ];
 
   // #3 - Add fallback extensions for resolving the `expo-router` entry module
-  config.resolver.sourceExts = [...config.resolver.sourceExts, 'jsx', 'js', 'ts', 'tsx'];
+  config.resolver.sourceExts = [
+    ...config.resolver.sourceExts,
+    "jsx",
+    "js",
+    "ts",
+    "tsx",
+  ];
 
   // #4 - Resolve expo-router explicitly if necessary
   config.resolver.extraNodeModules = {
     ...config.resolver.extraNodeModules,
-    'expo-router': path.resolve(projectRoot, 'node_modules/expo-router')
+    "expo-router": path.resolve(projectRoot, "node_modules/expo-router"),
   };
 
   return config;
