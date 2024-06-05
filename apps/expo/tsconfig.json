@@ -8,13 +8,12 @@
     },
     "jsx": "react-native",
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "types": ["nativewind/types", "jest", "node", "@testing-library/jest-dom"],
+    //"types": ["nativewind/types", "jest", "node", "@testing-library/jest-dom"],
     "checkJs": true
   },
   "include": [
-    "src",
-    "*.ts",
-    "*.js",
+    "**/*.ts",
+    "**/*.tsx", 
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     ".eslintrc.js"
