@@ -106,8 +106,8 @@ importers:
         specifier: ~16.0.1
         version: 16.0.1(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
       expo-dev-client:
-        specifier: ~4.0.14
-        version: 4.0.14(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
+        specifier: ~4.0.15
+        version: 4.0.15(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
       expo-font:
         specifier: ~12.0.5
         version: 12.0.5(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
@@ -4995,13 +4995,13 @@ packages:
     peerDependencies:
       expo: '*'
 
-  expo-dev-client@4.0.14:
-    resolution: {integrity: sha512-s5/FZZdgvoxBGA35QgNet61Dc1jh+8u375uaYkH9pUvfKFXURd9PDDAWvtAnOo+QYg9WwgiHPo7dKeCdN6pOPA==}
+  expo-dev-client@4.0.15:
+    resolution: {integrity: sha512-Ffwz66DW3xdldlSUwPPXJCWoL4teA8uV374sEJpKwyBhJrFuL+KpMWMe4/Dz/F1oHzjflD8GHBu9xqoqNdiJzw==}
     peerDependencies:
       expo: '*'
 
-  expo-dev-launcher@4.0.15:
-    resolution: {integrity: sha512-avl4NTwFwalZjojFAXvINPgxAlcAxfdwy9PSsAq5KAkl9Vv+Vr8O2gI3nfrPwtqAA0iOIES/EKN0YFCiQuuvvg==}
+  expo-dev-launcher@4.0.16:
+    resolution: {integrity: sha512-mNt71awnJDL+GkvpBp9CzRR3q2Wm0GPo68noRvd389qDFBMA8QA8uyY8JVqekpr7RUwn1eg3cmfox5oSwL5rmA==}
     peerDependencies:
       expo: '*'
 
@@ -14571,10 +14571,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  expo-dev-client@4.0.14(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8)):
+  expo-dev-client@4.0.15(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8)):
     dependencies:
       expo: 51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8)
-      expo-dev-launcher: 4.0.15(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
+      expo-dev-launcher: 4.0.16(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
       expo-dev-menu: 5.0.14(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
       expo-dev-menu-interface: 1.8.3(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
       expo-manifests: 0.14.3(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8))
@@ -14582,7 +14582,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  expo-dev-launcher@4.0.15(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8)):
+  expo-dev-launcher@4.0.16(expo@51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8)):
     dependencies:
       ajv: 8.11.0
       expo: 51.0.8(@babel/core@7.24.6)(@babel/preset-env@7.24.6(@babel/core@7.24.6))(bufferutil@4.0.8)
