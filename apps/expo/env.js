@@ -37,7 +37,7 @@ const BUNDLE_ID = "com.kojopatrick.wdyk"; // ios bundle id
 const PACKAGE = "com.kojopatrick.wdyk"; // android package name
 const NAME = "Wdyk?"; // app name
 const EXPO_ACCOUNT_OWNER = "kojopatrick"; // expo account owner
-const EAS_PROJECT_ID = "53089a59-9554-455f-9f38-84c68746f0b6"; // eas project id
+const EAS_PROJECT_ID = "c594ea6d-dec7-4777-923c-f2dcd026e2ac"; // eas project id
 const SCHEME = "wdykApp"; // app scheme
 
 /**
@@ -79,15 +79,15 @@ const client = z.object({
 
   // ADD YOUR CLIENT ENV VARS HERE
   API_URL: z.string(),
-  VAR_NUMBER: z.number(),
-  VAR_BOOL: z.boolean(),
+  //VAR_NUMBER: z.number(),
+  //VAR_BOOL: z.boolean(),
 });
 
 const buildTime = z.object({
   EXPO_ACCOUNT_OWNER: z.string(),
   EAS_PROJECT_ID: z.string(),
   // ADD YOUR BUILD TIME ENV VARS HERE
-  SECRET_KEY: z.string(),
+  //SECRET_KEY: z.string(),
   EXPO_PUBLIC_SUPABASE_URL: z.string(),
   EXPO_PUBLIC_SUPABASE_ANON_KEY: z.string(),
 });
@@ -105,8 +105,8 @@ const _clientEnv = {
 
   // ADD YOUR ENV VARS HERE TOO
   API_URL: process.env.API_URL,
-  VAR_NUMBER: Number(process.env.VAR_NUMBER),
-  VAR_BOOL: process.env.VAR_BOOL === "true",
+  //VAR_NUMBER: Number(process.env.VAR_NUMBER),
+  //VAR_BOOL: process.env.VAR_BOOL === "true",
 };
 
 /**
@@ -116,7 +116,7 @@ const _buildTimeEnv = {
   EXPO_ACCOUNT_OWNER,
   EAS_PROJECT_ID,
   // ADD YOUR ENV VARS HERE TOO
-  SECRET_KEY: process.env.SECRET_KEY,
+  //SECRET_KEY: process.env.SECRET_KEY,
   EXPO_PUBLIC_SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL,
   EXPO_PUBLIC_SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
 };

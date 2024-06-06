@@ -1,5 +1,6 @@
-import { ClientEnv, Env } from "./env";
 import type { ConfigContext, ExpoConfig } from "expo/config";
+
+import { ClientEnv, Env } from "./env";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -7,7 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   description: `${Env.NAME} Mobile App`,
   owner: Env.EXPO_ACCOUNT_OWNER,
   scheme: Env.SCHEME,
-  slug: "wdykApp",
+  slug: "wdyk",
   version: Env.VERSION.toString(),
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -63,6 +64,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ...ClientEnv,
     eas: {
       projectId: Env.EAS_PROJECT_ID,
+    },
+    updates: {
+      url: "https://u.expo.dev/c594ea6d-dec7-4777-923c-f2dcd026e2ac",
+    },
+    runtimeVersion: {
+      policy: "appVersion",
     },
   },
 });
