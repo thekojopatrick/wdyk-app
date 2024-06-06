@@ -152,7 +152,7 @@ export const RadioIcon = ({ checked = false }: IconProps) => {
     >
       <MotiView
         className={`h-[10px] w-[10px] rounded-[10px] ${
-          checked && "bg-primary-300"
+          checked && "bg-primary"
         } `}
         from={{ opacity: 0 }}
         animate={{ opacity: checked ? 1 : 0 }}

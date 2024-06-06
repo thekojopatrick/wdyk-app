@@ -13,8 +13,9 @@
   },
   "include": [
     "src",
-    "*.ts",
-    "*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    "*.ts",    
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     ".eslintrc.js"

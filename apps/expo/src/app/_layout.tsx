@@ -1,19 +1,17 @@
 import "@bacons/text-decoder/install";
+import "../styles.css";
 
 import { StyleSheet } from "react-native";
 import FlashMessage from "react-native-flash-message";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { APIProvider } from "@/api";
 import { useThemeConfig } from "@/core/use-theme-config";
 import { TRPCProvider } from "@/utils/api";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeProvider } from "@react-navigation/native";
 import { useColorScheme } from "nativewind";
-
-import "../styles.css";
-
-import { APIProvider } from "@/api";
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
@@ -25,7 +23,13 @@ export default function RootLayout() {
           The Stack component displays the current page.
           It also allows you to configure your screens 
         */}
-      <Stack />
+      <Stack initialRouteName="splash">
+        <Stack.Screen name="splash" options={{ headerShown: false }} />
+        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+        <Stack.Screen name="get-started" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      </Stack>
+
       <StatusBar />
     </Providers>
   );

@@ -6,20 +6,22 @@ import { tv } from "tailwind-variants";
 
 const button = tv({
   slots: {
-    container: "my-2 flex flex-row items-center justify-center rounded-md px-4",
+    container:
+      "my-2 flex flex-row items-center justify-center rounded-full px-4",
     label: "font-inter text-base font-semibold",
     indicator: "h-6 text-white",
+    border: "rounded-md",
   },
 
   variants: {
     variant: {
       default: {
-        container: "bg-black dark:bg-white",
+        container: "bg-primary dark:bg-white",
         label: "text-white dark:text-black",
         indicator: "text-white dark:text-black",
       },
       secondary: {
-        container: "bg-primary-600",
+        container: "bg-gray-200",
         label: "text-secondary-600",
         indicator: "text-white",
       },
@@ -46,7 +48,7 @@ const button = tv({
     },
     size: {
       default: {
-        container: "h-10 px-4",
+        container: "h-12 px-4",
         label: "text-base",
       },
       lg: {
@@ -59,6 +61,21 @@ const button = tv({
         indicator: "h-2",
       },
       icon: { container: "h-9 w-9" },
+    },
+    radius: {
+      default: {
+        container: "rounded-full",
+        border: "rounded-full",
+      },
+      md: {
+        border: "rounded-md",
+      },
+      sm: {
+        border: "rounded-sm",
+      },
+      full: {
+        border: "rounded-full",
+      },
     },
     disabled: {
       true: {
@@ -81,6 +98,7 @@ const button = tv({
     disabled: false,
     fullWidth: true,
     size: "default",
+    radius: "default",
   },
 });
 
@@ -100,6 +118,7 @@ export const Button = React.forwardRef<View, Props>(
       variant = "default",
       disabled = false,
       size = "default",
+      radius = "default",
       className = "",
       testID,
       textClassName = "",
@@ -108,8 +127,8 @@ export const Button = React.forwardRef<View, Props>(
     ref,
   ) => {
     const styles = React.useMemo(
-      () => button({ variant, disabled, size }),
-      [variant, disabled, size],
+      () => button({ variant, disabled, size, radius }),
+      [variant, disabled, size, radius],
     );
 
     return (

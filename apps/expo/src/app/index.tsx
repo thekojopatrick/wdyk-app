@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
+
 import { Button } from "@/ui";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
@@ -20,7 +20,7 @@ export default function Index() {
             </Text>
           </View>
         </View>
-        <Link href={"/post"} asChild>
+        <Link href={"/onboarding"} asChild>
           <Button label="Go to Post" />
         </Link>
       </View>
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
     marginHorizontal: "auto",
   },
   title: {
-    fontSize: 64,
+    fontSize: 24,
     fontWeight: "bold",
   },
   subtitle: {
-    fontSize: 36,
+    fontSize: 16,
     color: "#38434D",
   },
 });
