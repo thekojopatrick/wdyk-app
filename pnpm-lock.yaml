@@ -58,7 +58,7 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   apps/expo:
@@ -378,7 +378,7 @@ importers:
         specifier: ^20.12.9
         version: 20.12.12
       '@types/react':
-        specifier: ^18.2.0
+        specifier: ^18.2.79
         version: 18.3.3
       '@types/react-dom':
         specifier: ^18.2.0
@@ -399,7 +399,7 @@ importers:
         specifier: ^3.4.3
         version: 3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   packages/api:
@@ -439,7 +439,7 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   packages/auth:
@@ -488,7 +488,7 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   packages/db:
@@ -519,7 +519,7 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   packages/ui:
@@ -571,7 +571,7 @@ importers:
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/react':
-        specifier: ^18.2.0
+        specifier: ^18.2.79
         version: 18.3.3
       eslint:
         specifier: ^8.56.0
@@ -586,7 +586,7 @@ importers:
         specifier: ^3.4.3
         version: 3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
       zod:
         specifier: ^3.23.8
@@ -614,7 +614,7 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   tooling/eslint:
@@ -672,7 +672,7 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   tooling/github: {}
@@ -693,7 +693,7 @@ importers:
         specifier: workspace:*
         version: link:../typescript
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   tooling/tailwind:
@@ -724,7 +724,7 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.3.3
         version: 5.4.5
 
   tooling/typescript: {}
