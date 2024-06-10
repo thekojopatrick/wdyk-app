@@ -88,8 +88,8 @@ const RegisterForm = () => {
 
 const styles = {
   label: "text-grey-100 mb-2 text-lg dark:text-neutral-100",
-  input:
-    "mt-0 py-4 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-100 px-4 text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
+  input: `mt-0 py-4 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-100 px-4 text-base 
+    font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white`,
 };
 
 export default RegisterForm;

@@ -3,6 +3,8 @@ import { TextInput, View } from "react-native";
 import { Link } from "expo-router";
 import { Button, ThemeText } from "@/ui";
 
+import { SelectCountryBottomSheet } from "./SelectCountryModal";
+
 const SettingUpAccountForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,15 +25,9 @@ const SettingUpAccountForm = () => {
             testID="email-ID"
             className={styles.label}
           >
-            Email
+            Country of residence
           </ThemeText>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Your email address"
-            className={styles.input}
-            autoCapitalize="none"
-          />
+          <SelectCountryBottomSheet placeholder="Select country of residence" />
         </View>
 
         <View className="mb-3">
@@ -78,8 +74,8 @@ const SettingUpAccountForm = () => {
 
 const styles = {
   label: "text-grey-100 mb-2 text-lg dark:text-neutral-100",
-  input:
-    "mt-0 py-4 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-100 px-4 text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
+  input: `mt-0 py-4 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-100 
+  px-4 text-base font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white`,
 };
 
 export default SettingUpAccountForm;
