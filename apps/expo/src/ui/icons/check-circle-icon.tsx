@@ -1,6 +1,5 @@
-import { Path, Svg, SvgProps } from "react-native-svg";
-
 import React from "react";
+import { Path, Svg, SvgProps } from "react-native-svg";
 
 export const CheckCircleIcon: React.FC<SvgProps> = (props) => {
   return (

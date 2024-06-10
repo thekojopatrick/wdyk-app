@@ -1,6 +1,5 @@
-import { Path, Svg } from "react-native-svg";
-
 import type { SvgProps } from "react-native-svg";
+import { Path, Svg } from "react-native-svg";
 
 export const PrimaryLogo = (props: SvgProps) => {
   return (

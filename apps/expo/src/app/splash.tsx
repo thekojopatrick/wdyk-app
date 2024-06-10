@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import { Button } from "@/ui";
-import { Link } from "expo-router";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Button } from "@/ui";
 import { SecondaryLogo } from "@/ui/icons";
 
 const Splash = () => {

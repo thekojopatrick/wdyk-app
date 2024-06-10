@@ -1,11 +1,11 @@
-import { I18nManager, Pressable, View } from "react-native";
-import React, { useCallback } from "react";
-import Svg, { Path } from "react-native-svg";
-
-import { MotiView } from "moti";
 import type { PressableProps } from "react-native";
-import { Text } from "../text";
+import React, { useCallback } from "react";
+import { I18nManager, Pressable, View } from "react-native";
+import Svg, { Path } from "react-native-svg";
 import colors from "@/theme/colors";
+import { MotiView } from "moti";
+
+import { Text } from "../text";
 
 const SIZE = 20;
 const WIDTH = 50;

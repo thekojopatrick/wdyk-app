@@ -1,8 +1,7 @@
-import { Button, Checkbox, Text, ThemeText } from "@/ui";
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
-
 import { router } from "expo-router";
+import { Button, Checkbox, Text, ThemeText } from "@/ui";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
