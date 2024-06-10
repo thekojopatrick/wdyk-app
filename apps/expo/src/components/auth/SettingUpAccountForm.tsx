@@ -87,7 +87,10 @@ const SettingUpAccountForm = () => {
         <View className="mt-auto w-full gap-4 text-center">
           <Link
             replace
-            href={{ pathname: "/(app)/", params: { name: "Kojo" } }}
+            href={{
+              pathname: "/(auth)/setting-up-profile",
+              params: { name: "Kojo" },
+            }}
             asChild
           >
             <Button label="Continue" onPress={() => {}} />
