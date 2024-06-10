@@ -10,7 +10,7 @@ const LoginForm = () => {
   return (
     <View>
       <View className="mb-5 gap-2">
-        <ThemeText variant="largeTitle" testID="form-title">
+        <ThemeText variant="title1" testID="form-title" className="font-bold">
           Welcome back!
         </ThemeText>
         <ThemeText testID="form-description" className="pb-6">

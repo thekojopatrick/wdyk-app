@@ -12,7 +12,7 @@ const RegisterForm = () => {
   return (
     <View className="flex-1">
       <View className="mb-2 gap-2">
-        <ThemeText variant="largeTitle" testID="form-title" className="">
+        <ThemeText variant="title1" testID="form-title" className="font-bold">
           Sign up
         </ThemeText>
         <Text testID="form-title" className="w-[80%] pb-6 text-gray-600">

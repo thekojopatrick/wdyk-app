@@ -44,7 +44,7 @@ const Onboarding = () => {
           </View>
         </View>
         <View className="flex w-full flex-row items-center gap-2">
-          <Link href={"/onboarding"} className="basis-auto" asChild>
+          <Link href={"/(auth)/login"} className="basis-auto" asChild>
             <Button label="Skip" radius="full" variant="outline" />
           </Link>
           <Link href={"/get-started"} className="flex-1" asChild>
