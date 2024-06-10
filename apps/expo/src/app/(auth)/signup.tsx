@@ -1,8 +1,7 @@
 import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
-import { GoogleAuthButton } from "@/components/GoogleAuthButton";
-import RegisterForm from "@/components/RegisterForm";
+import { GoogleAuthButton, RegisterForm } from "@/components/auth";
 import { Button } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -25,7 +24,7 @@ export default function Register() {
         </View>
         <RegisterForm />
         <View className="w-full text-center">
-          <Link href="/modal" asChild>
+          <Link href="/(auth)/setting-up-account" asChild>
             <GoogleAuthButton onPress={() => {}} />
           </Link>
           <Link href={"/(auth)/login"} asChild>

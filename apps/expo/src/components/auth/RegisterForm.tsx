@@ -1,23 +1,40 @@
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
-import { Link } from "expo-router";
-import { Button, ThemeText } from "@/ui";
+import { router } from "expo-router";
+import { Button, Checkbox, Text, ThemeText } from "@/ui";
 
-const LoginForm = () => {
+const RegisterForm = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   return (
-    <View>
-      <View className="mb-5 gap-2">
+    <View className="flex-1">
+      <View className="mb-2 gap-2">
         <ThemeText variant="title1" testID="form-title" className="font-bold">
-          Welcome back!
+          Sign up
         </ThemeText>
-        <ThemeText testID="form-description" className="pb-6">
-          Login to continue your wordy adventure
-        </ThemeText>
+        <Text testID="form-title" className="w-[80%] pb-6 text-gray-600">
+          Create an your account to start your word adventure. it's quick and
+          easy.
+        </Text>
       </View>
-      <View className="mb-auto gap-4">
+      <View className="mb-4 gap-4">
+        <View>
+          <ThemeText
+            variant="subhead"
+            testID="email-ID"
+            className={styles.label}
+          >
+            Name
+          </ThemeText>
+          <TextInput
+            value={name}
+            onChangeText={setName}
+            placeholder="Your name"
+            className={styles.input}
+            autoCapitalize="none"
+          />
+        </View>
         <View>
           <ThemeText
             variant="subhead"
@@ -34,8 +51,7 @@ const LoginForm = () => {
             autoCapitalize="none"
           />
         </View>
-
-        <View className="mb-3">
+        <View>
           <ThemeText
             variant="subhead"
             testID="email-ID"
@@ -53,34 +69,27 @@ const LoginForm = () => {
             autoCapitalize="none"
           />
         </View>
-        <View className="mt-auto w-full gap-4 text-center">
-          <Link
-            replace
-            href={{ pathname: "/(app)/", params: { name: "Kojo" } }}
-            asChild
-          >
-            <Button label="Continue" onPress={() => {}} />
-          </Link>
-        </View>
-        <View className="my-2 text-center">
-          <Link href="/modal" asChild>
-            <ThemeText
-              variant="subhead"
-              className="text-primary-600 text-center font-medium"
-            >
-              Forgotten Password?
-            </ThemeText>
-          </Link>
+        <View className="mt-2">
+          <Checkbox
+            onChange={() => {}}
+            accessibilityLabel={"Agree to terms"}
+            label="By signing up,you agree to our Terms of services and Privacy Policy"
+          />
         </View>
       </View>
+      <Button
+        className=""
+        label="Sign up"
+        onPress={() => router.push("/(auth)/setting-up-account")}
+      />
     </View>
   );
 };
 
-export const styles = {
+const styles = {
   label: "text-grey-100 mb-2 text-lg dark:text-neutral-100",
   input:
     "mt-0 py-4 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-100 px-4 text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
 };
 
-export default LoginForm;
+export default RegisterForm;
