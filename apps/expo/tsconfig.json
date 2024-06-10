@@ -1,5 +1,5 @@
 {
-  "extends": ["@acme/tsconfig/base.json"],
+  "extends": ["expo/tsconfig.base"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -7,7 +7,6 @@
       "@env": ["./src/core/env.js"]
     },
     "jsx": "react-native",
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
     "types": ["nativewind/types", "jest", "node", "@testing-library/jest-dom"],
     "checkJs": true
   },
@@ -15,7 +14,7 @@
     "src",
     "**/*.ts",
     "**/*.tsx",
-    "*.ts",    
+    "*.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     ".eslintrc.js"

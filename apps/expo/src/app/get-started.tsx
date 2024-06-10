@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 import { Button, Image } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";

@@ -1,10 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 import { Button, Image } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 
 const Onboarding = () => {
   return (
@@ -14,14 +13,12 @@ const Onboarding = () => {
           <PrimaryLogo />
         </View>
         <View style={styles.container}>
-          <View className="mb-5 w-full flex-1 border border-e-primary">
+          <View className="mb-5 aspect-square h-[420px] w-full overflow-hidden">
             <Image
-              className="h-64 w-full overflow-hidden rounded-t-xl"
-              contentFit="cover"
-              source={{
-                uri: require("../../assets/onboarding-image-01.png"),
-                height: 256,
-              }}
+              className="h-full w-full rounded-t-xl"
+              style={styles.image}
+              contentFit="contain"
+              source={require("../../assets/onboarding-image-01.png")}
             />
           </View>
           <View style={styles.main}>
@@ -66,7 +63,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingTop: 0,
+    paddingBottom: 16,
   },
   main: {
     flex: 1,
@@ -85,5 +84,9 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     color: "#38434D",
     textAlign: "center",
+  },
+  image: {
+    flex: 1,
+    width: "100%",
   },
 });

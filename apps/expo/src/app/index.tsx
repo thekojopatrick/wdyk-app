@@ -1,30 +1,26 @@
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Link, Stack } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
-
 import { Button } from "@/ui";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
-    <SafeAreaView>
-      <Stack.Screen options={{ title: "Home" }} />
-      <View className="h-full w-full p-4">
-        <Text className="pb-2 text-center text-5xl font-bold text-foreground">
-          <Text className="text-primary">Wdyk</Text>
-        </Text>
+    <>
+      <SafeAreaView>
+        <Stack.Screen options={{ title: "Home" }} />
+
         <View style={styles.container}>
           <View style={styles.main}>
             <Text style={styles.title}>Hello World</Text>
             <Text style={styles.subtitle}>
               This is the first page of your app.
             </Text>
+            <Link href={"/onboarding"} asChild>
+              <Button label="Go to Post" />
+            </Link>
           </View>
         </View>
-        <Link href={"/onboarding"} asChild>
-          <Button label="Go to Post" />
-        </Link>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 }
 
@@ -39,6 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     maxWidth: 960,
     marginHorizontal: "auto",
+    backgroundColor: "#38434D",
   },
   title: {
     fontSize: 24,
