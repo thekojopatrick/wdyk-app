@@ -1,10 +1,10 @@
-import { AntDesign, Ionicons } from "@expo/vector-icons";
 import type {
   CountryItem,
   ItemTemplateProps,
   ListHeaderComponentProps,
   Style,
 } from "react-native-country-codes-picker";
+import React, { memo, useCallback, useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -12,10 +12,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { memo, useCallback, useState } from "react";
-
-import { CheckCircleIcon } from "@/ui/icons";
 import { CountryPicker } from "react-native-country-codes-picker";
+import { CheckCircleIcon } from "@/ui/icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 interface ListItemProps {
   selectedItem: string;
@@ -29,7 +28,6 @@ const ListItem = memo(
   ({ selectedItem, item, name, onPress }: ListItemProps) => {
     function handleOnPress() {
       onPress(item);
-      console.log({ selectedItem });
     }
 
     return (

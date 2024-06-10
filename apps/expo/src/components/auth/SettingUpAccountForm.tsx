@@ -2,16 +2,45 @@ import React, { useRef, useState } from "react";
 import { TextInput, View } from "react-native";
 import { CountryPicker } from "react-native-country-codes-picker";
 import { Link } from "expo-router";
-import { Button, ThemeText } from "@/ui";
-import { Picker } from "@react-native-picker/picker";
+import { Button, Checkbox, Option, Select, ThemeText } from "@/ui";
 
+import { ItemsContainer } from "../settings/items-container";
+import { LanguageItem } from "../settings/language-item";
 import SelectCountryModal from "./CountryPicker";
 import { SelectCountryBottomSheet } from "./SelectCountryModal";
 
-const SettingUpAccountForm = () => {
-  const [email, setEmail] = useState("");
+const CheckboxExample = () => {
+  const [checked, setChecked] = React.useState(false);
+  return (
+    <Checkbox.Root
+      checked={checked}
+      onChange={setChecked}
+      accessibilityLabel="accept terms of condition"
+      className="pb-2"
+    >
+      <Checkbox.Icon checked={checked} />
+      <Checkbox.Label text="checkbox" />
+    </Checkbox.Root>
+  );
+};
 
-  const [password, setPassword] = useState("");
+const genderOptions: Option[] = [
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" },
+  { value: "self-identity", label: "Self Identity" },
+];
+const ageRangeOptions: Option[] = [
+  { value: "5-10", label: "5-10" },
+  { value: "11-15", label: "10-15" },
+  { value: "16-18", label: "15-18" },
+  { value: "19-24", label: "18-24" },
+  { value: "25-above", label: "25-above" },
+];
+
+const SettingUpAccountForm = () => {
+  const [country, setSelectedCountry] = useState("");
+  const [selectedAgeRange, setSelectedAgeRange] = useState("");
+  const [selectedGender, setSelectedGender] = useState<string>("");
 
   return (
     <View>
@@ -34,23 +63,25 @@ const SettingUpAccountForm = () => {
           </ThemeText>
           <SelectCountryModal />
         </View>
+        <View className="">
+          <Select
+            label="Select your age range"
+            value={selectedAgeRange}
+            options={ageRangeOptions}
+            onSelect={(val) => setSelectedAgeRange(val as string)}
+            testID="select"
+            placeholder="Select.."
+          />
+        </View>
 
-        <View className="mb-3">
-          <ThemeText
-            variant="subhead"
-            testID="email-ID"
-            className={styles.label}
-          >
-            Password
-          </ThemeText>
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Password"
-            className={styles.input}
-            textContentType="password"
-            secureTextEntry
-            autoCapitalize="none"
+        <View className="">
+          <Select
+            label="How do you identify?"
+            value={selectedGender}
+            options={genderOptions}
+            onSelect={(val) => setSelectedGender(val as string)}
+            testID="select"
+            placeholder="Select.."
           />
         </View>
         <View className="mt-auto w-full gap-4 text-center">

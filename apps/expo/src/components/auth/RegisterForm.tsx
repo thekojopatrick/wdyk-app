@@ -1,12 +1,15 @@
+import { Button, Checkbox, Text, ThemeText } from "@/ui";
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
+
 import { router } from "expo-router";
-import { Button, Checkbox, Text, ThemeText } from "@/ui";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
+
   return (
     <View className="flex-1">
       <View className="mb-2 gap-2">
@@ -71,7 +74,8 @@ const RegisterForm = () => {
         </View>
         <View className="mt-2">
           <Checkbox
-            onChange={() => {}}
+            checked={checked}
+            onChange={setChecked}
             accessibilityLabel={"Agree to terms"}
             label="By signing up,you agree to our Terms of services and Privacy Policy"
           />
