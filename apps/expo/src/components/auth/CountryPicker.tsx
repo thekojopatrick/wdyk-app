@@ -1,8 +1,10 @@
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import type {
+  CountryItem,
   ItemTemplateProps,
   ListHeaderComponentProps,
+  Style,
 } from "react-native-country-codes-picker";
-import React, { memo, useCallback, useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -10,44 +12,60 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  CountryButton,
-  CountryPicker,
-} from "react-native-country-codes-picker";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import React, { memo, useCallback, useState } from "react";
 
-const CustomButton = memo(({ item, name, onPress }: ItemTemplateProps) => {
-  return (
-    <TouchableOpacity
-      onPress={() => onPress(item)}
-      style={styles.buttonContainer}
-    >
-      <View className="flex flex-1 flex-row items-center gap-2">
-        <Text>{item?.flag}</Text>
-        <Text className="text-lg">{item?.name?.en || name}</Text>
-      </View>
-      <Ionicons name="ellipse-outline" size={24} color="#d1d5db" />
-    </TouchableOpacity>
-  );
-});
+import { CheckCircleIcon } from "@/ui/icons";
+import { CountryPicker } from "react-native-country-codes-picker";
+
+interface ListItemProps {
+  selectedItem: string;
+  item: CountryItem;
+  name: string;
+  style?: Style;
+  onPress?: (arg: any) => any;
+}
+
+const ListItem = memo(
+  ({ selectedItem, item, name, onPress }: ListItemProps) => {
+    function handleOnPress() {
+      onPress(item);
+      console.log({ selectedItem });
+    }
+
+    return (
+      <TouchableOpacity onPress={handleOnPress} style={styles.buttonContainer}>
+        <View className="flex flex-1 flex-row items-center gap-2">
+          <Text>{item?.flag}</Text>
+          <Text className="text-lg">{item?.name?.en || name}</Text>
+        </View>
+        {selectedItem === name ? (
+          <CheckCircleIcon width={24} height={24} />
+        ) : (
+          <Ionicons name="ellipse-outline" size={24} color="#d1d5db" />
+        )}
+      </TouchableOpacity>
+    );
+  },
+);
 
 const ListHeaderComponent = memo(
-  ({ countries, lang, onPress }: ListHeaderComponentProps) => {
+  ({
+    countries,
+    lang,
+    onPress,
+    selectedItem,
+  }: ListHeaderComponentProps & { selectedItem: string }) => {
     return (
       <View style={styles.headerContainer}>
         <Text className="py-2 font-semibold">Popular countries</Text>
         {countries?.map((country, index) => (
-          <TouchableOpacity
+          <ListItem
             key={index}
+            item={country}
             onPress={() => onPress(country)}
-            style={styles.buttonContainer}
-          >
-            <View className="flex flex-1 flex-row items-center gap-2">
-              <Text>{country?.flag}</Text>
-              <Text className="text-lg">{country?.name?.[lang || "en"]}</Text>
-            </View>
-            <Ionicons name="ellipse-outline" size={24} color="#d1d5db" />
-          </TouchableOpacity>
+            name={country?.name?.[lang || "en"]}
+            selectedItem={selectedItem}
+          />
         ))}
         <Text className="mt-4 py-2 font-semibold">Other countries</Text>
       </View>
@@ -92,10 +110,18 @@ export default function SelectCountryModal() {
         }}
         pickerButtonOnPress={handlePickerButtonPress}
         ListHeaderComponent={(props) => (
-          <ListHeaderComponent {...props} onPress={handlePickerButtonPress} />
+          <ListHeaderComponent
+            {...props}
+            onPress={handlePickerButtonPress}
+            selectedItem={selectedCountry}
+          />
         )}
         itemTemplate={(props) => (
-          <CustomButton {...props} onPress={handlePickerButtonPress} />
+          <ListItem
+            {...props}
+            onPress={handlePickerButtonPress}
+            selectedItem={selectedCountry}
+          />
         )}
       />
     </View>

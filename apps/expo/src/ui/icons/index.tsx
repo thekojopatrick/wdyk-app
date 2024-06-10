@@ -12,3 +12,4 @@ export * from "./support";
 export * from "./website";
 export * from "./brand-logo";
 export * from "./google";
+export * from "./check-circle-icon";
