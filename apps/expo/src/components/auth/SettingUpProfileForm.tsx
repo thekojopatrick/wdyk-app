@@ -11,6 +11,10 @@ const schema = z.object({
 });
 type FormType = z.infer<typeof schema>;
 
+//TODO:Use flatlist to display symbols
+//Todo: On tap on sybmol open bottomsheet to customize symbol
+//Todo: Show selected symbol
+
 const SettingUpProfileForm = () => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
