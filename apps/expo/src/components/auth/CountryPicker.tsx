@@ -22,9 +22,9 @@ const CustomButton = memo(({ item, name, onPress }: ItemTemplateProps) => {
       onPress={() => onPress(item)}
       style={styles.buttonContainer}
     >
-      <View className="flex flex-1 flex-row gap-2">
+      <View className="flex flex-1 flex-row items-center gap-2">
         <Text>{item?.flag}</Text>
-        <Text>{item?.name?.en || name}</Text>
+        <Text className="text-lg">{item?.name?.en || name}</Text>
       </View>
       <Ionicons name="ellipse-outline" size={24} color="#d1d5db" />
     </TouchableOpacity>
@@ -42,9 +42,9 @@ const ListHeaderComponent = memo(
             onPress={() => onPress(country)}
             style={styles.buttonContainer}
           >
-            <View className="flex flex-1 flex-row gap-2">
+            <View className="flex flex-1 flex-row items-center gap-2">
               <Text>{country?.flag}</Text>
-              <Text>{country?.name?.[lang || "en"]}</Text>
+              <Text className="text-lg">{country?.name?.[lang || "en"]}</Text>
             </View>
             <Ionicons name="ellipse-outline" size={24} color="#d1d5db" />
           </TouchableOpacity>
