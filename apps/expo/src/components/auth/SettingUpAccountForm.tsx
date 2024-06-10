@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { TextInput, View } from "react-native";
+import { CountryPicker } from "react-native-country-codes-picker";
 import { Link } from "expo-router";
 import { Button, ThemeText } from "@/ui";
+import { Picker } from "@react-native-picker/picker";
 
+import SelectCountryModal from "./CountryPicker";
 import { SelectCountryBottomSheet } from "./SelectCountryModal";
 
 const SettingUpAccountForm = () => {
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
+
   return (
     <View>
       <View className="mb-5 gap-2">
@@ -27,7 +32,7 @@ const SettingUpAccountForm = () => {
           >
             Country of residence
           </ThemeText>
-          <SelectCountryBottomSheet placeholder="Select country of residence" />
+          <SelectCountryModal />
         </View>
 
         <View className="mb-3">
