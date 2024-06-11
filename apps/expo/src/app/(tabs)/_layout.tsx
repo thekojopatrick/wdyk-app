@@ -4,9 +4,12 @@ import { Link, Redirect, SplashScreen, Tabs } from "expo-router";
 import { useIsFirstTime } from "@/core";
 import { Pressable, Text } from "@/ui";
 import {
-  Feed as FeedIcon,
+  AnalyticsUpIcon,
+  Dashboard as DashboardIcon,
+  Home as HomeIcon,
+  Trophy as LeaderboardIcon,
   Settings as SettingsIcon,
-  Style as StyleIcon,
+  User as UserIcon,
 } from "@/ui/icons";
 
 export default function TabLayout() {
@@ -34,29 +37,38 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Discover",
+          title: "Gameplay",
           headerShown: false,
-          tabBarIcon: ({ color }) => <FeedIcon color={color} />,
+          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
           headerRight: () => <CreateNewPostLink />,
           tabBarTestID: "home-tab",
         }}
       />
 
       <Tabs.Screen
+        name="dashboard"
+        options={{
+          title: "Stats",
+          headerShown: false,
+          tabBarIcon: ({ color }) => <AnalyticsUpIcon color={color} />,
+          tabBarTestID: "leaderboard-tab",
+        }}
+      />
+      <Tabs.Screen
         name="leaderboard"
         options={{
           title: "Leaderboard",
           headerShown: false,
-          tabBarIcon: ({ color }) => <StyleIcon color={color} />,
+          tabBarIcon: ({ color }) => <LeaderboardIcon color={color} />,
           tabBarTestID: "leaderboard-tab",
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: "More",
           headerShown: false,
-          tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
+          tabBarIcon: ({ color }) => <DashboardIcon color={color} />,
           tabBarTestID: "profile-tab",
         }}
       />
