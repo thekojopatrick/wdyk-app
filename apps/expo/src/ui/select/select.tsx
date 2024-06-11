@@ -140,6 +140,7 @@ export interface SelectProps {
   placeholder?: string;
   testID?: string;
 }
+
 interface ControlledSelectProps<T extends FieldValues>
   extends SelectProps,
     InputControllerType<T> {}
@@ -229,7 +230,7 @@ export function ControlledSelect<T extends FieldValues>(
 ) {
   const { name, control, rules, onSelect: onNSelect, ...selectProps } = props;
 
-  const { field, fieldState } = useController({ control, name, rules });
+  const { field, fieldState } = useController<T>({ control, name, rules });
   const onSelect = React.useCallback(
     (value: string | number) => {
       field.onChange(value);

@@ -25,7 +25,6 @@ const inputTv = tv({
     input:
       "mt-0 rounded-xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 font-inter text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
   },
-
   variants: {
     focused: {
       true: {
@@ -129,8 +128,8 @@ export function ControlledInput<T extends FieldValues>(
   props: ControlledInputProps<T>,
 ) {
   const { name, control, rules, ...inputProps } = props;
+  const { field, fieldState } = useController<T>({ control, name, rules });
 
-  const { field, fieldState } = useController({ control, name, rules });
   return (
     <Input
       ref={field.ref}
