@@ -60,7 +60,12 @@ const Profile = () => {
             </ItemsContainer>
             <ItemsContainer title="settings.about">
               <Item
-                text="settings.share"
+                text="settings.update"
+                icon={<Share color={iconColor} />}
+                onPress={() => {}}
+              />
+              <Item
+                text="settings.feedback"
                 icon={<Share color={iconColor} />}
                 onPress={() => {}}
               />
@@ -70,8 +75,13 @@ const Profile = () => {
                 onPress={() => {}}
               />
               <Item
-                text="settings.support"
+                text="settings.rate_us"
                 icon={<Support color={iconColor} />}
+                onPress={() => {}}
+              />
+              <Item
+                text="settings.share"
+                icon={<Share color={iconColor} />}
                 onPress={() => {}}
               />
             </ItemsContainer>
