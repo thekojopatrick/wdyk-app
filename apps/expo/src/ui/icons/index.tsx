@@ -23,3 +23,5 @@ export * from "./dashboard";
 export * from "./ai-idea";
 export * from "./analytics";
 export * from "./notification";
+export * from "./new-star";
+export * from "./user-settings";

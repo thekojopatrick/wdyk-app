@@ -4,6 +4,15 @@
   },
   "settings": {
     "about": "About",
+    "account_settings": "Account Settings",
+    "account": "Account",
+    "update": "What's new",
+    "about_us": "About Us",
+    "preferences": "Preferences",
+    "appearance": "Appearance",
+    "notifications": "Notifications",
+    "feedback": "Feedback",
+    "rate_us": "Leave us a review",
     "app_name": "App Name",
     "arabic": "Arabic",
     "english": "English",
@@ -19,6 +28,7 @@
     "support": "Support",
     "support_us": "Support Us",
     "terms": "Terms of Service",
+    "legal": "Legal",
     "theme": {
       "dark": "Dark",
       "light": "Light",
