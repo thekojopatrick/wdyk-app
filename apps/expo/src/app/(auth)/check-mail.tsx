@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
-import { Button, ThemeText } from "@/ui";
+import { Button, ThemedText } from "@/ui";
 import { CheckMailIcon, PrimaryLogo } from "@/ui/icons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -27,20 +27,20 @@ const CheckMail = () => {
             <View className="h-16 w-16 items-center justify-center rounded-full bg-purple-50">
               <CheckMailIcon />
             </View>
-            <ThemeText
+            <ThemedText
               variant="title3"
               testID="form-title"
               className="text-center font-semibold"
             >
               We&apos;ve sent you an email with your magic link
-            </ThemeText>
-            <ThemeText
+            </ThemedText>
+            <ThemedText
               variant="footnote"
               testID="form-description"
               className="text-center"
             >
               Please click on the link to verify your account and access Wdyk?
-            </ThemeText>
+            </ThemedText>
           </View>
           <View className="my-10 w-full">
             <Link href={"(auth)/"} asChild>
@@ -48,21 +48,21 @@ const CheckMail = () => {
             </Link>
             <View className="mt-2 text-center">
               <Button variant="link" onPress={() => router.back()}>
-                <ThemeText variant="callout" className="mr-2">
+                <ThemedText variant="callout" className="mr-2">
                   Haven't received it?
-                </ThemeText>
-                <ThemeText variant="callout" className="text-primary">
+                </ThemedText>
+                <ThemedText variant="callout" className="text-primary">
                   Resend
-                </ThemeText>
+                </ThemedText>
               </Button>
             </View>
           </View>
           <View className="my-2 text-center">
             <Link href={"/(auth)/enter-otp"} asChild>
               <Button variant="link">
-                <ThemeText variant="callout" className="text-primary">
+                <ThemedText variant="callout" className="text-primary">
                   Enter code manually
-                </ThemeText>
+                </ThemedText>
               </Button>
             </Link>
           </View>

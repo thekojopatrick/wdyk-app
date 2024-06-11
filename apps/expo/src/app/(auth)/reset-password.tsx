@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
-import { GoogleAuthButton, ResetPasswordForm } from "@/components/auth";
+import { ResetPasswordForm } from "@/components/auth";
 import { Button } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 import Ionicons from "@expo/vector-icons/Ionicons";

@@ -1,13 +1,9 @@
-import React, { useRef, useState } from "react";
-import { TextInput, View } from "react-native";
-import { CountryPicker } from "react-native-country-codes-picker";
+import React, { useState } from "react";
+import { View } from "react-native";
 import { Link } from "expo-router";
-import { Button, Checkbox, Option, Select, ThemeText } from "@/ui";
+import { Button, Checkbox, Option, Select, ThemedText } from "@/ui";
 
-import { ItemsContainer } from "../settings/items-container";
-import { LanguageItem } from "../settings/language-item";
 import SelectCountryModal from "./CountryPicker";
-import { SelectCountryBottomSheet } from "./SelectCountryModal";
 
 const CheckboxExample = () => {
   const [checked, setChecked] = React.useState(false);
@@ -45,22 +41,22 @@ const SettingUpAccountForm = () => {
   return (
     <View>
       <View className="mb-5 gap-2">
-        <ThemeText variant="title1" testID="form-title" className="font-bold">
+        <ThemedText variant="title1" testID="form-title" className="font-bold">
           Tell us about yourself
-        </ThemeText>
-        <ThemeText testID="form-description" className="pb-6">
+        </ThemedText>
+        <ThemedText testID="form-description" className="pb-6">
           Share some details to personalize your wordy journey.
-        </ThemeText>
+        </ThemedText>
       </View>
       <View className="mb-auto gap-4">
         <View>
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="email-ID"
             className={styles.label}
           >
             Country of residence
-          </ThemeText>
+          </ThemedText>
           <SelectCountryModal />
         </View>
         <View className="">
@@ -98,12 +94,12 @@ const SettingUpAccountForm = () => {
         </View>
         <View className="my-2 text-center">
           <Link href="/modal" asChild>
-            <ThemeText
+            <ThemedText
               variant="subhead"
               className="text-primary-600 text-center font-medium"
             >
               Maybe later
-            </ThemeText>
+            </ThemedText>
           </Link>
         </View>
       </View>

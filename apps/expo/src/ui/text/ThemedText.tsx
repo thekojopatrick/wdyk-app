@@ -36,7 +36,7 @@ const textVariants = cva("text-foreground", {
 
 const TextClassContext = React.createContext<string | undefined>(undefined);
 
-const ThemeText = React.forwardRef<
+const ThemedText = React.forwardRef<
   RNText,
   React.ComponentPropsWithoutRef<typeof RNText> &
     VariantProps<typeof textVariants>
@@ -51,4 +51,4 @@ const ThemeText = React.forwardRef<
   );
 });
 
-export { ThemeText, TextClassContext, textVariants };
+export { ThemedText, TextClassContext, textVariants };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import { Link } from "expo-router";
-import { Button, ThemeText } from "@/ui";
+import { Button, ThemedText } from "@/ui";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -10,22 +10,22 @@ const LoginForm = () => {
   return (
     <View>
       <View className="mb-5 gap-2">
-        <ThemeText variant="title1" testID="form-title" className="font-bold">
+        <ThemedText variant="title1" testID="form-title" className="font-bold">
           Welcome back!
-        </ThemeText>
-        <ThemeText testID="form-description" className="pb-6">
+        </ThemedText>
+        <ThemedText testID="form-description" className="pb-6">
           Login to continue your wordy adventure
-        </ThemeText>
+        </ThemedText>
       </View>
       <View className="mb-auto gap-4">
         <View>
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="email-ID"
             className={styles.label}
           >
             Email
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={email}
             onChangeText={setEmail}
@@ -36,13 +36,13 @@ const LoginForm = () => {
         </View>
 
         <View className="mb-3">
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="email-ID"
             className={styles.label}
           >
             Password
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={password}
             onChangeText={setPassword}
@@ -64,12 +64,12 @@ const LoginForm = () => {
         </View>
         <View className="my-2 text-center">
           <Link href="/(auth)/forgot-password" asChild>
-            <ThemeText
+            <ThemedText
               variant="subhead"
               className="text-primary-600 text-center font-medium"
             >
               Forgotten Password?
-            </ThemeText>
+            </ThemedText>
           </Link>
         </View>
       </View>

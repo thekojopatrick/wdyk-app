@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import { router } from "expo-router";
-import { Button, Checkbox, Text, ThemeText } from "@/ui";
+import { Button, Checkbox, Text, ThemedText } from "@/ui";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -12,9 +12,9 @@ const RegisterForm = () => {
   return (
     <View className="flex-1">
       <View className="mb-2 gap-2">
-        <ThemeText variant="title1" testID="form-title" className="font-bold">
+        <ThemedText variant="title1" testID="form-title" className="font-bold">
           Sign up
-        </ThemeText>
+        </ThemedText>
         <Text testID="form-title" className="w-[80%] pb-6 text-gray-600">
           Create an your account to start your word adventure. it's quick and
           easy.
@@ -22,13 +22,13 @@ const RegisterForm = () => {
       </View>
       <View className="mb-4 gap-4">
         <View>
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="email-ID"
             className={styles.label}
           >
             Name
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={name}
             onChangeText={setName}
@@ -38,13 +38,13 @@ const RegisterForm = () => {
           />
         </View>
         <View>
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="email-ID"
             className={styles.label}
           >
             Email
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={email}
             onChangeText={setEmail}
@@ -54,13 +54,13 @@ const RegisterForm = () => {
           />
         </View>
         <View>
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="email-ID"
             className={styles.label}
           >
             Password
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={password}
             onChangeText={setPassword}

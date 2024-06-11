@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import { Link } from "expo-router";
-import { Button, ThemeText } from "@/ui";
+import { Button, ThemedText } from "@/ui";
 
 const ResetPasswordForm = () => {
   const [password, setPassword] = useState("");
@@ -10,23 +10,23 @@ const ResetPasswordForm = () => {
   return (
     <View>
       <View className="mb-5 gap-2">
-        <ThemeText variant="title1" testID="form-title" className="font-bold">
+        <ThemedText variant="title1" testID="form-title" className="font-bold">
           Set up a new password?
-        </ThemeText>
-        <ThemeText testID="form-description" className="pb-6">
+        </ThemedText>
+        <ThemedText testID="form-description" className="pb-6">
           No problem, we&apos;ll send instructions to your inbox to reset your
           password.
-        </ThemeText>
+        </ThemedText>
       </View>
       <View className="mb-auto gap-4">
         <View className="mb-3">
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="new-password-ID"
             className={styles.label}
           >
             New Password
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={password}
             onChangeText={setPassword}
@@ -38,13 +38,13 @@ const ResetPasswordForm = () => {
           />
         </View>
         <View className="mb-3">
-          <ThemeText
+          <ThemedText
             variant="subhead"
             testID="confirm-password-ID"
             className={styles.label}
           >
             Confirm Password
-          </ThemeText>
+          </ThemedText>
           <TextInput
             value={confirmPassword}
             onChangeText={setConfirmPassword}
