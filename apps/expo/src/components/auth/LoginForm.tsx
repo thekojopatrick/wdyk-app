@@ -1,8 +1,7 @@
-import { Button, ThemeText } from "@/ui";
 import React, { useState } from "react";
 import { TextInput, View } from "react-native";
-
 import { Link } from "expo-router";
+import { Button, ThemeText } from "@/ui";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");

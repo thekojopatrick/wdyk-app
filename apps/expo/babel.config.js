@@ -1,4 +1,3 @@
-/** @type {import("@babel/core").ConfigFunction} */
 module.exports = (api) => {
   api.cache(true);
   return {
@@ -6,29 +5,6 @@ module.exports = (api) => {
       ["babel-preset-expo", { jsxImportSource: "nativewind" }],
       "nativewind/babel",
     ],
-    plugins: [
-      [
-        "module-resolver",
-        {
-          root: ["./"],
-          alias: {
-            "@": "./src",
-            "@env": "./src/core/env.js",
-          },
-          extensions: [
-            ".ios.ts",
-            ".android.ts",
-            ".ts",
-            ".ios.tsx",
-            ".android.tsx",
-            ".tsx",
-            ".jsx",
-            ".js",
-            ".json",
-          ],
-        },
-      ],
-      "react-native-reanimated/plugin",
-    ],
+    plugins: ["react-native-reanimated/plugin"],
   };
 };

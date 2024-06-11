@@ -1,9 +1,8 @@
-import { Button, Image } from "@/ui";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-
-import { Link } from "expo-router";
-import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Button, Image } from "@/ui";
+import { PrimaryLogo } from "@/ui/icons";
 
 const GetStarted = () => {
   return (

@@ -7,14 +7,16 @@
       "@env": ["./src/core/env.js"]
     },
     "jsx": "react-native",
-    "types": ["nativewind/types", "jest", "node", "@testing-library/jest-dom"],
-    "checkJs": true
+
+    "types": ["nativewind/types"],
+    "checkJs": false
   },
   "include": [
     "src",
     "**/*.ts",
     "**/*.tsx",
     "*.ts",
+    "*.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     ".eslintrc.js"

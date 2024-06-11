@@ -1,11 +1,10 @@
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Link, useRouter } from "expo-router";
 import { Button, ThemeText } from "@/ui";
 import { CheckMailIcon, LockIcon, PrimaryLogo } from "@/ui/icons";
-import { Link, useRouter } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
-
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const PasswordChanged = () => {
   const router = useRouter();
