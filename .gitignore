@@ -5,6 +5,7 @@ node_modules
 android
 .pnp
 .pnp.js
+trunk
 
 # testing
 coverage
