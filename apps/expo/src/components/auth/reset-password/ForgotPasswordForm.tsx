@@ -37,7 +37,9 @@ const ForgotPasswordForm = () => {
         </View>
 
         <View className="mt-auto w-full gap-4 text-center">
-          <Button label="Send mail" onPress={() => {}} />
+          <Link href={"/(auth)/check-mail"} asChild>
+            <Button label="Send mail" onPress={() => {}} />
+          </Link>
         </View>
 
         <View className="my-2 text-center">

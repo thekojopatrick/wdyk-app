@@ -2,7 +2,7 @@ import Svg, { Path } from "react-native-svg";
 
 import type { SvgProps } from "react-native-svg";
 
-const CheckMailIcon = ({ ...props }: SvgProps) => {
+export const CheckMailIcon = ({ ...props }: SvgProps) => {
   return (
     <Svg width={32} height={32} viewBox="0 0 32 32" fill="none" {...props}>
       <Path
@@ -29,5 +29,3 @@ const CheckMailIcon = ({ ...props }: SvgProps) => {
     </Svg>
   );
 };
-
-export default CheckMailIcon;
