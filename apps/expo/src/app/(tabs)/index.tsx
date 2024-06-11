@@ -11,11 +11,19 @@ export default function Home() {
     <SafeAreaView style={styles.container}>
       <FocusAwareStatusBar />
       <Stack.Screen
-        options={{ header: () => <CustomHeader title="Gameplay" /> }}
+        options={{
+          header: () => (
+            <CustomHeader title="Gameplay" titleVariant="largeTitle" />
+          ),
+        }}
       />
-      <View className="h-full w-full px-4">
+      <View className="h-full w-full px-5">
         <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
-          <ThemedText className="">Welcome back! Kojo</ThemedText>
+          <View className="">
+            <ThemedText variant="title3" className="">
+              Welcome back! Kojo
+            </ThemedText>
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>

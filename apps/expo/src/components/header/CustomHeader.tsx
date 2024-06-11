@@ -18,7 +18,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container} className="border-b-2 border-gray-100">
-        <ThemedText variant={titleVariant} className="font-bold">
+        <ThemedText variant={titleVariant} className="font-semibold">
           {title}
         </ThemedText>
         {children}
