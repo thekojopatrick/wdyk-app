@@ -2,7 +2,9 @@ import React from "react";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "@/theme";
-import { ThemedText } from "@/ui";
+import { Button, ThemedText } from "@/ui";
+import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
+import { Ionicons } from "@expo/vector-icons";
 
 interface CustomHeaderProps {
   title?: string;
@@ -21,6 +23,14 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
         <ThemedText variant={titleVariant} className="font-semibold">
           {title}
         </ThemedText>
+        <View className="flex flex-row items-center gap-2">
+          <Button variant="ghost" size="icon">
+            <NotificationIcon />
+          </Button>
+          <Button variant="ghost" size="icon" className="bg-purple-100">
+            <SettingsIcon color={colors.primary[600]} />
+          </Button>
+        </View>
         {children}
       </View>
     </SafeAreaView>
