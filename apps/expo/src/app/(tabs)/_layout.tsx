@@ -47,7 +47,6 @@ export default function TabLayout() {
         name="dashboard"
         options={{
           title: "Stats",
-          headerShown: false,
           tabBarIcon: ({ color }) => <AnalyticsUpIcon color={color} />,
           tabBarTestID: "leaderboard-tab",
         }}
@@ -56,7 +55,6 @@ export default function TabLayout() {
         name="leaderboard"
         options={{
           title: "Leaderboard",
-          headerShown: false,
           tabBarIcon: ({ color }) => <LeaderboardIcon color={color} />,
           tabBarTestID: "leaderboard-tab",
         }}
@@ -65,7 +63,6 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "More",
-          headerShown: false,
           tabBarIcon: ({ color }) => <DashboardIcon color={color} />,
           tabBarTestID: "profile-tab",
         }}
