@@ -24,6 +24,7 @@ export default function RootLayout() {
           It also allows you to configure your screens 
         */}
       <Stack initialRouteName="splash">
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="splash" options={{ headerShown: false }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="get-started" options={{ headerShown: false }} />

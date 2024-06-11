@@ -57,7 +57,7 @@ const LoginForm = () => {
         <View className="mt-auto w-full gap-4 text-center">
           <Link
             replace
-            href={{ pathname: "/(app)/", params: { name: "Kojo" } }}
+            href={{ pathname: "/(tabs)/", params: { name: "Kojo" } }}
             asChild
           >
             <Button label="Continue" onPress={() => {}} />
