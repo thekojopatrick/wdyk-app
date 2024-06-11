@@ -2,6 +2,7 @@ import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Stack } from "expo-router";
 import CustomHeader from "@/components/header/CustomHeader";
+import { ProfileContainer } from "@/components/profile";
 import { FocusAwareStatusBar, ThemedText } from "@/ui";
 
 const Profile = () => {
@@ -21,6 +22,7 @@ const Profile = () => {
           className="h-full w-full px-5"
         >
           <View className="">
+            <ProfileContainer />
             <ThemedText variant="title3" className="">
               <Text>Profile</Text>
             </ThemedText>
