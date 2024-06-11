@@ -38,9 +38,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Gameplay",
-          headerShown: false,
           tabBarIcon: ({ color }) => <HomeIcon color={color} />,
-          headerRight: () => <CreateNewPostLink />,
           tabBarTestID: "home-tab",
         }}
       />
