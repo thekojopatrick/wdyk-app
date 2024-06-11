@@ -3,8 +3,8 @@
 import React from "react";
 import { cleanup, fireEvent, render, screen } from "@/core/test-utils";
 
-import type { Option } from "./select";
-import { Select } from "./select";
+import type { Option } from "../select";
+import { Select } from "../select";
 
 afterEach(cleanup);
 

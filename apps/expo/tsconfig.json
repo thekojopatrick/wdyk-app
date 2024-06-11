@@ -7,8 +7,7 @@
       "@env": ["./src/core/env.js"]
     },
     "jsx": "react-native",
-
-    "types": ["nativewind/types"],
+    "types": ["nativewind/types", "@testing-library/jest-dom"],
     "checkJs": false
   },
   "include": [
