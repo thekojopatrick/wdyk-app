@@ -45,6 +45,11 @@ const button = tv({
         label: "text-black",
         indicator: "text-black",
       },
+      bezel: {
+        container: "bg-primary border border-purple-300 shadow-sm",
+        label: "text-white",
+        indicator: "text-gray-800",
+      },
     },
     size: {
       default: {
@@ -101,7 +106,6 @@ const button = tv({
     radius: "default",
   },
 });
-
 type ButtonVariants = VariantProps<typeof button>;
 interface Props extends ButtonVariants, Omit<PressableProps, "disabled"> {
   label?: string;
