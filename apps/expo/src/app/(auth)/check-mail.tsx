@@ -59,11 +59,13 @@ const CheckMail = () => {
             </View>
           </View>
           <View className="my-2 text-center">
-            <Button variant="link">
-              <ThemeText variant="callout" className="text-primary">
-                Enter code manually
-              </ThemeText>
-            </Button>
+            <Link href={"/(auth)/enter-otp"} asChild>
+              <Button variant="link">
+                <ThemeText variant="callout" className="text-primary">
+                  Enter code manually
+                </ThemeText>
+              </Button>
+            </Link>
           </View>
         </View>
       </View>
