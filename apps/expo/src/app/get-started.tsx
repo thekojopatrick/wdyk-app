@@ -1,8 +1,9 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
 import { Button, Image } from "@/ui";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+
+import { Link } from "expo-router";
 import { PrimaryLogo } from "@/ui/icons";
+import React from "react";
 
 const GetStarted = () => {
   return (
@@ -17,7 +18,7 @@ const GetStarted = () => {
               className="h-full w-full rounded-t-xl"
               style={styles.image}
               contentFit="contain"
-              source={require("../../assets/onboarding-image-01.png")}
+              source={require("../../assets/onboarding-image-02.png")}
             />
           </View>
           <View style={styles.main}>
