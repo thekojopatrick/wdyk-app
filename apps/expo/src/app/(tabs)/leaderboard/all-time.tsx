@@ -14,12 +14,9 @@ export default function Leaderboard() {
   return (
     <>
       {/* <StatusBar style="light" /> */}
-      <View className="h-full w-full px-5">
+      <View className="h-full w-full">
         <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           <View className="">
-            <ThemedText variant="title3" className="">
-              Welcome back! Kojo
-            </ThemedText>
             <LeaderboardScreen navigation={router} />
           </View>
         </ScrollView>

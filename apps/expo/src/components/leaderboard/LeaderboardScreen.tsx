@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { colors } from "@/theme";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -39,7 +40,7 @@ const LeaderboardScreen = ({ navigation }) => {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <>
       <View style={styles.header}>
         <Text style={styles.headerText}>Leaderboard</Text>
         <View style={styles.tabs}>
@@ -80,7 +81,7 @@ const LeaderboardScreen = ({ navigation }) => {
           </View>
         ))}
       </View>
-    </ScrollView>
+    </>
   );
 };
 
@@ -90,10 +91,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
-    backgroundColor: "#6C63FF",
+    backgroundColor: colors.primary[600],
     padding: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
   },
   headerText: {
     color: "#fff",
