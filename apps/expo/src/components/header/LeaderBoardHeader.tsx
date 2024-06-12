@@ -15,12 +15,6 @@ import { Button, ThemedText } from "@/ui";
 import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
 import { Ionicons } from "@expo/vector-icons";
 
-interface CustomHeaderProps {
-  title?: string;
-  titleVariant?: "largeTitle" | "title1" | "title2";
-  children?: React.ReactNode;
-}
-
 interface TopTabBarProps {
   label: string;
   activeTab: string;
@@ -50,7 +44,7 @@ const TopTabBar = ({ label, pathName, activeTab }: TopTabBarProps) => {
       <Text
         style={{
           color:
-            lastSegments === activeTab ? colors.primary[600] : colors.white,
+            lastSegments === activeTab ? colors.primary[950] : colors.white,
           fontSize: 12,
         }}
         className="px-2 py-1 uppercase transition-colors"
@@ -61,22 +55,11 @@ const TopTabBar = ({ label, pathName, activeTab }: TopTabBarProps) => {
   );
 };
 
-const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
-  titleVariant = "title1",
-}) => {
-  const navigation = useRouter();
-
-  const segments = useSegments();
-  const lastSegments = segments[segments.length - 1];
-
-  function handleTabPressed(path: string) {
-    navigation.navigate(path);
-  }
-
+const LeaderboardHeader: React.FC = ({}) => {
   return (
     <>
       <View style={styles.container}>
-        <ThemedText variant={titleVariant} className="font-semibold text-white">
+        <ThemedText variant={"title1"} className="font-semibold text-white">
           Leaderboard
         </ThemedText>
         <View className="flex flex-row items-center justify-center gap-2">
@@ -118,10 +101,7 @@ const styles = StyleSheet.create({
   tabs: {
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
     gap: 10,
-  },
-  tabText: {
-    color: "#fff",
-    fontSize: 16,
   },
 });
