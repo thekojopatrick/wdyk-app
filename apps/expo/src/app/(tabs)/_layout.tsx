@@ -1,8 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, Redirect, SplashScreen, Tabs } from "expo-router";
-import { useIsFirstTime } from "@/core";
-import { Pressable, Text } from "@/ui";
 import {
   AnalyticsUpIcon,
   Dashboard as DashboardIcon,
@@ -11,6 +6,12 @@ import {
   Settings as SettingsIcon,
   User as UserIcon,
 } from "@/ui/icons";
+import { Link, Redirect, SplashScreen, Tabs } from "expo-router";
+import { Pressable, Text } from "@/ui";
+/* eslint-disable react/no-unstable-nested-components */
+import React, { useCallback, useEffect, useState } from "react";
+
+import { useIsFirstTime } from "@/core";
 
 export default function TabLayout() {
   const status = useState<string>("idle" || "signOut");
@@ -55,6 +56,7 @@ export default function TabLayout() {
         name="leaderboard"
         options={{
           title: "Leaderboard",
+          headerShown: false,
           tabBarIcon: ({ color }) => <LeaderboardIcon color={color} />,
           tabBarTestID: "leaderboard-tab",
         }}
