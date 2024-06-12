@@ -14,7 +14,7 @@ const ProfileContainer = () => {
       >
         <Adinkrahene width={48} height={48} />
       </View>
-      <View className="items-start">
+      <View className="flex items-start text-left">
         <ThemedText variant="title2" className="mt-2 text-center font-semibold">
           Kojo Patrick
         </ThemedText>
