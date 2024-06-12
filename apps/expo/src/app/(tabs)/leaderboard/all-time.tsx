@@ -9,15 +9,17 @@ import CustomHeader from "@/components/header/CustomHeader";
 import LeaderboardScreen from "@/components/leaderboard/LeaderboardScreen";
 import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
 
+import { topUsers, users } from ".";
+
 export default function Leaderboard() {
   const router = useRouter();
   return (
     <>
-      {/* <StatusBar style="light" /> */}
+      <StatusBar style="light" />
       <View className="h-full w-full">
         <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           <View className="">
-            <LeaderboardScreen navigation={router} />
+            <LeaderboardScreen data={users} topRank={topUsers} />
           </View>
         </ScrollView>
       </View>

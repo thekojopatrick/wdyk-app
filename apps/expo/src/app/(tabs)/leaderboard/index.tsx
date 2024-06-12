@@ -9,13 +9,13 @@ import CustomHeader from "@/components/header/CustomHeader";
 import LeaderboardScreen from "@/components/leaderboard/LeaderboardScreen";
 import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
 
-const topUsers = [
+export const topUsers = [
   { name: "Arlene McCoy", points: 250, avatar: "heart", rank: 3 },
   { name: "Guy Hawkins", points: 305, avatar: "adinkrahene", rank: 1 },
   { name: "Dianne Russell", points: 195, avatar: "snowflake", rank: 2 },
 ];
 
-const users = [
+export const users = [
   { name: "Arlene McCoy", points: 305, avatar: "heart", rank: 1 },
   { name: "Guy Hawkins", points: 305, avatar: "heart", rank: 2 },
   { name: "Dianne Russell", points: 305, avatar: "snowflake", rank: 3 },
@@ -32,11 +32,9 @@ export default function Leaderboard() {
     <>
       <StatusBar style="light" />
       <View className="h-full w-full">
-        <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
-          <View className="">
-            <LeaderboardScreen navigation={router} />
-          </View>
-        </ScrollView>
+        <View className="">
+          <LeaderboardScreen data={users} topRank={topUsers} />
+        </View>
       </View>
     </>
   );

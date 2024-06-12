@@ -1,10 +1,11 @@
 // src/screens/LeaderboardScreen.js
 
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import { colors } from "@/theme";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { FontAwesome } from "@expo/vector-icons";
+import { FlashList } from "@shopify/flash-list";
 
 function AvatarExample() {
   const TWITTER_AVATAR_URI =
@@ -21,29 +22,37 @@ function AvatarExample() {
   );
 }
 
-const LeaderboardScreen = ({ navigation }) => {
-  const topUsers = [
-    { name: "Arlene McCoy", points: 250, avatar: "heart", rank: 3 },
-    { name: "Guy Hawkins", points: 305, avatar: "adinkrahene", rank: 1 },
-    { name: "Dianne Russell", points: 195, avatar: "snowflake", rank: 2 },
-  ];
+type ComponentItem = {
+  name: string;
+  points: number;
+  avatar: string;
+  rank: number;
+};
 
-  const users = [
-    { name: "Arlene McCoy", points: 305, avatar: "heart", rank: 1 },
-    { name: "Guy Hawkins", points: 305, avatar: "heart", rank: 2 },
-    { name: "Dianne Russell", points: 305, avatar: "snowflake", rank: 3 },
-    { name: "Jenny Wilson", points: 305, avatar: "target", rank: 4 },
-    { name: "Courtney Henry", points: 305, avatar: "spiral", rank: 5 },
-    { name: "Robert Fox", points: 305, avatar: "calendar", rank: 6 },
-    { name: "Brooklyn Simmons", points: 305, avatar: "magnifier", rank: 7 },
-    { name: "Ralph Edwards", points: 305, avatar: "adinkrahene", rank: 8 },
-  ];
+function keyExtractor(item: ComponentItem) {
+  return item.name;
+}
 
+function renderItem({ item }: { item: ComponentItem }) {
+  return (
+    <View style={styles.user}>
+      <AvatarExample />
+      <Text style={styles.userRank}>{item.rank}</Text>
+      <Text style={styles.userName}>{item.name}</Text>
+      <View style={styles.userPoints}>
+        <Text>{item.points}</Text>
+        <FontAwesome name="bolt" color="#FFD700" />
+      </View>
+    </View>
+  );
+}
+
+const LeaderboardScreen = ({ data, topRank }) => {
   return (
     <>
       <View style={styles.header}>
         <View style={styles.topUsers}>
-          {topUsers.map((user, index) => (
+          {topRank.map((user, index) => (
             <View key={index} style={styles.topUser}>
               <AvatarExample />
               <Text style={styles.topUserText}>{user.name}</Text>
@@ -54,17 +63,13 @@ const LeaderboardScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.userList}>
-        {users.map((user, index) => (
-          <View key={index} style={styles.user}>
-            <AvatarExample />
-            <Text style={styles.userRank}>{user.rank}</Text>
-            <Text style={styles.userName}>{user.name}</Text>
-            <View style={styles.userPoints}>
-              <Text>{user.points}</Text>
-              <FontAwesome name="bolt" color="#FFD700" />
-            </View>
-          </View>
-        ))}
+        <FlashList
+          data={data}
+          renderItem={renderItem}
+          estimatedItemSize={100}
+          contentContainerClassName="py-4 android:pb-12"
+          keyExtractor={keyExtractor}
+        />
       </View>
     </>
   );
@@ -113,6 +118,8 @@ const styles = StyleSheet.create({
   },
   userList: {
     padding: 20,
+    height: Dimensions.get("screen").height - 348,
+    width: Dimensions.get("screen").width,
   },
   user: {
     flexDirection: "row",
