@@ -21,6 +21,46 @@ interface CustomHeaderProps {
   children?: React.ReactNode;
 }
 
+interface TopTabBarProps {
+  label: string;
+  activeTab: string;
+  pathName: string;
+}
+
+const TopTabBar = ({ label, pathName, activeTab }: TopTabBarProps) => {
+  const navigation = useRouter();
+
+  const segments = useSegments();
+  const lastSegments = segments[segments.length - 1];
+
+  function handleTabPressed() {
+    navigation.navigate(pathName);
+  }
+  return (
+    <Pressable
+      style={[
+        {
+          backgroundColor:
+            lastSegments === activeTab ? colors.white : colors.primary[600],
+        },
+      ]}
+      onPress={handleTabPressed}
+      className="rounded-full transition-all"
+    >
+      <Text
+        style={{
+          color:
+            lastSegments === activeTab ? colors.primary[600] : colors.white,
+          fontSize: 12,
+        }}
+        className="px-2 py-1 uppercase transition-colors"
+      >
+        {label}
+      </Text>
+    </Pressable>
+  );
+};
+
 const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
   titleVariant = "title1",
 }) => {
@@ -30,11 +70,7 @@ const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
   const lastSegments = segments[segments.length - 1];
 
   function handleTabPressed(path: string) {
-    if (lastSegments === "leaderboard") {
-      navigation.navigate(path);
-    } else {
-      navigation.navigate(path);
-    }
+    navigation.navigate(path);
   }
 
   return (
@@ -45,56 +81,16 @@ const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
         </ThemedText>
         <View className="flex flex-row items-center justify-center gap-2">
           <View style={styles.tabs}>
-            <Pressable
-              style={[
-                {
-                  backgroundColor:
-                    lastSegments === "leaderboard"
-                      ? colors.white
-                      : colors.primary[600],
-                },
-              ]}
-              onPress={() => handleTabPressed("/(tabs)/leaderboard/")}
-              className="rounded-full transition-all"
-            >
-              <Text
-                style={{
-                  color:
-                    lastSegments === "leaderboard"
-                      ? colors.primary[600]
-                      : colors.white,
-                  fontSize: 12,
-                }}
-                className="px-2 py-1 transition-colors"
-              >
-                WEEKLY
-              </Text>
-            </Pressable>
-            <Pressable
-              style={[
-                {
-                  backgroundColor:
-                    lastSegments === "all-time"
-                      ? colors.white
-                      : colors.primary[600],
-                },
-              ]}
-              onPress={() => handleTabPressed("/(tabs)/leaderboard/all-time")}
-              className="rounded-full transition-all"
-            >
-              <Text
-                style={{
-                  color:
-                    lastSegments === "all-time"
-                      ? colors.primary[600]
-                      : colors.white,
-                  fontSize: 12,
-                }}
-                className="px-2 py-1 transition-colors"
-              >
-                ALL TIME
-              </Text>
-            </Pressable>
+            <TopTabBar
+              label="Weekly"
+              pathName="/(tabs)/leaderboard/"
+              activeTab="leaderboard"
+            />
+            <TopTabBar
+              label="All time"
+              pathName="/(tabs)/leaderboard/all-time"
+              activeTab="all-time"
+            />
           </View>
         </View>
       </View>
