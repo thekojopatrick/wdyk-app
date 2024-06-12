@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   ImageErrorEventData,
   ImageLoadEventData,
@@ -7,7 +6,6 @@ import {
   Image as RNImage,
   View,
 } from "react-native";
-
 import { cn } from "@/utils/cn";
 
 interface AvatarRootProps {

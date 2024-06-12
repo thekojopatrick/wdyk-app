@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Platform,
   Pressable,
@@ -7,13 +7,10 @@ import {
   Text,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Constants from "expo-constants";
-import { usePathname, useRouter, useSegments } from "expo-router";
+import { useRouter, useSegments } from "expo-router";
 import { colors } from "@/theme";
-import { Button, ThemedText } from "@/ui";
-import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
-import { Ionicons } from "@expo/vector-icons";
+import { ThemedText } from "@/ui";
 
 interface TopTabBarProps {
   label: string;
