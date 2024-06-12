@@ -3,18 +3,18 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 //import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { LeaderboardHeader } from "@/components/header";
 import CustomHeader from "@/components/header/CustomHeader";
 import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
 
 export default function Leaderboard() {
   return (
-    <SafeAreaView style={styles.container}>
-      <FocusAwareStatusBar />
+    <>
+      <StatusBar style="light" />
       <Stack.Screen
         options={{
-          header: () => (
-            <CustomHeader title="Leaderboard" titleVariant="largeTitle" />
-          ),
+          header: () => <LeaderboardHeader />,
         }}
       />
       <View className="h-full w-full px-5">
@@ -26,7 +26,7 @@ export default function Leaderboard() {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </>
   );
 }
 
