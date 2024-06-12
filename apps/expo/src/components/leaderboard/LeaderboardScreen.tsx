@@ -42,21 +42,6 @@ const LeaderboardScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Leaderboard</Text>
-        <View style={styles.tabs}>
-          <Text
-            style={styles.tabText}
-            onPress={() => navigation.navigate("/(tabs)/leaderboard/")}
-          >
-            WEEKLY
-          </Text>
-          <Text
-            style={styles.tabText}
-            onPress={() => navigation.navigate("/(tabs)/leaderboard/all-time")}
-          >
-            ALL TIME
-          </Text>
-        </View>
         <View style={styles.topUsers}>
           {topUsers.map((user, index) => (
             <View key={index} style={styles.topUser}>

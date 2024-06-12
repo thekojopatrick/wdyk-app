@@ -1,6 +1,8 @@
 import React from "react";
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { Platform, StatusBar, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Constants from "expo-constants";
+import { useRouter } from "expo-router";
 import { colors } from "@/theme";
 import { Button, ThemedText } from "@/ui";
 import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
@@ -13,17 +15,33 @@ interface CustomHeaderProps {
 }
 
 const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
-  title,
-  children,
-  titleVariant = "largeTitle",
+  titleVariant = "title1",
 }) => {
+  const navigation = useRouter();
   return (
     <>
-      <View style={styles.container} className="border-b-2 border-gray-100">
+      <View style={styles.container}>
         <ThemedText variant={titleVariant} className="font-semibold text-white">
           Leaderboard
         </ThemedText>
-        <View className="flex flex-row items-center gap-2"></View>
+        <View className="flex flex-row items-center justify-center gap-2">
+          <View style={styles.tabs}>
+            <Text
+              style={styles.tabText}
+              onPress={() => navigation.navigate("/(tabs)/leaderboard/")}
+            >
+              WEEKLY
+            </Text>
+            <Text
+              style={styles.tabText}
+              onPress={() =>
+                navigation.navigate("/(tabs)/leaderboard/all-time")
+              }
+            >
+              ALL TIME
+            </Text>
+          </View>
+        </View>
       </View>
     </>
   );
@@ -38,12 +56,21 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
-    height: 348 - StatusBar.currentHeight,
+    height: StatusBar.currentHeight,
     gap: 20,
     backgroundColor: colors.primary[600],
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: StatusBar.currentHeight || 70,
+    paddingTop: Constants.statusBarHeight,
     paddingHorizontal: 20,
+  },
+  tabs: {
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 10,
+  },
+  tabText: {
+    color: "#fff",
+    fontSize: 16,
   },
 });

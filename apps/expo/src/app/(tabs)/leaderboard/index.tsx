@@ -30,7 +30,7 @@ export default function Leaderboard() {
   const router = useRouter();
   return (
     <>
-      {/* <StatusBar style="light" /> */}
+      <StatusBar style="light" />
       <View className="h-full w-full">
         <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           <View className="">

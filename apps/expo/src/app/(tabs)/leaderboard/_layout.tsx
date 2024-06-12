@@ -11,7 +11,7 @@ const TopTabs = withLayoutContext(createMaterialTopTabNavigator().Navigator);
 
 const LeaderboardNavigator = () => {
   return (
-    <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "#fff" }}>
+    <>
       {/* <TopTabs initialRouteName="index">
         <TopTabs.Screen
           name="index"
@@ -22,7 +22,7 @@ const LeaderboardNavigator = () => {
         <TopTabs.Screen name="all-time" options={{ title: "All time" }} />
       </TopTabs> */}
       <TopTabs screenOptions={{ tabBarStyle: { display: "none" } }} />
-    </SafeAreaView>
+    </>
   );
 };
 
