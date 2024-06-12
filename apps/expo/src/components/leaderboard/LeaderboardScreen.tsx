@@ -36,12 +36,12 @@ function keyExtractor(item: ComponentItem) {
 function renderItem({ item }: { item: ComponentItem }) {
   return (
     <View style={styles.user}>
-      <AvatarExample />
       <Text style={styles.userRank}>{item.rank}</Text>
+      <AvatarExample />
       <Text style={styles.userName}>{item.name}</Text>
-      <View style={styles.userPoints}>
-        <Text>{item.points}</Text>
+      <View style={styles.userPoints} className="rounded-full">
         <FontAwesome name="bolt" color="#FFD700" />
+        <Text>{item.points}</Text>
       </View>
     </View>
   );
@@ -69,6 +69,8 @@ const LeaderboardScreen = ({ data, topRank }) => {
           estimatedItemSize={100}
           contentContainerClassName="py-4 android:pb-12"
           keyExtractor={keyExtractor}
+          contentInsetAdjustmentBehavior="automatic"
+          keyboardShouldPersistTaps="handled"
         />
       </View>
     </>
@@ -137,6 +139,10 @@ const styles = StyleSheet.create({
   userPoints: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 2,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    backgroundColor: colors.secondary[100],
   },
 });
 
