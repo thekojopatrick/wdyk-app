@@ -6,7 +6,12 @@ import { colors } from "@/theme";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { FontAwesome } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
+import { cssInterop } from "nativewind";
 
+cssInterop(FlashList, {
+  className: "style",
+  contentContainerClassName: "contentContainerStyle",
+});
 function AvatarExample() {
   const TWITTER_AVATAR_URI =
     "https://pbs.twimg.com/profile_images/1782428433898708992/1voyv4_A_400x400.jpg";
