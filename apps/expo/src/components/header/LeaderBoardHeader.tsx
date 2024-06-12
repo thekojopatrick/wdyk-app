@@ -1,8 +1,15 @@
-import React from "react";
-import { Platform, StatusBar, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Platform,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Constants from "expo-constants";
-import { useRouter } from "expo-router";
+import { usePathname, useRouter, useSegments } from "expo-router";
 import { colors } from "@/theme";
 import { Button, ThemedText } from "@/ui";
 import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
@@ -18,6 +25,18 @@ const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
   titleVariant = "title1",
 }) => {
   const navigation = useRouter();
+
+  const segments = useSegments();
+  const lastSegments = segments[segments.length - 1];
+
+  function handleTabPressed(path: string) {
+    if (lastSegments === "leaderboard") {
+      navigation.navigate(path);
+    } else {
+      navigation.navigate(path);
+    }
+  }
+
   return (
     <>
       <View style={styles.container}>
@@ -26,20 +45,56 @@ const LeaderboardHeader: React.FC<CustomHeaderProps> = ({
         </ThemedText>
         <View className="flex flex-row items-center justify-center gap-2">
           <View style={styles.tabs}>
-            <Text
-              style={styles.tabText}
-              onPress={() => navigation.navigate("/(tabs)/leaderboard/")}
+            <Pressable
+              style={[
+                {
+                  backgroundColor:
+                    lastSegments === "leaderboard"
+                      ? colors.white
+                      : colors.primary[600],
+                },
+              ]}
+              onPress={() => handleTabPressed("/(tabs)/leaderboard/")}
+              className="rounded-full transition-all"
             >
-              WEEKLY
-            </Text>
-            <Text
-              style={styles.tabText}
-              onPress={() =>
-                navigation.navigate("/(tabs)/leaderboard/all-time")
-              }
+              <Text
+                style={{
+                  color:
+                    lastSegments === "leaderboard"
+                      ? colors.primary[600]
+                      : colors.white,
+                  fontSize: 12,
+                }}
+                className="px-2 py-1 transition-colors"
+              >
+                WEEKLY
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[
+                {
+                  backgroundColor:
+                    lastSegments === "all-time"
+                      ? colors.white
+                      : colors.primary[600],
+                },
+              ]}
+              onPress={() => handleTabPressed("/(tabs)/leaderboard/all-time")}
+              className="rounded-full transition-all"
             >
-              ALL TIME
-            </Text>
+              <Text
+                style={{
+                  color:
+                    lastSegments === "all-time"
+                      ? colors.primary[600]
+                      : colors.white,
+                  fontSize: 12,
+                }}
+                className="px-2 py-1 transition-colors"
+              >
+                ALL TIME
+              </Text>
+            </Pressable>
           </View>
         </View>
       </View>
