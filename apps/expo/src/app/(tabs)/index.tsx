@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 //import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
+import { Card } from "@/components/card";
 import CustomHeader from "@/components/header/CustomHeader";
 import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
 
@@ -23,6 +24,14 @@ export default function Home() {
             <ThemedText variant="title3" className="">
               Welcome back! Kojo
             </ThemedText>
+            <Card
+              userId={0}
+              id={0}
+              title={"Today's Challenge"}
+              body={
+                "Ready for a new word puzzle?Test your skills with today's challenge!"
+              }
+            />
           </View>
         </ScrollView>
       </View>

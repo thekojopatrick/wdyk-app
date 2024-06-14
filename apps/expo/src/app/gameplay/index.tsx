@@ -7,8 +7,8 @@ import { Button, EmptyList, FocusAwareStatusBar, Text, View } from "@/ui";
 import { api } from "@/utils/api";
 import { FlashList } from "@shopify/flash-list";
 
-function PostCard(props: {
-  post: RouterOutputs["post"]["all"][number];
+function GameplayCard(props: {
+  Gameplay: RouterOutputs["Gameplay"]["all"][number];
   onDelete: () => void;
 }) {
   return (
@@ -17,15 +17,17 @@ function PostCard(props: {
         <Link
           asChild
           href={{
-            pathname: "/post/[id]",
-            params: { id: props.post.id },
+            pathname: "/Gameplay/[id]",
+            params: { id: props.Gameplay.id },
           }}
         >
           <Pressable className="">
             <Text className=" text-xl font-semibold text-primary">
-              {props.post.title}
+              {props.Gameplay.title}
             </Text>
-            <Text className="mt-2 text-foreground">{props.post.content}</Text>
+            <Text className="mt-2 text-foreground">
+              {props.Gameplay.content}
+            </Text>
           </Pressable>
         </Link>
       </View>
@@ -37,14 +39,6 @@ function PostCard(props: {
 }
 
 export default function Index() {
-  const utils = api.useUtils();
-
-  const postQuery = api.post.all.useQuery();
-
-  const deletePostMutation = api.post.delete.useMutation({
-    onSettled: () => utils.post.all.invalidate().then(),
-  });
-
   return (
     <>
       {/* Changes page title visible on the header */}
@@ -52,30 +46,27 @@ export default function Index() {
         options={{
           title: "Feed",
           headerRight: () => (
-            <Link href="/post/add-post">
-              <Text className="text-primary">Add Post</Text>
+            <Link href="/Gameplay/add-Gameplay">
+              <Text className="text-primary">Add Gameplay</Text>
             </Link>
           ),
         }}
       />
       <View className="h-full w-full bg-background p-4">
-        <FlashList
-          data={postQuery.data}
+        {/* <FlashList
+          data={}
           estimatedItemSize={20}
           ItemSeparatorComponent={() => <View className="h-2" />}
-          ListEmptyComponent={<EmptyList isLoading={!postQuery} />}
+          ListEmptyComponent={<EmptyList isLoading={} />}
           renderItem={(p) => (
-            <PostCard
-              post={p.item}
-              onDelete={() => deletePostMutation.mutate(p.item.id)}
+            <GameplayCard
+              Gameplay={p.item}
+              onDelete={() => {}}
             />
           )}
-        />
+        /> */}
 
-        <Button
-          onPress={() => void utils.post.all.invalidate()}
-          label="Refresh posts"
-        />
+        <Button onPress={() => {}} label="Refresh Gameplays" />
       </View>
     </>
   );
