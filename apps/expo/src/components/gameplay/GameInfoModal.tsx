@@ -1,8 +1,29 @@
 import { Button, Modal, ThemedText, useModal } from "@/ui";
 import { FontAwesome, FontAwesome6, Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Link } from "expo-router";
+import { ReactNode } from "react";
+
+interface GameInfoProps {
+  id?: string; // game id
+  icon?: string;
+  iconBackgroundColor?: string;
+  title?: string;
+  description?: string;
+  link?: string;
+  tags?: string;
+  guidelines?: string[];
+  image?: string;
+  buttonLabel?: string;
+  buttonAction?: () => void;
+}
+
+interface GameInfoModalProps {
+  id?: string;
+  children: ReactNode;
+  game?: GameInfoProps;
+}
 
 const ListItem = ({ text }: { text: string }) => {
   return (
@@ -13,18 +34,21 @@ const ListItem = ({ text }: { text: string }) => {
   );
 };
 
-export const GameInfoModal = ({ id }) => {
+export const GameInfoModal: React.FC<GameInfoModalProps> = ({
+  id,
+  children,
+}) => {
   const { ref, present, dismiss } = useModal();
 
   return (
-    <View>
-      <Button label="Open Modal" onPress={present} />
+    <View testID={`game-ID`}>
+      <Pressable onPress={present}>{children}</Pressable>
 
       <Modal
         snapPoints={["60%"]} // optional
         ref={ref}
       >
-        <View className="h-full w-full flex-1 border border-red-300 p-4">
+        <View className="h-full w-full flex-1 p-4">
           <View className="mb-10">
             <View className="flex-row gap-6">
               <View className="h-24 w-24 items-center justify-center rounded-md bg-green-500 px-4 ">

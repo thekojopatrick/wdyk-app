@@ -15,7 +15,7 @@ interface ChallengeGameCardProps {
 
 const ChallengeCard: React.FC<ChallengeGameCardProps> = ({ title, body }) => {
   return (
-    <Pressable>
+    <>
       <View className="m-2 min-h-80 items-center justify-center overflow-hidden rounded-xl  border border-neutral-300 bg-white  dark:bg-neutral-900">
         <Image
           className="h-56 w-full overflow-hidden rounded-t-xl"
@@ -33,13 +33,13 @@ const ChallengeCard: React.FC<ChallengeGameCardProps> = ({ title, body }) => {
           >
             {body}
           </Text>
-          <Button variant="default" size="sm" className="mt-6 gap-2">
+          <View className="mt-6 h-8 flex-row items-center justify-center gap-2 rounded-md bg-primary px-3 text-white">
             <Ionicons name="play" color={"white"} />
             <Text className="text-white">Play now</Text>
-          </Button>
+          </View>
         </View>
       </View>
-    </Pressable>
+    </>
   );
 };
 
