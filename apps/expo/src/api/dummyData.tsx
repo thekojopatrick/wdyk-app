@@ -22,3 +22,11 @@ export const images = [
   "https://plus.unsplash.com/premium_photo-1666815503002-5f07a44ac8fb?auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?auto=format&fit=crop&w=800&q=80",
 ];
+
+export const wordData = {
+  word: "Ephemeral",
+  phonetics: "[ ɪˈfɛmərəl ]",
+  origin: "Greek 'ephēmeros'",
+  partOfSpeech: "Adjective",
+  definition: "Lasting for a very short time; short-lived; transitory.",
+};
