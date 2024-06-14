@@ -3,6 +3,7 @@ import { Button, ThemedText } from "@/ui";
 import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 
+import Constants from "expo-constants";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "@/theme";
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    height: 60,
+    height: Constants.statusBarHeight,
     gap: 20,
     backgroundColor: colors.primary[600],
     alignItems: "center",
