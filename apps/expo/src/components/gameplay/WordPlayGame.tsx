@@ -1,4 +1,5 @@
 import { Button, Input, ThemedText } from "@/ui";
+import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import {
   Pressable,
   StyleSheet,
@@ -10,7 +11,6 @@ import {
 import React, { useState } from "react";
 
 import { Link } from "expo-router";
-import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "@/theme";
 import { wordData } from "@/api/dummyData";
 
@@ -26,6 +26,22 @@ const WordMeaning: React.FC<{ title: string; content: string }> = ({
       <ThemedText variant="body" className="text-md">
         {content}
       </ThemedText>
+    </View>
+  );
+};
+
+const FAB = ({ onPress }) => {
+  return (
+    <View className="absolute bottom-[125px] right-4">
+      <Button
+        size="icon"
+        className="h-12 w-12 items-center justify-center pl-3 pr-2"
+        style={{ backgroundColor: colors.secondary[400] }}
+        onPress={onPress}
+      >
+        <FontAwesome5 name="play" size={18} color="black" />
+        {/* <MaterialIcons name="replay" size={24} color="black" /> */}
+      </Button>
     </View>
   );
 };
@@ -160,18 +176,17 @@ const WordPlayGame = () => {
           />
         </View>
       </View>
+      <FAB onPress={() => {}} />
       <View className="mt-auto">
         {showNextButton && (
-          <View className="gap-3">
+          <View className="gap-2">
             <Button label="Try Again" onPress={handleRestGame} />
-            <Link href="/(app)/" asChild>
-              <Button
-                variant="secondary"
-                label="Next"
-                onPress={() => {}}
-                style={{ backgroundColor: colors.secondary[400] }}
-              />
-            </Link>
+            <Button
+              variant="secondary"
+              label="Next"
+              onPress={() => {}}
+              style={{ backgroundColor: colors.secondary[400] }}
+            />
           </View>
         )}
       </View>
