@@ -1,8 +1,9 @@
 import { SafeAreaView, Text, View } from "react-native";
 import { Stack, useGlobalSearchParams } from "expo-router";
+
 import { api } from "@/utils/api";
 
-export default function Post() {
+export default function Gameplay() {
   const { id } = useGlobalSearchParams();
   if (!id || typeof id !== "string") throw new Error("unreachable");
 
