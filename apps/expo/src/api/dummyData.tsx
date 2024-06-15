@@ -30,3 +30,9 @@ export const wordData = {
   partOfSpeech: "Adjective",
   definition: "Lasting for a very short time; short-lived; transitory.",
 };
+
+export const gameplay = {
+  id: "1",
+  title: "Wordplay(Practice)",
+  description: "Score a point for each word spelt",
+};

@@ -9,6 +9,7 @@ import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
 //import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
+import { gameplay } from "@/api/dummyData";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
             <ThemedText variant="title3" className="mb-3">
               Daily Challenge
             </ThemedText>
-            <GameInfoModal>
+            <GameInfoModal gameplay={gameplay}>
               <DailyGameChallenge
                 title={"Today's Challenge"}
                 body={

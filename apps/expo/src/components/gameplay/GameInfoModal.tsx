@@ -22,7 +22,7 @@ interface GameInfoProps {
 interface GameInfoModalProps {
   id?: string;
   children: ReactNode;
-  game?: GameInfoProps;
+  gameplay?: GameInfoProps;
 }
 
 const ListItem = ({ text }: { text: string }) => {
@@ -37,6 +37,7 @@ const ListItem = ({ text }: { text: string }) => {
 export const GameInfoModal: React.FC<GameInfoModalProps> = ({
   id,
   children,
+  gameplay,
 }) => {
   const { ref, present, dismiss } = useModal();
 
@@ -61,10 +62,10 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
               </View>
               <View className="items-start gap-2 text-left">
                 <ThemedText variant="title2" className="font-bold">
-                  Modal Content
+                  {gameplay.title}
                 </ThemedText>
                 <ThemedText variant="body" className="text-md">
-                  Modal Content
+                  {gameplay.description}
                 </ThemedText>
                 <View className="items-center rounded-full bg-lime-100 px-2 py-1 ">
                   <ThemedText
