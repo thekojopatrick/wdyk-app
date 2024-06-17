@@ -1,10 +1,10 @@
-import type { RouterOutputs } from "@/utils/api";
+import type { RouterOutputs } from "@/lib/api";
 import { useState } from "react";
 import { Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
+import { api } from "@/lib/api";
 import { Button, EmptyList, FocusAwareStatusBar, Text, View } from "@/ui";
-import { api } from "@/utils/api";
 import { FlashList } from "@shopify/flash-list";
 
 function GameplayCard(props: {

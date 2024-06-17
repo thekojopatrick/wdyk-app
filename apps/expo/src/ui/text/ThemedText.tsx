@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text as RNText } from "react-native";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { cssInterop } from "nativewind";
 
