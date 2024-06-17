@@ -1,10 +1,9 @@
-import { Button, Image, Pressable, Text, View } from "@/ui";
-
-import { Ionicons } from "@expo/vector-icons";
-import { Link } from "expo-router";
 import type { Post } from "@/api";
 import React from "react";
+import { Link } from "expo-router";
 import { images } from "@/api/dummyData";
+import { Button, Image, Pressable, Text, View } from "@/ui";
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = Post;
 

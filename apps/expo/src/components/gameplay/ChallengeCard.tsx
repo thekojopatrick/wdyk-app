@@ -1,9 +1,8 @@
-import { Button, Image } from "@/ui";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { images } from "@/api/dummyData";
+import { Button, Image } from "@/ui";
+import { Ionicons } from "@expo/vector-icons";
 
 interface ChallengeGameCardProps {
   title: string;

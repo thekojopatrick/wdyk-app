@@ -1,13 +1,12 @@
-import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import React from "react";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Constants from "expo-constants";
+import { useRouter } from "expo-router";
+import { colors } from "@/theme";
 import { Button, ThemedText } from "@/ui";
 import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
-
-import Constants from "expo-constants";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { colors } from "@/theme";
-import { useRouter } from "expo-router";
+import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
 interface GamePlayHeaderProps {
   title?: string;

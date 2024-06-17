@@ -1,15 +1,14 @@
-import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
-import { SafeAreaView, StyleSheet } from "react-native";
-
-import { Card } from "@/components/card";
-import CustomHeader from "@/components/header/CustomHeader";
-import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
-import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
 import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 //import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { gameplay } from "@/api/dummyData";
+import { Card } from "@/components/card";
+import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
+import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
+import CustomHeader from "@/components/header/CustomHeader";
+import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
 
 export default function Home() {
   return (

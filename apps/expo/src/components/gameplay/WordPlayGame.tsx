@@ -1,5 +1,4 @@
-import { Button, Input, ThemedText } from "@/ui";
-import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -8,11 +7,11 @@ import {
   Vibration,
   View,
 } from "react-native";
-import React, { useState } from "react";
-
 import { Link } from "expo-router";
-import { colors } from "@/theme";
 import { wordData } from "@/api/dummyData";
+import { colors } from "@/theme";
+import { Button, Input, ThemedText } from "@/ui";
+import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 
 const WordMeaning: React.FC<{ title: string; content: string }> = ({
   title,

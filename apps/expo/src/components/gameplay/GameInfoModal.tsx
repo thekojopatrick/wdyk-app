@@ -1,9 +1,8 @@
+import { ReactNode } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
 import { Button, Modal, ThemedText, useModal } from "@/ui";
 import { FontAwesome, FontAwesome6, Ionicons } from "@expo/vector-icons";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-
-import { Link } from "expo-router";
-import { ReactNode } from "react";
 
 interface GameInfoProps {
   id?: string; // game id
