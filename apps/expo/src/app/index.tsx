@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "expo-router";
-import useAuth from "@/core/auth";
+import { useAuth } from "@/core/providers";
 
 const Index = () => {
   const { session } = useAuth();

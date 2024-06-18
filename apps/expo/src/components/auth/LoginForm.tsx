@@ -1,10 +1,9 @@
-import { Alert, AppState, TextInput, View } from "react-native";
-import { Button, ThemedText } from "@/ui";
 import React, { useState } from "react";
-
+import { Alert, AppState, TextInput, View } from "react-native";
 import { Link } from "expo-router";
+import { useAuth } from "@/core/providers";
+import { Button, ThemedText } from "@/ui";
 import { supabase } from "@/utils/supabase";
-import useAuth from "@/core/auth";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
@@ -18,7 +17,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { status, signIn, signOut } = useAuth();
+  const { status, signIn } = useAuth();
 
   async function signInWithEmail() {
     setLoading(true);
@@ -35,6 +34,7 @@ const LoginForm = () => {
     }
     setLoading(false);
     signIn(session?.access_token);
+    console.log({ status });
   }
 
   return (

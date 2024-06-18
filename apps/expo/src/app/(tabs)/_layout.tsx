@@ -2,37 +2,40 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link, Redirect, SplashScreen, Tabs } from "expo-router";
 import { LeaderboardHeader } from "@/components/header";
-import { useIsFirstTime } from "@/core";
+import { useAuth, useIsFirstTime } from "@/core";
 import { Pressable, Text } from "@/ui";
 import {
   AnalyticsUpIcon,
   Dashboard as DashboardIcon,
   Home as HomeIcon,
   Trophy as LeaderboardIcon,
-  Settings as SettingsIcon,
-  User as UserIcon,
 } from "@/ui/icons";
 
 export default function TabLayout() {
-  const status = useState<string>("idle" || "signOut");
+  const { status, session } = useAuth();
   const [isFirstTime] = useIsFirstTime();
+
   const hideSplash = useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
+
   useEffect(() => {
-    // if (status !== "idle") {
-    //   setTimeout(() => {
-    //     hideSplash();
-    //   }, 1000);
-    // }
+    if (status !== "idle") {
+      setTimeout(() => {
+        hideSplash();
+      }, 1000);
+    }
   }, [hideSplash, status]);
 
-  // if (isFirstTime) {
-  //   return <Redirect href="/onboarding" />;
-  // }
-  // if (status === "signOut") {
-  //   return <Redirect href="/login" />;
-  // }
+  if (isFirstTime && !session) {
+    return <Redirect href="/onboarding" />;
+  }
+  if (status === "signOut") {
+    return <Redirect href="/(auth)/login" />;
+  }
+
+  console.log({ status });
+
   return (
     <Tabs>
       <Tabs.Screen

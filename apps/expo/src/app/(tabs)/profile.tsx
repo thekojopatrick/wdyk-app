@@ -5,6 +5,7 @@ import CustomHeader from "@/components/header/CustomHeader";
 import { ProfileContainer } from "@/components/profile";
 import { Item } from "@/components/settings/item";
 import { ItemsContainer } from "@/components/settings/items-container";
+import { useAuth } from "@/core/providers";
 import { colors } from "@/theme";
 import { FocusAwareStatusBar } from "@/ui";
 import {
@@ -15,12 +16,16 @@ import {
   Support,
   UserSettings as UserSettingsIcon,
 } from "@/ui/icons";
+import { AntDesign } from "@expo/vector-icons";
 import { useColorScheme } from "nativewind";
 
 const Profile = () => {
+  const { session, profile, userName, signOut } = useAuth();
   const { colorScheme } = useColorScheme();
+
   const iconColor =
     colorScheme === "dark" ? colors.neutral[400] : colors.neutral[500];
+
   return (
     <SafeAreaView style={styles.container}>
       <FocusAwareStatusBar />
@@ -37,7 +42,7 @@ const Profile = () => {
           className="h-full w-full px-5"
         >
           <View className="">
-            <ProfileContainer />
+            <ProfileContainer username={userName} name={profile.full_name} />
             <ItemsContainer title="settings.account">
               <Item
                 text="settings.account_settings"
@@ -96,6 +101,14 @@ const Profile = () => {
                 text="settings.terms"
                 icon={<Rate color={iconColor} />}
                 onPress={() => {}}
+              />
+            </ItemsContainer>
+
+            <ItemsContainer>
+              <Item
+                text="settings.logout"
+                icon={<AntDesign name="logout" size={24} color="red" />}
+                onPress={() => signOut()}
               />
             </ItemsContainer>
           </View>

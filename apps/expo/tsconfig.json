@@ -8,7 +8,7 @@
     },
     "jsx": "react-native",
     "types": ["nativewind/types", "@testing-library/jest-dom"],
-    "checkJs": true
+    "checkJs": false
   },
   "include": [
     "src",

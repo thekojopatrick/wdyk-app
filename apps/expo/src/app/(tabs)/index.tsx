@@ -1,19 +1,17 @@
-import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
-import { SafeAreaView, StyleSheet } from "react-native";
-
-import { Card } from "@/components/card";
-import CustomHeader from "@/components/header/CustomHeader";
-import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
-import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
 import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-//import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { gameplay } from "@/api/dummyData";
-import useAuth from "@/core/auth";
+import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
+import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
+import CustomHeader from "@/components/header/CustomHeader";
+import { useAuth } from "@/core/providers";
+import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
 
 export default function Home() {
-  const { session } = useAuth();
+  const { session, profile } = useAuth();
+
   return (
     <SafeAreaView style={styles.container}>
       <FocusAwareStatusBar />
@@ -21,7 +19,7 @@ export default function Home() {
         options={{
           header: () => (
             <CustomHeader
-              title={`Welcome ${session?.user.email ?? ""}!`}
+              title={`Welcome ${profile?.username ?? ""}!`}
               titleVariant="title1"
             />
           ),

@@ -1,22 +1,37 @@
-import { getToken, removeToken, setToken } from "./utils";
-import { useEffect, useState } from "react";
-
-import { Session } from "@supabase/supabase-js";
-import type { TokenType } from "./utils";
-import { create } from "zustand";
+import type { Profile } from "@/types";
+import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/utils/supabase";
+import { create } from "zustand";
+
+import type { TokenType } from "./utils";
+import { getToken, removeToken, setToken } from "./utils";
 
 interface AuthState {
+  session: Session | null;
   token: TokenType | null;
   status: "idle" | "signOut" | "signIn";
+  profile: Profile | null;
+  userName: string | null;
+  isAdmin: boolean;
+  loading: boolean;
   signIn: (token: TokenType) => void;
   signOut: () => void;
   hydrate: () => void;
+  setSession: (session: Session | null) => void;
+  setProfile: (profile: Profile | null) => void;
+  setLoading: (loading: boolean) => void;
+  setUserName: (userName: string | null) => void;
+  setIsAdmin: (isAdmin: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
+  session: null,
   token: null,
   status: "idle",
+  profile: null,
+  userName: null,
+  isAdmin: false,
+  loading: true,
   signIn: (token) => {
     setToken(token);
     set({ status: "signIn", token });
@@ -27,62 +42,20 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ status: "signOut", token: null });
   },
   hydrate: () => {
-    const userToken = getToken();
-    if (userToken) {
-      get().signIn(userToken);
-    } else {
+    try {
+      const userToken = getToken();
+      if (userToken !== null) {
+        get().signIn(userToken);
+      } else {
+        get().signOut();
+      }
+    } catch (e) {
       get().signOut();
     }
   },
+  setSession: (session) => set({ session }),
+  setProfile: (profile) => set({ profile }),
+  setLoading: (loading) => set({ loading }),
+  setUserName: (userName) => set({ userName }),
+  setIsAdmin: (isAdmin) => set({ isAdmin }),
 }));
-
-const useAuth = () => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const { hydrate, signIn, signOut, status, token } = useAuthStore();
-
-  useEffect(() => {
-    setLoading(true);
-    void supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session) {
-        setLoading(false);
-        setToken(session.access_token);
-        signIn(session.access_token as TokenType);
-      }
-    });
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (session) {
-          setLoading(false);
-          setToken(session.access_token);
-          signIn(session.access_token as TokenType);
-        } else {
-          removeToken();
-          signOut();
-        }
-
-        setSession(session);
-      },
-    );
-
-    hydrate();
-    setLoading(false);
-
-    return () => {
-      listener.subscription.unsubscribe;
-    };
-  }, [hydrate, signIn, signOut, loading]);
-
-  return {
-    loading,
-    session,
-    status,
-    token,
-    signIn,
-    signOut,
-  };
-};
-
-export default useAuth;

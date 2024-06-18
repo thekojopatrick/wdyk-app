@@ -5,7 +5,13 @@ import { colors } from "@/theme";
 import { ThemedText } from "@/ui";
 import { Adinkrahene } from "@/ui/icons/adinkra-symbols";
 
-const ProfileContainer = () => {
+const ProfileContainer = ({
+  name,
+  username,
+}: {
+  name: string;
+  username: string;
+}) => {
   return (
     <View className="flex flex-row items-center gap-3">
       <View
@@ -16,11 +22,11 @@ const ProfileContainer = () => {
       </View>
       <View className="flex items-start text-left">
         <ThemedText variant="title2" className="mt-2 text-center font-semibold">
-          Kojo Patrick
+          {name}
         </ThemedText>
         <Link href={""}>
           <ThemedText variant="body" className="text-center text-neutral-600">
-            @kojopatrick
+            @{username}
           </ThemedText>
         </Link>
       </View>
