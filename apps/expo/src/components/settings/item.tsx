@@ -3,14 +3,21 @@ import * as React from "react";
 import { Pressable, Text, View } from "@/ui";
 import { ArrowRight } from "@/ui/icons";
 
-type ItemProps = {
+interface ItemProps {
   text: TxKeyPath;
   value?: string;
   onPress?: () => void;
   icon?: React.ReactNode;
-};
+  showTrailingIcon?: boolean;
+}
 
-export const Item = ({ text, value, icon, onPress }: ItemProps) => {
+export const Item = ({
+  text,
+  value,
+  icon,
+  onPress,
+  showTrailingIcon = true,
+}: ItemProps) => {
   const isPressable = onPress !== undefined;
   return (
     <Pressable
@@ -24,7 +31,7 @@ export const Item = ({ text, value, icon, onPress }: ItemProps) => {
       </View>
       <View className="flex-row items-center">
         <Text className="text-neutral-600 dark:text-white">{value}</Text>
-        {isPressable && (
+        {showTrailingIcon && (
           <View className="pl-2">
             <ArrowRight />
           </View>

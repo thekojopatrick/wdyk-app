@@ -20,7 +20,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useColorScheme } from "nativewind";
 
 const Profile = () => {
-  const { session, profile, userName, signOut } = useAuth();
+  const { profile, userName, signOut } = useAuth();
   const { colorScheme } = useColorScheme();
 
   const iconColor =
@@ -45,7 +45,7 @@ const Profile = () => {
             <ProfileContainer username={userName} name={profile.full_name} />
             <ItemsContainer title="settings.account">
               <Item
-                text="settings.account_settings"
+                text={"settings.account_settings" || "Account Settings"}
                 icon={<UserSettingsIcon color={iconColor} />}
                 onPress={() => {}}
               />
@@ -104,13 +104,16 @@ const Profile = () => {
               />
             </ItemsContainer>
 
-            <ItemsContainer>
-              <Item
-                text="settings.logout"
-                icon={<AntDesign name="logout" size={24} color="red" />}
-                onPress={() => signOut()}
-              />
-            </ItemsContainer>
+            <View className="my-8">
+              <ItemsContainer>
+                <Item
+                  text="settings.logout"
+                  icon={<AntDesign name="logout" size={24} color="red" />}
+                  onPress={() => signOut()}
+                  showTrailingIcon={false}
+                />
+              </ItemsContainer>
+            </View>
           </View>
         </ScrollView>
       </>
