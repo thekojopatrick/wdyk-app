@@ -16,15 +16,19 @@ import { ThemeProvider } from "@react-navigation/native";
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
+export const unstable_settings = {
+  initialRouteName: "splash",
+};
+
 export default function RootLayout() {
   return (
     <Providers>
       <Stack initialRouteName="splash">
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="splash" options={{ headerShown: false }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-        <Stack.Screen name="get-started" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       </Stack>
       <StatusBar />
     </Providers>

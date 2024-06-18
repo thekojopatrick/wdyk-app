@@ -42,10 +42,13 @@ const Profile = () => {
           className="h-full w-full px-5"
         >
           <View className="">
-            <ProfileContainer username={userName} name={profile.full_name} />
+            <ProfileContainer
+              username={userName || ""}
+              name={profile?.full_name || ""}
+            />
             <ItemsContainer title="settings.account">
               <Item
-                text={"settings.account_settings" || "Account Settings"}
+                text={"settings.account_settings"}
                 icon={<UserSettingsIcon color={iconColor} />}
                 onPress={() => {}}
               />
