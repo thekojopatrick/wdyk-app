@@ -8,7 +8,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { APIProvider } from "@/api";
 import { useThemeConfig } from "@/core/use-theme-config";
-import { TRPCProvider } from "@/lib/api";
+import { TRPCProvider } from "@/utils/api";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeProvider } from "@react-navigation/native";
 import { useColorScheme } from "nativewind";
