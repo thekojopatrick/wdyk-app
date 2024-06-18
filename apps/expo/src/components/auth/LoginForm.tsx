@@ -13,21 +13,25 @@ AppState.addEventListener("change", (state) => {
   }
 });
 
+const useAuthState = () => {
+  const { signIn } = useAuth();
+  return { signIn };
+};
+
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
-  //const signIn = useAuth.use.signIn();
+  const { signIn } = useAuthState();
 
-  async function signInWithEmail() {
+  const signInWithEmail = async () => {
     setLoading(true);
     const {
-      error,
       data: { session },
+      error,
     } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+      email,
+      password,
     });
 
     if (error) {
@@ -37,20 +41,25 @@ const LoginForm = () => {
     if (session) {
       signIn({ access: session.access_token, refresh: session.refresh_token });
     }
+
     setLoading(false);
-  }
+  };
 
   return (
-    <View>
-      <View className="mb-5 gap-2">
-        <ThemedText variant="title1" testID="form-title" className="font-bold">
+    <>
+      <View className={styles.header}>
+        <ThemedText
+          variant="title1"
+          testID="form-title"
+          className={styles.title}
+        >
           Welcome back!
         </ThemedText>
-        <ThemedText testID="form-description" className="pb-6">
+        <ThemedText testID="form-description" className={styles.description}>
           Login to continue your wordy adventure
         </ThemedText>
       </View>
-      <View className="mb-auto gap-4">
+      <View className={styles.form}>
         <View>
           <ThemedText
             variant="subhead"
@@ -67,11 +76,10 @@ const LoginForm = () => {
             autoCapitalize="none"
           />
         </View>
-
-        <View className="mb-3">
+        <View className={styles.passwordContainer}>
           <ThemedText
             variant="subhead"
-            testID="email-ID"
+            testID="password-ID"
             className={styles.label}
           >
             Password
@@ -86,32 +94,37 @@ const LoginForm = () => {
             autoCapitalize="none"
           />
         </View>
-        <View className="mt-auto w-full gap-4 text-center">
+        <View className={styles.buttonContainer}>
           <Button
             label="Continue"
             loading={loading}
-            onPress={() => signInWithEmail()}
+            onPress={signInWithEmail}
           />
         </View>
-        <View className="my-2 text-center">
+        <View className={styles.forgotPasswordContainer}>
           <Link href="/(auth)/forgot-password" asChild>
-            <ThemedText
-              variant="subhead"
-              className="text-primary-600 text-center font-medium"
-            >
+            <ThemedText variant="subhead" className={styles.forgotPasswordText}>
               Forgotten Password?
             </ThemedText>
           </Link>
         </View>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = {
+  header: "mb-4 gap-2",
+  title: "font-bold",
+  description: "pb-6",
+  form: "mb-auto gap-4",
   label: "text-grey-100 mb-2 text-lg dark:text-neutral-100",
   input:
     "mt-0 py-4 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-100 px-4 text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
+  passwordContainer: "mb-3",
+  buttonContainer: "mt-auto w-full gap-4 text-center",
+  forgotPasswordContainer: "my-2 text-center",
+  forgotPasswordText: "text-primary-600 text-center font-medium",
 };
 
 export default LoginForm;
