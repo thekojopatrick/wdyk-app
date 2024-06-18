@@ -13,19 +13,12 @@ import { useThemeConfig } from "@/core/use-theme-config";
 import { TRPCProvider } from "@/utils/api";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeProvider } from "@react-navigation/native";
-import { useColorScheme } from "nativewind";
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
-  const { colorScheme } = useColorScheme();
-
   return (
     <Providers>
-      {/*
-          The Stack component displays the current page.
-          It also allows you to configure your screens 
-        */}
       <Stack initialRouteName="splash">
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="splash" options={{ headerShown: false }} />
@@ -33,7 +26,6 @@ export default function RootLayout() {
         <Stack.Screen name="get-started" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       </Stack>
-
       <StatusBar />
     </Providers>
   );
@@ -44,7 +36,7 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GestureHandlerRootView
       style={styles.container}
-      className={theme.dark ? `dark` : undefined}
+      className={theme.dark ? `light` : undefined}
     >
       <ThemeProvider value={theme}>
         <AuthProvider>

@@ -1,11 +1,15 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { useIsFirstTime } from "@/core/hooks";
 import { Button, Image } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 import { Ionicons } from "@expo/vector-icons";
 
 const Onboarding = () => {
+  const [_, setIsFirstTime] = useIsFirstTime();
+  const router = useRouter();
+
   return (
     <SafeAreaView>
       <View className="h-full w-full p-4">
@@ -47,9 +51,13 @@ const Onboarding = () => {
           <Link href={"/(auth)/login"} className="basis-auto" asChild>
             <Button label="Skip" radius="full" variant="outline" />
           </Link>
-          <Link href={"/get-started"} className="flex-1" asChild>
-            <Button label="Get started!" radius="full" />
-          </Link>
+          <Button
+            label="Get started!"
+            onPress={() => {
+              setIsFirstTime(false);
+              router.replace("/get-started");
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>
