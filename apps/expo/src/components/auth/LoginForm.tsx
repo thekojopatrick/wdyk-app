@@ -1,11 +1,41 @@
-import React, { useState } from "react";
-import { TextInput, View } from "react-native";
-import { Link } from "expo-router";
+import { Alert, AppState, TextInput, View } from "react-native";
 import { Button, ThemedText } from "@/ui";
+import React, { useState } from "react";
+
+import { Link } from "expo-router";
+import { supabase } from "@/utils/supabase";
+import useAuth from "@/core/auth";
+
+AppState.addEventListener("change", (state) => {
+  if (state === "active") {
+    supabase.auth.startAutoRefresh();
+  } else {
+    supabase.auth.stopAutoRefresh();
+  }
+});
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { status, signIn, signOut } = useAuth();
+
+  async function signInWithEmail() {
+    setLoading(true);
+    const {
+      error,
+      data: { session },
+    } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      Alert.alert(error.message);
+    }
+    setLoading(false);
+    signIn(session?.access_token);
+  }
 
   return (
     <View>
@@ -54,13 +84,11 @@ const LoginForm = () => {
           />
         </View>
         <View className="mt-auto w-full gap-4 text-center">
-          <Link
-            replace
-            href={{ pathname: "/(tabs)/", params: { name: "Kojo" } }}
-            asChild
-          >
-            <Button label="Continue" onPress={() => {}} />
-          </Link>
+          <Button
+            label="Continue"
+            loading={loading}
+            onPress={() => signInWithEmail()}
+          />
         </View>
         <View className="my-2 text-center">
           <Link href="/(auth)/forgot-password" asChild>

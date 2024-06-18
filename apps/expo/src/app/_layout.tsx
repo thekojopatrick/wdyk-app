@@ -1,22 +1,24 @@
 import "@bacons/text-decoder/install";
 import "../styles.css";
 
-import { StyleSheet } from "react-native";
+import { APIProvider } from "@/api";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import FlashMessage from "react-native-flash-message";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { APIProvider } from "@/api";
-import { useThemeConfig } from "@/core/use-theme-config";
+import { StyleSheet } from "react-native";
 import { TRPCProvider } from "@/utils/api";
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeProvider } from "@react-navigation/native";
+import useAuth from "@/core/auth";
 import { useColorScheme } from "nativewind";
+import { useThemeConfig } from "@/core/use-theme-config";
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
   const { colorScheme } = useColorScheme();
+
   return (
     <Providers>
       {/*
