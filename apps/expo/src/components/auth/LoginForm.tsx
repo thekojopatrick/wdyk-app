@@ -17,7 +17,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { status, signIn } = useAuth();
+  const { signIn } = useAuth();
+  //const signIn = useAuth.use.signIn();
 
   async function signInWithEmail() {
     setLoading(true);
@@ -32,9 +33,11 @@ const LoginForm = () => {
     if (error) {
       Alert.alert(error.message);
     }
+
+    if (session) {
+      signIn({ access: session.access_token, refresh: session.refresh_token });
+    }
     setLoading(false);
-    signIn(session?.access_token);
-    console.log({ status });
   }
 
   return (
