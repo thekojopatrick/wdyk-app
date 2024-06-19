@@ -1,6 +1,5 @@
-import type { ConfigContext, ExpoConfig } from "expo/config";
-
 import { ClientEnv, Env } from "./env";
+import type { ConfigContext, ExpoConfig } from "expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -57,6 +56,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
             color: "white",
           },
         ],
+      },
+    ],
+    [
+      "@react-native-google-signin/google-signin",
+      {
+        iosUrlScheme: Env.SCHEME,
       },
     ],
   ],
