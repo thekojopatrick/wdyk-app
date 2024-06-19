@@ -1,16 +1,19 @@
-import React from "react";
+import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
+import { Redirect, Stack } from "expo-router";
 import { SafeAreaView, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { Stack } from "expo-router";
-import { gameplay } from "@/api/dummyData";
+
+import CustomHeader from "@/components/header/CustomHeader";
 import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
 import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
-import CustomHeader from "@/components/header/CustomHeader";
+import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { gameplay } from "@/api/dummyData";
 import { useAuth } from "@/core/providers";
-import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
 
 export default function Home() {
   const { session, profile } = useAuth();
+
+  console.log({ profile });
 
   return (
     <SafeAreaView style={styles.container}>
