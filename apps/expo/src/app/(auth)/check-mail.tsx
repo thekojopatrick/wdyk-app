@@ -10,7 +10,8 @@ import { openInbox } from "react-native-email-link";
 
 const CheckMail = () => {
   const router = useRouter();
-  const handlePress = useCallback(async () => {
+
+  const openMail = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL("googlegmail://");
 
