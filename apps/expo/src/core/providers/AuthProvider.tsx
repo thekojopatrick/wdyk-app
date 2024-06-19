@@ -1,10 +1,11 @@
-import type { Profile } from "@/types";
-import type { Session } from "@supabase/supabase-js";
-import type { PropsWithChildren } from "react";
 import React, { useEffect } from "react";
+
 import { Alert } from "react-native";
-import { useAuthStore } from "@/core/auth";
+import type { Profile } from "@/types";
+import type { PropsWithChildren } from "react";
+import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/utils/supabase";
+import { useAuthStore } from "@/core/auth";
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const {
@@ -46,7 +47,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     };
 
     void initAuth();
-  }, [setSession, setProfile, setLoading, setUserName, setIsAdmin]);
+  }, [setSession, setProfile, setLoading, setUserName]);
 
   const fetchProfile = async (session: Session) => {
     setLoading(true);

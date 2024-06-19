@@ -1,10 +1,12 @@
 import * as z from "zod";
 
 import { Button, ControlledInput, Text, ThemedText, View } from "@/ui";
+import React, { useState } from "react";
 
-import React from "react";
-import { StyleSheet } from "react-native";
+import { Alert } from "react-native";
+import { supabase } from "@/utils/supabase";
 import { useForm } from "react-hook-form";
+import { useRouter } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
@@ -24,27 +26,64 @@ const schema = z.object({
 type FormType = z.infer<typeof schema>;
 
 const SignUpForm = () => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const {
     handleSubmit,
     control,
-    formState: { errors, isDirty, isSubmitting, isLoading, isValid },
+    formState: { isDirty, isSubmitting, isLoading, isValid },
   } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log({ errors, isDirty, isLoading, isSubmitting });
+  // Function to handle user sign-up
+  const signUpWithEmail = async ({ email, password, name }: FormType) => {
+    setLoading(true);
 
-    console.log(data);
+    try {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: name },
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (!session) {
+        router.push("/(auth)/check-mail");
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmit = async (data: FormType) => {
+    console.log({ data });
+    if (isDirty && !isSubmitting) {
+      await signUpWithEmail(data);
+    }
   };
 
   return (
-    <View className="flex-1">
-      <View className="mb-4 gap-2">
-        <ThemedText variant="title1" testID="form-title" className="font-bold">
+    <View className={styles.container}>
+      <View className={styles.titleHeaderContainer}>
+        <ThemedText
+          variant="title1"
+          testID="form-title"
+          className={styles.title}
+        >
           Sign up
         </ThemedText>
-        <Text testID="form-title" className="w-[80%] text-gray-600">
+        <Text testID="form-title" className={styles.description}>
           Create an your account to start your word adventure. it's quick and
           easy.
         </Text>
@@ -76,8 +115,8 @@ const SignUpForm = () => {
       <Button
         testID="login-button"
         label="Sign up"
-        loading={isLoading}
-        disabled={!isValid}
+        loading={loading || isLoading || isSubmitting}
+        disabled={!isValid || isSubmitting}
         onPress={handleSubmit(onSubmit)}
       />
     </View>
@@ -86,4 +125,9 @@ const SignUpForm = () => {
 
 export default SignUpForm;
 
-const styles = StyleSheet.create({});
+const styles = {
+  container: `flex-1`,
+  titleHeaderContainer: `mb-4 gap-2`,
+  title: `font-bold`,
+  description: `w-[90%] text-gray-600`,
+};
