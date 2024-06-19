@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { Alert, AppState, StyleSheet, TextInput, View } from "react-native";
-import { router } from "expo-router";
-import { useAuth } from "@/core/providers";
 import { Button, Checkbox, Text, ThemedText } from "@/ui";
+import React, { useEffect, useState } from "react";
+
+import { router } from "expo-router";
 import { supabase } from "@/utils/supabase";
+import { useAuth } from "@/core/providers";
 
 // AppState management to handle auto-refreshing of the auth state
 AppState.addEventListener("change", (state) => {
@@ -26,7 +27,6 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuthState();
 
   // Function to handle user sign-up
   const signUpWithEmail = async () => {
@@ -41,31 +41,19 @@ const RegisterForm = () => {
       const {
         data: { session },
         error,
-      } = await supabase.auth.signUp({ email, password });
+      } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: name },
+        },
+      });
 
       if (error) {
         throw new Error(error.message);
       }
 
-      if (session) {
-        const updates = {
-          id: session.user.id,
-          full_name: name,
-          updated_at: new Date(),
-        };
-
-        const { error: updateError } = await supabase
-          .from("profiles")
-          .upsert(updates);
-        if (updateError) {
-          throw new Error(updateError.message);
-        }
-
-        signIn({
-          access: session.access_token,
-          refresh: session.refresh_token,
-        });
-
+      if (!session) {
         router.push("/(auth)/check-mail");
       }
     } catch (error) {
