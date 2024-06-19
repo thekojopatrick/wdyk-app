@@ -7,10 +7,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { APIProvider } from "@/api";
-import useAuth from "@/core/auth";
 import AuthProvider from "@/core/providers/AuthProvider";
 import { useThemeConfig } from "@/core/use-theme-config";
-import { TRPCProvider } from "@/utils/api";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThemeProvider } from "@react-navigation/native";
 
