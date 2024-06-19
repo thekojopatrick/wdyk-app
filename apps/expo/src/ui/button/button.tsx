@@ -1,7 +1,8 @@
-import type { PressableProps, View } from "react-native";
-import type { VariantProps } from "tailwind-variants";
-import React from "react";
 import { ActivityIndicator, Pressable, Text } from "react-native";
+import type { PressableProps, View } from "react-native";
+
+import React from "react";
+import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
 const button = tv({
@@ -85,7 +86,7 @@ const button = tv({
     disabled: {
       true: {
         container: "bg-neutral-300 dark:bg-neutral-300",
-        label: "text-neutral-600 dark:text-neutral-600",
+        label: "text-neutral-500 dark:text-neutral-500",
         indicator: "text-neutral-400 dark:text-neutral-400",
       },
     },

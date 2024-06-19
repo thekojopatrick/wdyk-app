@@ -1,45 +1,46 @@
+import * as React from "react";
+
 import type {
   Control,
   FieldValues,
   Path,
   RegisterOptions,
 } from "react-hook-form";
-import type { TextInput, TextInputProps } from "react-native";
-import * as React from "react";
 import {
   I18nManager,
   TextInput as NTextInput,
   StyleSheet,
   View,
 } from "react-native";
-import colors from "@/theme/colors";
-import { useController } from "react-hook-form";
-import { tv } from "tailwind-variants";
+import type { TextInput, TextInputProps } from "react-native";
 
 import { Text } from "../text";
+import colors from "@/theme/colors";
+import { tv } from "tailwind-variants";
+import { useController } from "react-hook-form";
 
 const inputTv = tv({
   slots: {
     container: "mb-2",
     label: "text-grey-100 mb-1 text-lg dark:text-neutral-100",
     input:
-      "mt-0 rounded-xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 font-inter text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
+      "mt-0 rounded-xl border-[0.1px] border-neutral-300 bg-neutral-50 px-4 py-2 h-[44px] font-inter text-base leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white",
   },
   variants: {
     focused: {
       true: {
-        input: "border-neutral-400 dark:border-neutral-300",
+        input: "border-neutral-400 border-[0.5px] dark:border-neutral-300",
       },
     },
     error: {
       true: {
-        input: "border-danger-600",
+        input: "border-danger-600 border-[0.5px]",
         label: "text-danger-600 dark:text-danger-600",
       },
     },
     disabled: {
       true: {
-        input: "bg-neutral-200",
+        input: "bg-neutral-200 border-[0.5px]",
       },
     },
   },
@@ -114,7 +115,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
       {error && (
         <Text
           testID={testID ? `${testID}-error` : undefined}
-          className="text-danger-400 dark:text-danger-600 text-sm"
+          className="text-danger-400 dark:text-danger-600 my-1 pl-4 text-sm"
         >
           {error}
         </Text>

@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { PrimaryLogo } from "@/ui/icons";
 import { RegisterForm } from "@/components/auth";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SignUpForm from "@/components/auth/register/signup-form";
 
 export default function Register() {
   const router = useRouter();
@@ -24,7 +25,8 @@ export default function Register() {
           </Button>
           <PrimaryLogo />
         </View>
-        <RegisterForm />
+        {/* <RegisterForm /> */}
+        <SignUpForm />
         <View className="w-full text-center">
           <GoogleAuthButton />
           <Link href={"/(auth)/login"} asChild>

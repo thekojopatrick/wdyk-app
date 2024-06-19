@@ -30,10 +30,10 @@ const RegisterForm = () => {
 
   // Function to handle user sign-up
   const signUpWithEmail = async () => {
-    if (!checked) {
-      Alert.alert("Please agree to terms and conditions first!");
-      return;
-    }
+    // if (!checked) {
+    //   Alert.alert("Please agree to terms and conditions first!");
+    //   return;
+    // }
 
     setLoading(true);
 
@@ -125,7 +125,7 @@ const RegisterForm = () => {
             autoCapitalize="none"
           />
         </View>
-        <View className="mt-2">
+        <View className="mt-2 hidden">
           <Checkbox
             checked={checked}
             onChange={setChecked}
