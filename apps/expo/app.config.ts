@@ -58,12 +58,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         ],
       },
     ],
-    [
-      "@react-native-google-signin/google-signin",
-      {
-        iosUrlScheme: Env.SCHEME,
-      },
-    ],
   ],
 
   extra: {
