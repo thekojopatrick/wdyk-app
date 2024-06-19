@@ -27,15 +27,7 @@ const SignUpForm = () => {
   const {
     handleSubmit,
     control,
-    formState: {
-      errors,
-      isDirty,
-      isSubmitting,
-      isLoading,
-      touchedFields,
-      submitCount,
-      isValid,
-    },
+    formState: { errors, isDirty, isSubmitting, isLoading, isValid },
   } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
