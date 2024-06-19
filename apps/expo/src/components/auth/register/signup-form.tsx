@@ -40,11 +40,11 @@ const SignUpForm = () => {
 
   return (
     <View className="flex-1">
-      <View className="mb-2 gap-2">
+      <View className="mb-4 gap-2">
         <ThemedText variant="title1" testID="form-title" className="font-bold">
           Sign up
         </ThemedText>
-        <Text testID="form-title" className="w-[80%] pb-6 text-gray-600">
+        <Text testID="form-title" className="w-[80%] text-gray-600">
           Create an your account to start your word adventure. it's quick and
           easy.
         </Text>
