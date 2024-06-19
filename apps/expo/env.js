@@ -38,7 +38,7 @@ const PACKAGE = "com.kojopatrick.wdyk"; // android package name
 const NAME = "Wdyk?"; // app name
 const EXPO_ACCOUNT_OWNER = "kojopatrick"; // expo account owner
 const EAS_PROJECT_ID = "c594ea6d-dec7-4777-923c-f2dcd026e2ac"; // eas project id
-const SCHEME = "wdykApp"; // app scheme
+const SCHEME = "app.vercel.wdyk-app"; // app scheme
 
 /**
  * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV

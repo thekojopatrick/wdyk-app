@@ -1,13 +1,79 @@
-import React, { useState } from "react";
-import { TextInput, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, AppState, StyleSheet, TextInput, View } from "react-native";
 import { router } from "expo-router";
+import { useAuth } from "@/core/providers";
 import { Button, Checkbox, Text, ThemedText } from "@/ui";
+import { supabase } from "@/utils/supabase";
+
+// AppState management to handle auto-refreshing of the auth state
+AppState.addEventListener("change", (state) => {
+  if (state === "active") {
+    supabase.auth.startAutoRefresh();
+  } else {
+    supabase.auth.stopAutoRefresh();
+  }
+});
+
+// Custom hook to manage auth state
+const useAuthState = () => {
+  const { signIn, session } = useAuth();
+  return { signIn, session };
+};
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { signIn } = useAuthState();
+
+  // Function to handle user sign-up
+  const signUpWithEmail = async () => {
+    if (!checked) {
+      Alert.alert("Please agree to terms and conditions first!");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.signUp({ email, password });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (session) {
+        const updates = {
+          id: session.user.id,
+          full_name: name,
+          updated_at: new Date(),
+        };
+
+        const { error: updateError } = await supabase
+          .from("profiles")
+          .upsert(updates);
+        if (updateError) {
+          throw new Error(updateError.message);
+        }
+
+        signIn({
+          access: session.access_token,
+          refresh: session.refresh_token,
+        });
+
+        router.push("/(auth)/check-mail");
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View className="flex-1">
@@ -82,8 +148,9 @@ const RegisterForm = () => {
       </View>
       <Button
         className=""
+        loading={loading}
         label="Sign up"
-        onPress={() => router.push("/(auth)/setting-up-account")}
+        onPress={signUpWithEmail}
       />
     </View>
   );

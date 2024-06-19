@@ -1,3 +1,4 @@
+import type { Profile } from "@/types";
 import type { Session } from "@supabase/supabase-js";
 import type { PropsWithChildren } from "react";
 import React, { useEffect } from "react";
@@ -44,7 +45,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       });
     };
 
-    initAuth();
+    void initAuth();
   }, [setSession, setProfile, setLoading, setUserName, setIsAdmin]);
 
   const fetchProfile = async (session: Session) => {
@@ -56,10 +57,10 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         .eq("id", session.user.id)
         .single();
 
-      if (error && status !== 406) throw error;
+      if (error && status === 406) throw error;
 
       if (data) {
-        setProfile(data);
+        setProfile(data as Profile);
         const userName = data.full_name.replace(/\s+/g, "").toLowerCase();
         setUserName(userName);
         // setIsAdmin(data.role === "ADMIN");

@@ -1,10 +1,8 @@
-import { Text } from "react-native";
+import { Button } from "react-native";
 import { makeRedirectUri } from "expo-auth-session";
 import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
-import { Button } from "@/ui";
-import { Google } from "@/ui/icons";
 import { supabase } from "@/utils/supabase";
 
 WebBrowser.maybeCompleteAuthSession(); // required for web only
@@ -49,22 +47,29 @@ const performOAuth = async () => {
   }
 };
 
-export default function GoogleAuthButton() {
+const sendMagicLink = async () => {
+  const { error } = await supabase.auth.signInWithOtp({
+    email: "welbecknana08@gmail.com",
+    options: {
+      emailRedirectTo: redirectTo,
+    },
+  });
+
+  if (error) throw error;
+  // Email sent.
+};
+
+export default function Auth() {
   // Handle linking into app from email app.
   const url = Linking.useURL();
   console.log({ url });
 
   if (url) createSessionFromUrl(url);
+
   return (
-    <Button variant="outline" onPress={performOAuth} className="gap-3">
-      <Google width={20} height={20} />
-      <Text>Continue with Google</Text>
-    </Button>
+    <>
+      <Button onPress={performOAuth} title="Sign in with Github" />
+      <Button onPress={sendMagicLink} title="Send Magic Link" />
+    </>
   );
 }
-
-const styles = {
-  button:
-    "items-center gap-4 justify-center rounded-full p-4 border  border-charcoal-100 flex-row",
-  buttonText: "text-lg font-semibold text-center",
-};

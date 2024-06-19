@@ -1,10 +1,12 @@
-import { Pressable, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
-import { GoogleAuthButton, RegisterForm } from "@/components/auth";
+import { Text, View } from "react-native";
+
 import { Button } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
+import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
 import { Ionicons } from "@expo/vector-icons";
+import { PrimaryLogo } from "@/ui/icons";
+import { RegisterForm } from "@/components/auth";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Register() {
   const router = useRouter();
@@ -16,7 +18,7 @@ export default function Register() {
             variant="secondary"
             size="icon"
             className="h-10 w-10 p-2"
-            onPress={() => router.back()}
+            onPress={() => router.replace("/check-mail")}
           >
             <Ionicons name="arrow-back" size={16} />
           </Button>
@@ -24,9 +26,7 @@ export default function Register() {
         </View>
         <RegisterForm />
         <View className="w-full text-center">
-          <Link href="/(auth)/setting-up-account" asChild>
-            <GoogleAuthButton onPress={() => {}} />
-          </Link>
+          <GoogleAuthButton />
           <Link href={"/(auth)/login"} asChild>
             <Button variant="link">
               <Text className="pr-2">Already have an account ?</Text>

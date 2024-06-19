@@ -1,13 +1,29 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, useRouter } from "expo-router";
+import { Alert, Linking, StyleSheet, View } from "react-native";
 import { Button, ThemedText } from "@/ui";
 import { CheckMailIcon, PrimaryLogo } from "@/ui/icons";
+import { Link, useRouter } from "expo-router";
+import React, { useCallback } from "react";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CheckMail = () => {
   const router = useRouter();
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL("https://gmail.app.goo.gl");
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL("https://gmail.app.goo.gl");
+    } else {
+      Alert.alert(
+        `Don't know how to open this URL: ${"'https://gmail.app.goo.gl'"}`,
+      );
+    }
+  }, []);
+
   return (
     <SafeAreaView>
       <View className="h-full w-full p-4 pb-2">
@@ -43,9 +59,13 @@ const CheckMail = () => {
             </ThemedText>
           </View>
           <View className="my-10 w-full">
-            <Link href={"(auth)/"} asChild>
-              <Button label="Open mail" className="w-full" />
-            </Link>
+            <>
+              <Button
+                label="Open mail"
+                className="w-full"
+                onPress={handlePress}
+              />
+            </>
             <View className="mt-2 text-center">
               <Button variant="link" onPress={() => router.back()}>
                 <ThemedText variant="callout" className="mr-2">
