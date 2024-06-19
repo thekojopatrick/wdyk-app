@@ -11,16 +11,26 @@ import { openInbox } from "react-native-email-link";
 const CheckMail = () => {
   const router = useRouter();
 
-  const openMail = useCallback(async () => {
-    // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL("googlegmail://");
+  // const openMail = useCallback(async () => {
+  //   // Checking if the link is supported for links with custom URL scheme.
+  //   const supported = await Linking.canOpenURL("googlegmail://");
 
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL("googlemail://");
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${"googlegmail://"}`);
+  //   if (supported) {
+  //     // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+  //     // by some browser in the mobile
+  //     await Linking.openURL("googlemail://");
+  //   } else {
+  //     Alert.alert(`Don't know how to open this URL: ${"googlegmail://"}`);
+  //   }
+  // }, []);
+
+  const openMail = useCallback(async () => {
+    try {
+      await openInbox();
+    } catch (error) {
+      console.log({ error });
+
+      Alert.alert(`No email apps available`);
     }
   }, []);
 
@@ -60,11 +70,7 @@ const CheckMail = () => {
           </View>
           <View className="my-10 w-full">
             <>
-              <Button
-                label="Open mail"
-                className="w-full"
-                onPress={() => openInbox()}
-              />
+              <Button label="Open mail" className="w-full" onPress={openMail} />
             </>
             <View className="mt-2 hidden text-center">
               <Button variant="link" onPress={() => router.back()}>

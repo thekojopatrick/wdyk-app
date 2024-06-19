@@ -1,11 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, useRouter } from "expo-router";
 import { GoogleAuthButton, LoginForm } from "@/components/auth";
+import { Link, useRouter } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
+
 import { Button } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { PrimaryLogo } from "@/ui/icons";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Login = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const Login = () => {
         <LoginForm />
         <View className="mt-auto w-full text-center">
           <Link href="/modal" asChild>
-            <GoogleAuthButton onPress={() => {}} />
+            <GoogleAuthButton />
           </Link>
           <View className="flex-row items-center justify-center text-center">
             <Link href={"/(auth)/signup"} asChild>
