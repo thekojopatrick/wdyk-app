@@ -6,21 +6,20 @@ import React, { useCallback } from "react";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { openInbox } from "react-native-email-link";
 
 const CheckMail = () => {
   const router = useRouter();
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL("https://gmail.app.goo.gl");
+    const supported = await Linking.canOpenURL("googlegmail://");
 
     if (supported) {
       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
       // by some browser in the mobile
-      await Linking.openURL("https://gmail.app.goo.gl");
+      await Linking.openURL("googlemail://");
     } else {
-      Alert.alert(
-        `Don't know how to open this URL: ${"'https://gmail.app.goo.gl'"}`,
-      );
+      Alert.alert(`Don't know how to open this URL: ${"googlegmail://"}`);
     }
   }, []);
 
@@ -63,10 +62,10 @@ const CheckMail = () => {
               <Button
                 label="Open mail"
                 className="w-full"
-                onPress={handlePress}
+                onPress={() => openInbox()}
               />
             </>
-            <View className="mt-2 text-center">
+            <View className="mt-2 hidden text-center">
               <Button variant="link" onPress={() => router.back()}>
                 <ThemedText variant="callout" className="mr-2">
                   Haven't received it?
@@ -78,6 +77,15 @@ const CheckMail = () => {
             </View>
           </View>
           <View className="my-2 text-center">
+            <Link href={"/(auth)/login"} asChild>
+              <Button variant="link">
+                <ThemedText variant="callout" className="text-primary">
+                  Continue to login
+                </ThemedText>
+              </Button>
+            </Link>
+          </View>
+          <View className="my-2 hidden text-center">
             <Link href={"/(auth)/enter-otp"} asChild>
               <Button variant="link">
                 <ThemedText variant="callout" className="text-primary">

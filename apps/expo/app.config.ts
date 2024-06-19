@@ -40,6 +40,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-font",
     "expo-localization",
     "expo-router",
+    "react-native-email-link",
     [
       "app-icon-badge",
       {
