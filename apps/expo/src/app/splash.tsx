@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
+import { colors } from "@/theme";
 import { SecondaryLogo } from "@/ui/icons";
 
 const Splash = () => {
@@ -69,15 +70,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#6229FF",
   },
   logoContainer: {
-    marginBottom: 20,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: "auto",
   },
   textContainer: {
-    marginTop: 20,
+    marginTop: "auto",
+    marginBottom: 24,
   },
   appName: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#fff",
+    fontSize: 16,
+    fontWeight: "semibold",
+    color: colors.secondary[400],
   },
 });
 

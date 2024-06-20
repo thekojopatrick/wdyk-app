@@ -1,10 +1,9 @@
-import { Alert, AppState, StyleSheet, TextInput, View } from "react-native";
-import { Button, Checkbox, Text, ThemedText } from "@/ui";
 import React, { useEffect, useState } from "react";
-
+import { Alert, AppState, StyleSheet, TextInput, View } from "react-native";
 import { router } from "expo-router";
-import { supabase } from "@/utils/supabase";
 import { useAuth } from "@/core/providers";
+import { Button, Checkbox, Text, ThemedText } from "@/ui";
+import { supabase } from "@/utils/supabase";
 
 // AppState management to handle auto-refreshing of the auth state
 AppState.addEventListener("change", (state) => {

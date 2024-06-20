@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-
-import { Alert } from "react-native";
 import type { Profile } from "@/types";
-import type { PropsWithChildren } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/utils/supabase";
+import type { PropsWithChildren } from "react";
+import React, { useEffect } from "react";
+import { Alert } from "react-native";
 import { useAuthStore } from "@/core/auth";
+import { supabase } from "@/utils/supabase";
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const {

@@ -1,13 +1,11 @@
-import * as z from "zod";
-
-import { Button, ControlledInput, Text, ThemedText, View } from "@/ui";
 import React, { useState } from "react";
-
 import { Alert } from "react-native";
-import { supabase } from "@/utils/supabase";
-import { useForm } from "react-hook-form";
 import { useRouter } from "expo-router";
+import { Button, ControlledInput, Text, ThemedText, View } from "@/ui";
+import { supabase } from "@/utils/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const schema = z.object({
   name: z.string({ required_error: "Name is required" }),

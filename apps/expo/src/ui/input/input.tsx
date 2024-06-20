@@ -1,23 +1,22 @@
-import * as React from "react";
-
 import type {
   Control,
   FieldValues,
   Path,
   RegisterOptions,
 } from "react-hook-form";
+import type { TextInput, TextInputProps } from "react-native";
+import * as React from "react";
 import {
   I18nManager,
   TextInput as NTextInput,
   StyleSheet,
   View,
 } from "react-native";
-import type { TextInput, TextInputProps } from "react-native";
+import colors from "@/theme/colors";
+import { useController } from "react-hook-form";
+import { tv } from "tailwind-variants";
 
 import { Text } from "../text";
-import colors from "@/theme/colors";
-import { tv } from "tailwind-variants";
-import { useController } from "react-hook-form";
 
 const inputTv = tv({
   slots: {

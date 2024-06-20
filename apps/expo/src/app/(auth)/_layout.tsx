@@ -1,9 +1,8 @@
-import { ActivityIndicator, SafeAreaView } from "@/ui";
-import { Redirect, Stack } from "expo-router";
-
 import React from "react";
-import { View } from "moti";
+import { Redirect, Stack } from "expo-router";
 import { useAuth } from "@/core/providers";
+import { ActivityIndicator, SafeAreaView } from "@/ui";
+import { View } from "moti";
 
 const AuthLayout = () => {
   const { session, loading, profile } = useAuth();
