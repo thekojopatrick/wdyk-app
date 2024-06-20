@@ -1,13 +1,23 @@
 import React from "react";
 import { useRouter } from "expo-router";
-import { Button, ControlledInput, ThemedText, View } from "@/ui";
+import {
+  Button,
+  ControlledInput,
+  ControlledSelect,
+  ThemedText,
+  View,
+} from "@/ui";
 import { Adinkrahene, Sankofa } from "@/ui/icons/adinkra-symbols";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { SelectAvatar } from "../profile/select-avatar";
+
 const schema = z.object({
-  username: z.string().optional(),
+  username: z.string({ message: "Username must be more than 2 characters" }),
+  user_symbol: z.string().optional(),
+  avatar_url: z.string().optional(),
 });
 
 type FormType = z.infer<typeof schema>;
@@ -18,13 +28,17 @@ type FormType = z.infer<typeof schema>;
 
 const SettingUpProfileForm = () => {
   const router = useRouter();
-  const { handleSubmit, control } = useForm<FormType>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isDirty, isSubmitting, isLoading, isValid },
+  } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
 
   const onSubmit = (data: FormType) => {
     console.log(data);
-    router.push("/account/setting-up-account");
+    //router.push("/account/setting-up-account");
   };
 
   return (
@@ -35,7 +49,7 @@ const SettingUpProfileForm = () => {
         </ThemedText>
         <ThemedText
           testID="form-description"
-          className="font-normal text-neutral-500"
+          className="font-normal text-neutral-500 dark:text-neutral-100"
         >
           Personalize your profile to stand out.
         </ThemedText>
@@ -46,25 +60,22 @@ const SettingUpProfileForm = () => {
           control={control}
           name="username"
           label="Username"
-          placeholder="@username"
+          placeholder="Pick a unique username"
         />
-      </View>
-      <View>
-        <ThemedText variant="subhead" testID="form-label" className="">
-          Pick Your Wordy Persona!
+        <ThemedText
+          testID="form-description"
+          variant="footnote"
+          className="mb-6 text-neutral-500 dark:text-white"
+        >
+          Username can contain only lowercase letters and underscore
         </ThemedText>
-        <View className="mt-3 flex flex-row flex-wrap gap-2">
-          <View className="h-24 w-24 items-center justify-center rounded-xl bg-neutral-100 p-4">
-            <Adinkrahene />
-          </View>
-          <View className="h-24 w-24 items-center justify-center rounded-xl bg-neutral-100 p-4">
-            <Sankofa />
-          </View>
-        </View>
+        <SelectAvatar name="user_symbol" control={control} />
       </View>
       <Button
         label="Continue"
         className="mt-auto"
+        loading={isSubmitting || isLoading}
+        disabled={!isValid}
         onPress={handleSubmit(onSubmit)}
       />
     </View>
