@@ -30,6 +30,10 @@ export default function TabLayout() {
   if (isFirstTime && !session) {
     return <Redirect href="/splash" />;
   }
+  if (!session) {
+    return <Redirect href="/login" />;
+  }
+
   if (status === "signOut") {
     return <Redirect href="/(auth)/login" />;
   }

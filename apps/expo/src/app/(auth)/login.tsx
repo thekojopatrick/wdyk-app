@@ -26,9 +26,7 @@ const Login = () => {
         </View>
         <LoginForm />
         <View className="mt-auto w-full text-center">
-          <Link href="/modal" asChild>
-            <GoogleAuthButton />
-          </Link>
+          <GoogleAuthButton />
           <View className="flex-row items-center justify-center text-center">
             <Link href={"/(auth)/signup"} asChild>
               <Button variant="link">

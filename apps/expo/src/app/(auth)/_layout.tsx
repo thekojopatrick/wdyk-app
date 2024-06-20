@@ -17,9 +17,9 @@ const AuthLayout = () => {
     );
   }
 
-  if (session && !profile.username) {
-    return <Redirect href={"/(auth)/setting-up-profile"} />;
-  }
+  // if (session && !profile?.username) {
+  //   return <Redirect href={"/(auth)/setting-up-profile"} />;
+  // }
 
   if (session) {
     return <Redirect href={"/(tabs)/"} />;

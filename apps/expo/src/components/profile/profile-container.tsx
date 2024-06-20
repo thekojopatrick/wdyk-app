@@ -25,7 +25,10 @@ const ProfileContainer = ({
           {name}
         </ThemedText>
         <Link href={""}>
-          <ThemedText variant="body" className="text-center text-neutral-600">
+          <ThemedText
+            variant="body"
+            className="text-center text-neutral-600 dark:text-neutral-100"
+          >
             @{username}
           </ThemedText>
         </Link>
