@@ -1,9 +1,10 @@
+import { Button, Image, SafeAreaView, Text, View } from "@/ui";
+
+import { Link } from "expo-router";
+import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Link } from "expo-router";
 import { useAuth } from "@/core/providers";
-import { Button, Image, SafeAreaView, Text, View } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
 
 const GetStarted = () => {
   const { session } = useAuth();
@@ -45,7 +46,7 @@ const GetStarted = () => {
             <Button label="Login" radius="full" variant="link" />
           </Link>
         </View>
-        <View className="flex w-full flex-col items-center gap-2">
+        <View className="hidden w-full flex-col items-center gap-2">
           <Link href={"/(auth)/setting-up-profile"} className="w-full" asChild>
             <Button label="Setting Up Profile" radius="full" variant="link" />
           </Link>
