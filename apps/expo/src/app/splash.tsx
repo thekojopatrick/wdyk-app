@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, Text, View } from "react-native";
-import { useRouter } from "expo-router";
-import { colors } from "@/theme";
+import React, { useEffect, useRef } from "react";
+
 import { SecondaryLogo } from "@/ui/icons";
+import { colors } from "@/theme";
+import { useRouter } from "expo-router";
+import { useThemeConfig } from "@/core/use-theme-config";
 
 const Splash = () => {
   const router = useRouter();
+  const theme = useThemeConfig();
 
   const logoAnim = useRef(new Animated.Value(10)).current;
   const textAnim = useRef(new Animated.Value(30)).current;
@@ -41,7 +44,10 @@ const Splash = () => {
   }, [logoAnim, textAnim, opacityAnim, router]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      className={theme.dark ? `dark` : "bg-[#6229FF]"}
+    >
       <Animated.View
         style={[
           styles.logoContainer,
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6229FF",
+    //backgroundColor: "#6229FF",
   },
   logoContainer: {
     flex: 1,

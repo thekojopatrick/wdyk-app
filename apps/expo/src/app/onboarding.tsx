@@ -12,7 +12,7 @@ const Onboarding = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="bg-background">
+    <SafeAreaView>
       <View className="h-full w-full p-4">
         <View className="items-center">
           <PrimaryLogo />

@@ -14,7 +14,7 @@ const GetStarted = () => {
   // }
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
+    <SafeAreaView>
       <View className="h-full w-full p-4">
         <View className="items-center">
           <PrimaryLogo />
