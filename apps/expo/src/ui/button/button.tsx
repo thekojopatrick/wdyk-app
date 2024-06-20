@@ -1,7 +1,8 @@
-import type { PressableProps, View } from "react-native";
-import type { VariantProps } from "tailwind-variants";
-import React from "react";
 import { ActivityIndicator, Pressable, Text } from "react-native";
+import type { PressableProps, View } from "react-native";
+
+import React from "react";
+import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
 const button = tv({
@@ -42,8 +43,8 @@ const button = tv({
       },
       link: {
         container: "bg-transparent",
-        label: "text-black",
-        indicator: "text-black",
+        label: "text-black dark:text-white",
+        indicator: "text-black dark:text-white",
       },
       bezel: {
         container: "bg-primary border border-purple-300 shadow-sm",

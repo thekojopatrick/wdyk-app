@@ -1,9 +1,10 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Link, Redirect } from "expo-router";
-import { useAuth } from "@/core/providers";
-import { Button, Image } from "@/ui";
+import { Button, Image, SafeAreaView, Text, View } from "@/ui";
+
+import { Link } from "expo-router";
 import { PrimaryLogo } from "@/ui/icons";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { useAuth } from "@/core/providers";
 
 const GetStarted = () => {
   const { session } = useAuth();
@@ -13,7 +14,7 @@ const GetStarted = () => {
   // }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 bg-background">
       <View className="h-full w-full p-4">
         <View className="items-center">
           <PrimaryLogo />
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     lineHeight: 21,
-    color: "#38434D",
+    // color: "#38434D",
     textAlign: "center",
   },
   image: {

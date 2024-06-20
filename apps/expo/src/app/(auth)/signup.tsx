@@ -1,12 +1,10 @@
-import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Button, SafeAreaView, Text, View } from "@/ui";
 import { Link, useRouter } from "expo-router";
-import { RegisterForm } from "@/components/auth";
+
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
-import SignUpForm from "@/components/auth/register/signup-form";
-import { Button } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
 import { Ionicons } from "@expo/vector-icons";
+import { PrimaryLogo } from "@/ui/icons";
+import SignUpForm from "@/components/auth/register/signup-form";
 
 export default function Register() {
   const router = useRouter();

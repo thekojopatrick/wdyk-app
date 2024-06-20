@@ -1,10 +1,11 @@
-import { Text } from "react-native";
-import { makeRedirectUri } from "expo-auth-session";
-import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as Linking from "expo-linking";
+import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as WebBrowser from "expo-web-browser";
-import { Button } from "@/ui";
+
+import { Button, Text } from "@/ui";
+
 import { Google } from "@/ui/icons";
+import { makeRedirectUri } from "expo-auth-session";
 import { supabase } from "@/utils/supabase";
 
 WebBrowser.maybeCompleteAuthSession(); // required for web only

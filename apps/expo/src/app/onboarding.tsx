@@ -1,17 +1,18 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Button, Image, SafeAreaView, Text, View } from "@/ui";
 import { Link, useRouter } from "expo-router";
-import { useIsFirstTime } from "@/core/hooks";
-import { Button, Image } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
+
 import { Ionicons } from "@expo/vector-icons";
+import { PrimaryLogo } from "@/ui/icons";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { useIsFirstTime } from "@/core/hooks";
 
 const Onboarding = () => {
   const [_, setIsFirstTime] = useIsFirstTime();
   const router = useRouter();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-background">
       <View className="h-full w-full p-4">
         <View className="items-center">
           <PrimaryLogo />
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     lineHeight: 21,
-    color: "#38434D",
+    //color: "#38434D",
     textAlign: "center",
   },
   image: {

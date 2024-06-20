@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
 import { Alert, Linking, StyleSheet, View } from "react-native";
-import { openInbox } from "react-native-email-link";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, useRouter } from "expo-router";
-import { Button, ThemedText } from "@/ui";
+import { Button, SafeAreaView, ThemedText } from "@/ui";
 import { CheckMailIcon, PrimaryLogo } from "@/ui/icons";
+import { Link, useRouter } from "expo-router";
+import React, { useCallback } from "react";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { openInbox } from "react-native-email-link";
 
 const CheckMail = () => {
   const router = useRouter();
@@ -85,7 +85,10 @@ const CheckMail = () => {
           <View className="my-2 text-center">
             <Link href={"/(auth)/login"} asChild>
               <Button variant="link">
-                <ThemedText variant="callout" className="text-primary">
+                <ThemedText
+                  variant="callout"
+                  className="text-primary dark:text-white"
+                >
                   Continue to login
                 </ThemedText>
               </Button>

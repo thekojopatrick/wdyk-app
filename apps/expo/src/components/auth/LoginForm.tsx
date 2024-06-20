@@ -1,9 +1,10 @@
+import { Alert, AppState, TextInput } from "react-native";
+import { Button, ThemedText, View } from "@/ui";
 import React, { useState } from "react";
-import { Alert, AppState, TextInput, View } from "react-native";
+
 import { Link } from "expo-router";
-import { useAuth } from "@/core/providers";
-import { Button, ThemedText } from "@/ui";
 import { supabase } from "@/utils/supabase";
+import { useAuth } from "@/core/providers";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
@@ -124,7 +125,8 @@ const styles = {
   passwordContainer: "mb-3",
   buttonContainer: "mt-auto w-full gap-4 text-center",
   forgotPasswordContainer: "my-2 text-center",
-  forgotPasswordText: "text-primary-600 text-center font-medium",
+  forgotPasswordText:
+    "text-primary-600 text-center font-medium dark:text-white",
 };
 
 export default LoginForm;
