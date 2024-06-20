@@ -1,22 +1,21 @@
-import * as React from "react";
-
-import { Modal, useModal } from "../modal";
-import { Platform, Pressable, TouchableOpacity, View } from "react-native";
-import Svg, { Path } from "react-native-svg";
-
-import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { CaretDown } from "@/ui/icons";
 import type { FieldValues } from "react-hook-form";
-import { FlashList } from "@shopify/flash-list";
-import type { InputControllerType } from "../input";
 import type { PressableProps } from "react-native";
 import type { SvgProps } from "react-native-svg";
-import { Text } from "../text";
+import * as React from "react";
+import { Platform, Pressable, TouchableOpacity, View } from "react-native";
+import Svg, { Path } from "react-native-svg";
 import colors from "@/theme/colors";
-import { tv } from "tailwind-variants";
+import { CaretDown } from "@/ui/icons";
+import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import { FlashList } from "@shopify/flash-list";
 import { useColorScheme } from "nativewind";
 import { useController } from "react-hook-form";
+import { tv } from "tailwind-variants";
+
+import type { InputControllerType } from "../input";
+import { Modal, useModal } from "../modal";
+import { Text } from "../text";
 
 /* eslint-disable max-lines-per-function */
 
