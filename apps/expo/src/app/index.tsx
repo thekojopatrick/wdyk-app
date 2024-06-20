@@ -46,6 +46,17 @@ const GetStarted = () => {
             <Button label="Login" radius="full" variant="link" />
           </Link>
         </View>
+        <View className="flex w-full flex-col items-center gap-2">
+          <Link href={"/(auth)/setting-up-profile"} className="w-full" asChild>
+            <Button label="Setting Up Profile" radius="full" variant="link" />
+          </Link>
+          <Link href={"/(auth)/setting-up-account"} className="w-full" asChild>
+            <Button label="Setting up account" radius="full" variant="link" />
+          </Link>
+          <Link href={"/(tabs)/"} className="w-full" asChild>
+            <Button label="Go to main screen" radius="full" variant="link" />
+          </Link>
+        </View>
       </View>
     </SafeAreaView>
   );

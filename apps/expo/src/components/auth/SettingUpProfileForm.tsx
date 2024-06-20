@@ -1,10 +1,10 @@
-import React from "react";
-import { View } from "react-native";
-import { ControlledInput, ThemedText } from "@/ui";
 import { Adinkrahene, Sankofa } from "@/ui/icons/adinkra-symbols";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { ControlledInput, ThemedText, View } from "@/ui";
+
+import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   username: z.string().optional(),

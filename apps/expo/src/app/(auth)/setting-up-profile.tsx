@@ -1,11 +1,11 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
-import { SettingUpProfileForm } from "@/components/auth";
-import { Button } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
+import { Button, SafeAreaView, View } from "@/ui";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { PrimaryLogo } from "@/ui/icons";
+import React from "react";
+import { SettingUpProfileForm } from "@/components/auth";
+import { StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 
 const SettingUpProfile = () => {
   const router = useRouter();
