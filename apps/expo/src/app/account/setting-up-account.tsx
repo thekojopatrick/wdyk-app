@@ -1,10 +1,9 @@
-import { Button, SafeAreaView, View } from "@/ui";
-
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
-import { SettingAccountForm } from "@/components/auth";
 import { useRouter } from "expo-router";
+import { SettingAccountForm } from "@/components/auth";
+import { Button, SafeAreaView, View } from "@/ui";
+import { PrimaryLogo } from "@/ui/icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const SettingUpAccount = () => {
   const router = useRouter();

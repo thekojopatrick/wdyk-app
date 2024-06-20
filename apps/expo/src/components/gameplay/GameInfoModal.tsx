@@ -1,8 +1,11 @@
-import { ReactNode } from "react";
-import { Pressable } from "react-native";
-import { Link } from "expo-router";
-import { Button, Modal, ThemedText, useModal, View } from "@/ui";
+import { Button, Modal, ThemedText, View, useModal } from "@/ui";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
+
+import { Link } from "expo-router";
+import { Pressable } from "react-native";
+import type { ReactNode } from "react";
+import colors from "@/theme/colors";
+import { useColorScheme } from "nativewind";
 
 interface GameInfoProps {
   id?: string; // game id
@@ -39,6 +42,8 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
   gameplay,
 }) => {
   const { ref, present, dismiss } = useModal();
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === "dark";
 
   return (
     <View testID={`game-ID`}>
@@ -47,6 +52,9 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
       <Modal
         snapPoints={["60%"]} // optional
         ref={ref}
+        backgroundStyle={{
+          backgroundColor: isDark ? colors.neutral[800] : colors.white,
+        }}
       >
         <View className="h-full w-full flex-1 bg-black p-4">
           <View className="mb-10">
