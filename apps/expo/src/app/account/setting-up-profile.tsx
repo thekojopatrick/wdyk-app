@@ -1,17 +1,18 @@
+import { Button, SafeAreaView, View } from "@/ui";
+
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
+import { SettingUpProfileForm } from "@/components/auth";
 import { StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { SettingUpProfileForm } from "@/components/auth";
-import { Button, SafeAreaView, View } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 const SettingUpProfile = () => {
   const router = useRouter();
   return (
     <SafeAreaView>
       <View className="h-full w-full p-4 pb-2">
-        <View className="mb-4 w-full flex-row items-center justify-between">
+        <View className="mb-4 hidden w-full flex-row items-center justify-between">
           <Button
             variant="secondary"
             size="icon"

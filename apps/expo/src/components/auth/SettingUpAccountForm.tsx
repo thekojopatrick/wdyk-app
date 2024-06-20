@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { Link } from "expo-router";
 import { Button, Checkbox, Option, Select, ThemedText } from "@/ui";
+import React, { useState } from "react";
 
+import { Link } from "expo-router";
 import SelectCountryModal from "./CountryPicker";
+import { View } from "react-native";
 
 const CheckboxExample = () => {
   const [checked, setChecked] = React.useState(false);
@@ -39,8 +39,8 @@ const SettingUpAccountForm = () => {
   const [selectedGender, setSelectedGender] = useState<string>("");
 
   return (
-    <View>
-      <View className="mb-5 gap-2">
+    <View className="flex-1">
+      <View className="mb-4 gap-2">
         <ThemedText variant="title1" testID="form-title" className="font-bold">
           Tell us about yourself
         </ThemedText>
@@ -48,18 +48,18 @@ const SettingUpAccountForm = () => {
           Share some details to personalize your wordy journey.
         </ThemedText>
       </View>
-      <View className="mb-auto gap-4">
-        <View>
-          <ThemedText
-            variant="subhead"
-            testID="email-ID"
-            className={styles.label}
-          >
-            Country of residence
-          </ThemedText>
-          <SelectCountryModal />
-        </View>
-        <View className="">
+      <View className="flex-1">
+        <View className="gap-5">
+          <View>
+            <ThemedText
+              variant="subhead"
+              testID="email-ID"
+              className={styles.label}
+            >
+              Country of residence
+            </ThemedText>
+            <SelectCountryModal />
+          </View>
           <Select
             label="Select your age range"
             value={selectedAgeRange}
@@ -68,9 +68,6 @@ const SettingUpAccountForm = () => {
             testID="select"
             placeholder="Select.."
           />
-        </View>
-
-        <View className="">
           <Select
             label="How do you identify?"
             value={selectedGender}
@@ -80,19 +77,20 @@ const SettingUpAccountForm = () => {
             placeholder="Select.."
           />
         </View>
+
         <View className="mt-auto w-full gap-4 text-center">
           <Link
             replace
             href={{
-              pathname: "/(auth)/setting-up-profile",
+              pathname: "/(tabs)/",
               params: { name: "Kojo" },
             }}
             asChild
           >
-            <Button label="Continue" onPress={() => {}} />
+            <Button label="Done" onPress={() => {}} />
           </Link>
         </View>
-        <View className="my-2 text-center">
+        <View className="my-2 hidden text-center">
           <Link href="/modal" asChild>
             <ThemedText
               variant="subhead"

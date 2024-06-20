@@ -1,9 +1,11 @@
-import React from "react";
-import { ControlledInput, ThemedText, View } from "@/ui";
 import { Adinkrahene, Sankofa } from "@/ui/icons/adinkra-symbols";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, ControlledInput, ThemedText, View } from "@/ui";
+
+import React from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "expo-router";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   username: z.string().optional(),
@@ -16,12 +18,18 @@ type FormType = z.infer<typeof schema>;
 //Todo: Show selected symbol
 
 const SettingUpProfileForm = () => {
+  const router = useRouter();
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
 
+  const onSubmit = (data: FormType) => {
+    console.log(data);
+    router.push("/account/setting-up-account");
+  };
+
   return (
-    <View>
+    <View className="flex-1">
       <View className="mb-6 gap-2">
         <ThemedText variant="title1" testID="form-title" className="font-bold">
           Complete your profile
@@ -55,6 +63,11 @@ const SettingUpProfileForm = () => {
           </View>
         </View>
       </View>
+      <Button
+        label="Continue"
+        className="mt-auto"
+        onPress={handleSubmit(onSubmit)}
+      />
     </View>
   );
 };

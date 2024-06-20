@@ -1,10 +1,10 @@
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import type {
   CountryItem,
   ItemTemplateProps,
   ListHeaderComponentProps,
   Style,
 } from "react-native-country-codes-picker";
-import React, { memo, useCallback, useState } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -12,9 +12,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { CountryPicker } from "react-native-country-codes-picker";
+import React, { memo, useCallback, useState } from "react";
+
 import { CheckCircleIcon } from "@/ui/icons";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { CountryPicker } from "react-native-country-codes-picker";
 
 interface ListItemProps {
   selectedItem: string;
@@ -84,7 +85,11 @@ export default function SelectCountryModal() {
 
   return (
     <View>
-      <Pressable style={styles.pressable} onPress={() => setShow(true)}>
+      <Pressable
+        style={styles.pressable}
+        onPress={() => setShow(true)}
+        className="border-[0.1px] border-neutral-300 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
+      >
         {countryCode ? (
           <Text style={styles.text}>
             {countryCode} {selectedCountry}
@@ -143,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     borderRadius: 10,
-    backgroundColor: "#f5f5f5",
+    //backgroundColor: "#f5f5f5",
     padding: 10,
   },
   text: {
