@@ -1,11 +1,10 @@
-import { Adinkrahene, Sankofa } from "@/ui/icons/adinkra-symbols";
-import { Button, ControlledInput, ThemedText, View } from "@/ui";
-
 import React from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "expo-router";
-import { z } from "zod";
+import { Button, ControlledInput, ThemedText, View } from "@/ui";
+import { Adinkrahene, Sankofa } from "@/ui/icons/adinkra-symbols";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const schema = z.object({
   username: z.string().optional(),

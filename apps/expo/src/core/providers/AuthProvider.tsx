@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect } from "react";
-
-import { Alert } from "react-native";
 import type { Profile } from "@/types";
-import type { PropsWithChildren } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/utils/supabase";
+import type { PropsWithChildren } from "react";
+import React, { useCallback, useEffect } from "react";
+import { Alert } from "react-native";
 import { useAuthStore } from "@/core/auth";
+import { supabase } from "@/utils/supabase";
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
   const { profile, setSession, setProfile, setLoading, setUserName } =

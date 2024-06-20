@@ -1,9 +1,9 @@
-import { Button, Checkbox, Option, Select, ThemedText } from "@/ui";
 import React, { useState } from "react";
-
-import { Link } from "expo-router";
-import SelectCountryModal from "./CountryPicker";
 import { View } from "react-native";
+import { Link } from "expo-router";
+import { Button, Checkbox, Option, Select, ThemedText } from "@/ui";
+
+import SelectCountryModal from "./CountryPicker";
 
 const CheckboxExample = () => {
   const [checked, setChecked] = React.useState(false);

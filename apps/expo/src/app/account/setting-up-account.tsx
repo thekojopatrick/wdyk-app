@@ -1,18 +1,17 @@
-import React from "react";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
-import { SettingAccountForm } from "@/components/auth";
-import { Button } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
+import { Button, SafeAreaView, View } from "@/ui";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { PrimaryLogo } from "@/ui/icons";
+import React from "react";
+import { SettingAccountForm } from "@/components/auth";
+import { useRouter } from "expo-router";
 
 const SettingUpAccount = () => {
   const router = useRouter();
   return (
     <SafeAreaView>
       <View className="h-full w-full p-4 pb-2">
-        <View className="mb-4 w-full flex-row items-center justify-between">
+        <View className="mb-4 hidden w-full flex-row items-center justify-between">
           <Button
             variant="secondary"
             size="icon"

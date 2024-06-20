@@ -1,14 +1,13 @@
-import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
-import { Redirect, Stack } from "expo-router";
+import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-
-import CustomHeader from "@/components/header/CustomHeader";
+import { ScrollView } from "react-native-gesture-handler";
+import { Redirect, Stack } from "expo-router";
+import { gameplay } from "@/api/dummyData";
 import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
 import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
-import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import { gameplay } from "@/api/dummyData";
+import CustomHeader from "@/components/header/CustomHeader";
 import { useAuth } from "@/core/providers";
+import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
 
 export default function Home() {
   const { session, profile, userName } = useAuth();

@@ -1,10 +1,9 @@
-import { Alert, AppState } from "react-native";
-import { Button, Input, ThemedText, View } from "@/ui";
 import React, { useState } from "react";
-
+import { Alert, AppState } from "react-native";
 import { Link } from "expo-router";
-import { supabase } from "@/utils/supabase";
 import { useAuth } from "@/core/providers";
+import { Button, Input, ThemedText, View } from "@/ui";
+import { supabase } from "@/utils/supabase";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
