@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable } from "react-native";
 import { Link } from "expo-router";
-import { Button, Modal, ThemedText, useModal } from "@/ui";
-import { FontAwesome, FontAwesome6, Ionicons } from "@expo/vector-icons";
+import { Button, Modal, ThemedText, useModal, View } from "@/ui";
+import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 
 interface GameInfoProps {
   id?: string; // game id
@@ -48,7 +48,7 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
         snapPoints={["60%"]} // optional
         ref={ref}
       >
-        <View className="h-full w-full flex-1 p-4">
+        <View className="h-full w-full flex-1 bg-black p-4">
           <View className="mb-10">
             <View className="flex-row gap-6">
               <View className="h-24 w-24 items-center justify-center rounded-md bg-green-500 px-4 ">

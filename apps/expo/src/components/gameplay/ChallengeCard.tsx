@@ -1,7 +1,7 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { images } from "@/api/dummyData";
-import { Button, Image } from "@/ui";
+import { Image, Text, View } from "@/ui";
 import { Ionicons } from "@expo/vector-icons";
 
 interface ChallengeGameCardProps {
@@ -15,7 +15,7 @@ interface ChallengeGameCardProps {
 const ChallengeCard: React.FC<ChallengeGameCardProps> = ({ title, body }) => {
   return (
     <>
-      <View className="m-2 min-h-80 items-center justify-center overflow-hidden rounded-xl  border border-neutral-300 bg-white  dark:bg-neutral-900">
+      <View className="m-2 min-h-80 items-center justify-center overflow-hidden rounded-xl  border border-neutral-300 ">
         <Image
           className="h-56 w-full overflow-hidden rounded-t-xl"
           contentFit="cover"

@@ -1,11 +1,10 @@
+import React, { useCallback } from "react";
 import { Alert, Linking, StyleSheet, View } from "react-native";
+import { openInbox } from "react-native-email-link";
+import { Link, useRouter } from "expo-router";
 import { Button, SafeAreaView, ThemedText } from "@/ui";
 import { CheckMailIcon, PrimaryLogo } from "@/ui/icons";
-import { Link, useRouter } from "expo-router";
-import React, { useCallback } from "react";
-
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { openInbox } from "react-native-email-link";
 
 const CheckMail = () => {
   const router = useRouter();

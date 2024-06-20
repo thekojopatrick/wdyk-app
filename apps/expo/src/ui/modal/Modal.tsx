@@ -36,6 +36,7 @@ import * as React from "react";
 import { Pressable, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { Path, Svg } from "react-native-svg";
+import { useThemeConfig } from "@/core/use-theme-config";
 import { colors } from "@/theme";
 import { BottomSheetModal, useBottomSheet } from "@gorhom/bottom-sheet";
 
@@ -47,10 +48,10 @@ type ModalProps = BottomSheetModalProps & {
 
 type ModalRef = React.ForwardedRef<BottomSheetModal>;
 
-type ModalHeaderProps = {
+interface ModalHeaderProps {
   title?: string;
   dismiss: () => void;
-};
+}
 
 export const useModal = () => {
   const ref = React.useRef<BottomSheetModal>(null);
@@ -94,6 +95,8 @@ export const Modal = React.forwardRef(
       ),
       [title, modal.dismiss],
     );
+
+    //const theme = useThemeConfig();
 
     return (
       <BottomSheetModal

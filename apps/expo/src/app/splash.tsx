@@ -1,10 +1,9 @@
-import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useRef } from "react";
-
-import { SecondaryLogo } from "@/ui/icons";
-import { colors } from "@/theme";
+import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useThemeConfig } from "@/core/use-theme-config";
+import { colors } from "@/theme";
+import { SecondaryLogo } from "@/ui/icons";
 
 const Splash = () => {
   const router = useRouter();

@@ -1,8 +1,7 @@
-import { Path, Svg } from "react-native-svg";
-
 import type { SvgProps } from "react-native-svg";
-import { colors } from "@/theme";
+import { Path, Svg } from "react-native-svg";
 import { useThemeConfig } from "@/core/use-theme-config";
+import { colors } from "@/theme";
 
 export const PrimaryLogo = (props: SvgProps) => {
   const theme = useThemeConfig();

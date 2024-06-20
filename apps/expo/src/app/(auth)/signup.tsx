@@ -1,10 +1,9 @@
-import { Button, SafeAreaView, Text, View } from "@/ui";
 import { Link, useRouter } from "expo-router";
-
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
-import { Ionicons } from "@expo/vector-icons";
-import { PrimaryLogo } from "@/ui/icons";
 import SignUpForm from "@/components/auth/register/signup-form";
+import { Button, SafeAreaView, Text, View } from "@/ui";
+import { PrimaryLogo } from "@/ui/icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Register() {
   const router = useRouter();

@@ -1,8 +1,7 @@
-import { ActivityIndicator, Pressable, Text } from "react-native";
 import type { PressableProps, View } from "react-native";
-
-import React from "react";
 import type { VariantProps } from "tailwind-variants";
+import React from "react";
+import { ActivityIndicator, Pressable, Text } from "react-native";
 import { tv } from "tailwind-variants";
 
 const button = tv({

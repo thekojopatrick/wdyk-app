@@ -19,7 +19,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
 }) => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container} className="border-b-2 border-gray-100">
+      <View style={styles.container} className="">
         <ThemedText variant={titleVariant} className="font-semibold">
           {title}
         </ThemedText>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 60,
     gap: 20,
-    backgroundColor: colors.white,
+    //backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 20,

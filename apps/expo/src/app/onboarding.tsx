@@ -1,11 +1,10 @@
-import { Button, Image, SafeAreaView, Text, View } from "@/ui";
-import { Link, useRouter } from "expo-router";
-
-import { Ionicons } from "@expo/vector-icons";
-import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { Link, useRouter } from "expo-router";
 import { useIsFirstTime } from "@/core/hooks";
+import { Button, Image, SafeAreaView, Text, View } from "@/ui";
+import { PrimaryLogo } from "@/ui/icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const Onboarding = () => {
   const [_, setIsFirstTime] = useIsFirstTime();
