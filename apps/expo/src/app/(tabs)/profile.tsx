@@ -43,7 +43,7 @@ const Profile = () => {
         >
           <View className="">
             <ProfileContainer
-              username={userName || ""}
+              username={userName || "username"}
               name={profile?.full_name || ""}
             />
             <ItemsContainer title="settings.account">

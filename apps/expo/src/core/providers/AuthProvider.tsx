@@ -1,25 +1,46 @@
-import type { Profile } from "@/types";
-import type { Session } from "@supabase/supabase-js";
-import type { PropsWithChildren } from "react";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
+
 import { Alert } from "react-native";
-import { useAuthStore } from "@/core/auth";
+import type { Profile } from "@/types";
+import type { PropsWithChildren } from "react";
+import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/utils/supabase";
+import { useAuthStore } from "@/core/auth";
 
-export default function AuthProvider({ children }: PropsWithChildren) {
-  const {
-    session,
-    profile,
-    loading,
-    userName,
-    isAdmin,
-    setSession,
-    setProfile,
-    setLoading,
-    setUserName,
-    setIsAdmin,
-  } = useAuthStore();
+const AuthProvider = ({ children }: PropsWithChildren) => {
+  const { profile, setSession, setProfile, setLoading, setUserName } =
+    useAuthStore();
 
+  // Handle fetch profile function
+  const fetchProfile = useCallback(
+    async (session: Session) => {
+      setLoading(true);
+      try {
+        const { data, error, status } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", session.user.id)
+          .single();
+
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        if (data) {
+          setProfile(data as Profile);
+          const userName = data.full_name.replace(/\s+/g, "").toLowerCase();
+          setUserName(profile.username);
+        }
+      } catch (error) {
+        Alert.alert((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [setLoading, setProfile, setUserName],
+  );
+
+  // Init fetch auth session
   useEffect(() => {
     const initAuth = async () => {
       const {
@@ -29,54 +50,39 @@ export default function AuthProvider({ children }: PropsWithChildren) {
 
       if (session) {
         await fetchProfile(session);
+      } else {
+        setLoading(false);
       }
-
-      setLoading(false);
-
-      supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session);
-        if (session) {
-          fetchProfile(session);
-        } else {
-          setProfile(null);
-          setUserName(null);
-          //setIsAdmin(false);
-        }
-      });
     };
 
-    void initAuth();
-  }, [setSession, setProfile, setLoading, setUserName]);
-
-  const fetchProfile = async (session: Session) => {
-    setLoading(true);
-    try {
-      const { data, error, status } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session.user.id)
-        .single();
-
-      if (error && status === 406) throw error;
-
-      if (data) {
-        setProfile(data as Profile);
-        const userName = data.full_name.replace(/\s+/g, "").toLowerCase();
-        setUserName(userName);
-        // setIsAdmin(data.role === "ADMIN");
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session);
+      if (session) {
+        fetchProfile(session);
+      } else {
+        setProfile(null);
+        setUserName(null);
       }
-    } catch (error) {
-      Alert.alert((error as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    });
+
+    initAuth();
+
+    // Cleanup subscription on unmount
+    return () => {
+      subscription?.unsubscribe();
+    };
+  }, [setSession, fetchProfile, setLoading, setProfile, setUserName]);
 
   return <>{children}</>;
-}
+};
+
+export default AuthProvider;
 
 export const useAuth = () => {
   const {
+    status,
     session,
     profile,
     userName,
@@ -92,6 +98,7 @@ export const useAuth = () => {
   }, [hydrate]);
 
   return {
+    status,
     session,
     profile,
     userName,

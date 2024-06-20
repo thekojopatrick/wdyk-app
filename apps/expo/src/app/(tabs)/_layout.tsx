@@ -12,7 +12,7 @@ import {
 } from "@/ui/icons";
 
 export default function TabLayout() {
-  const { status, session } = useAuth();
+  const { status, session, userName } = useAuth();
   const [isFirstTime] = useIsFirstTime();
 
   const hideSplash = useCallback(async () => {
@@ -31,11 +31,17 @@ export default function TabLayout() {
     return <Redirect href="/splash" />;
   }
   if (!session) {
+    console.log({ status });
+
     return <Redirect href="/login" />;
   }
 
   if (status === "signOut") {
     return <Redirect href="/(auth)/login" />;
+  }
+
+  if (session) {
+    console.log({ userName, status });
   }
 
   return (

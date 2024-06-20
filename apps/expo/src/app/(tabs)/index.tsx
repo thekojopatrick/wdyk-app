@@ -10,7 +10,7 @@ import { useAuth } from "@/core/providers";
 import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
 
 export default function Home() {
-  const { session, profile } = useAuth();
+  const { session, profile, userName } = useAuth();
 
   console.log({ profile });
 
@@ -21,7 +21,7 @@ export default function Home() {
         options={{
           header: () => (
             <CustomHeader
-              title={`Welcome ${profile?.username ?? ""}!`}
+              title={`Welcome ${userName || "User"}!`}
               titleVariant="title1"
             />
           ),

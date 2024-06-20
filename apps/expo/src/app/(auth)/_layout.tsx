@@ -4,7 +4,7 @@ import { useAuth } from "@/core/providers";
 import { ActivityIndicator, SafeAreaView, View } from "@/ui";
 
 const AuthLayout = () => {
-  const { session, loading, profile } = useAuth();
+  const { session, loading } = useAuth();
 
   if (loading) {
     return (

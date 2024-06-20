@@ -33,12 +33,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isAdmin: false,
   loading: true,
   signIn: (token) => {
-    setToken(token);
+    void setToken(token);
     set({ status: "signIn", token });
   },
   signOut: () => {
-    removeToken();
-    supabase.auth.signOut();
+    void removeToken();
+    void supabase.auth.signOut();
     set({ status: "signOut", token: null });
   },
   hydrate: () => {

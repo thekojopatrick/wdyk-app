@@ -1,9 +1,10 @@
+import { Alert, AppState } from "react-native";
+import { Button, Input, ThemedText, View } from "@/ui";
 import React, { useState } from "react";
-import { Alert, AppState, TextInput } from "react-native";
+
 import { Link } from "expo-router";
-import { useAuth } from "@/core/providers";
-import { Button, ThemedText, View } from "@/ui";
 import { supabase } from "@/utils/supabase";
+import { useAuth } from "@/core/providers";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
@@ -68,7 +69,7 @@ const LoginForm = () => {
           >
             Email
           </ThemedText>
-          <TextInput
+          <Input
             value={email}
             onChangeText={setEmail}
             placeholder="Your email address"
@@ -84,7 +85,7 @@ const LoginForm = () => {
           >
             Password
           </ThemedText>
-          <TextInput
+          <Input
             value={password}
             onChangeText={setPassword}
             placeholder="Password"
