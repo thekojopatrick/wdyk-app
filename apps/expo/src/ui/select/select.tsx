@@ -1,21 +1,22 @@
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import type { FieldValues } from "react-hook-form";
-import type { PressableProps } from "react-native";
-import type { SvgProps } from "react-native-svg";
 import * as React from "react";
+
+import { Modal, useModal } from "../modal";
 import { Platform, Pressable, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
-import colors from "@/theme/colors";
-import { CaretDown } from "@/ui/icons";
+
 import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import type { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { CaretDown } from "@/ui/icons";
+import type { FieldValues } from "react-hook-form";
 import { FlashList } from "@shopify/flash-list";
+import type { InputControllerType } from "../input";
+import type { PressableProps } from "react-native";
+import type { SvgProps } from "react-native-svg";
+import { Text } from "../text";
+import colors from "@/theme/colors";
+import { tv } from "tailwind-variants";
 import { useColorScheme } from "nativewind";
 import { useController } from "react-hook-form";
-import { tv } from "tailwind-variants";
-
-import type { InputControllerType } from "../input";
-import { Modal, useModal } from "../modal";
-import { Text } from "../text";
 
 /* eslint-disable max-lines-per-function */
 
@@ -70,7 +71,7 @@ function keyExtractor(item: Option) {
 
 export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
   ({ options, onSelect, value, testID }, ref) => {
-    const height = options.length * 70 + 100;
+    const height = options.length * 40 + 100;
     const snapPoints = React.useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === "dark";
@@ -124,7 +125,7 @@ const Option = React.memo(
         {...props}
       >
         <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
-        {selected && <Check />}
+        {selected && <Text>Selected</Text>}
       </Pressable>
     );
   },
@@ -248,20 +249,23 @@ export function ControlledSelect<T extends FieldValues>(
   );
 }
 
-const Check = ({ ...props }: SvgProps) => (
-  <Svg
-    width={25}
-    height={24}
-    fill="none"
-    viewBox="0 0 25 24"
-    {...props}
-    className="stroke-black dark:stroke-white"
-  >
-    <Path
-      d="m20.256 6.75-10.5 10.5L4.506 12"
-      strokeWidth={2.438}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-);
+const Check = ({ color = "#000", ...props }: SvgProps) => {
+  return (
+    <Svg
+      width={25}
+      height={24}
+      fill="none"
+      viewBox="0 0 25 24"
+      {...props}
+      className="stroke-black dark:stroke-white"
+    >
+      <Path
+        d="m20.256 6.75-10.5 10.5L4.506 12"
+        strokeWidth={2.438}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke={color}
+      />
+    </Svg>
+  );
+};
