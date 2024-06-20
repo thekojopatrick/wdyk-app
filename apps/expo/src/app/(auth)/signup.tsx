@@ -16,7 +16,7 @@ export default function Register() {
             variant="secondary"
             size="icon"
             className="h-10 w-10 p-2"
-            onPress={() => router.replace("/check-mail")}
+            onPress={() => router.back()}
           >
             <Ionicons name="arrow-back" size={16} />
           </Button>
