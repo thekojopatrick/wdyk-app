@@ -51,7 +51,9 @@ const Profile = () => {
               <Item
                 text={"settings.account_settings"}
                 icon={<UserSettingsIcon color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Account");
+                }}
               />
             </ItemsContainer>
 
@@ -59,39 +61,53 @@ const Profile = () => {
               <Item
                 text="settings.appearance"
                 icon={<StyleIcon color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Appearance");
+                }}
               />
               <Item
                 text="settings.notifications"
                 icon={<NotificationIcon color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Notifications");
+                }}
               />
             </ItemsContainer>
             <ItemsContainer title="settings.about">
               <Item
                 text="settings.update"
                 icon={<Share color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Update");
+                }}
               />
               <Item
                 text="settings.feedback"
                 icon={<Share color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Feedback");
+                }}
               />
               <Item
                 text="settings.rate"
                 icon={<Rate color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Rate us");
+                }}
               />
               <Item
                 text="settings.rate_us"
                 icon={<Support color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Rate us");
+                }}
               />
               <Item
                 text="settings.share"
                 icon={<Share color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Share");
+                }}
               />
             </ItemsContainer>
 
@@ -99,12 +115,16 @@ const Profile = () => {
               <Item
                 text="settings.privacy"
                 icon={<Share color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Privacy");
+                }}
               />
               <Item
                 text="settings.terms"
                 icon={<Rate color={iconColor} />}
-                onPress={() => {}}
+                onPress={() => {
+                  console.log("Terms");
+                }}
               />
             </ItemsContainer>
 
