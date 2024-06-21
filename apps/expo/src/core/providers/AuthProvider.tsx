@@ -1,37 +1,43 @@
-import type { Profile } from "@/types";
-import type { Session } from "@supabase/supabase-js";
-import type { PropsWithChildren } from "react";
 import React, { useCallback, useEffect } from "react";
+
 import { Alert } from "react-native";
-import { useAuthStore } from "@/core/auth";
+import type { Profile } from "@/types";
+import type { PropsWithChildren } from "react";
+import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/utils/supabase";
+import { useAuthStore } from "@/core/auth";
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
-  const { profile, setSession, setProfile, setLoading, setUserName } =
-    useAuthStore();
+  const { setSession, setProfile, setLoading, setUserName } = useAuthStore();
 
   // Handle fetch profile function
   const fetchProfile = useCallback(
     async (session: Session) => {
       setLoading(true);
       try {
-        const { data, error, status } = await supabase
+        const {
+          data: profile,
+          error,
+          status,
+        } = await supabase
           .from("profiles")
           .select("*")
           .eq("id", session.user.id)
-          .single();
+          .single<Profile>();
 
         if (error && status !== 406) {
           throw error;
         }
 
-        if (data) {
-          setProfile(data as Profile);
-          const userName = data.full_name.replace(/\s+/g, "").toLowerCase();
-          setUserName(profile.username);
+        if (profile) {
+          //const profile = data;
+          setProfile(profile);
+          setUserName(profile.username ?? null);
         }
       } catch (error) {
-        Alert.alert((error as Error).message);
+        if (error instanceof Error) {
+          Alert.alert(error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -59,18 +65,18 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
       if (session) {
-        fetchProfile(session);
+        void fetchProfile(session);
       } else {
         setProfile(null);
         setUserName(null);
       }
     });
 
-    initAuth();
+    void initAuth();
 
     // Cleanup subscription on unmount
     return () => {
-      subscription?.unsubscribe();
+      subscription.unsubscribe();
     };
   }, [setSession, fetchProfile, setLoading, setProfile, setUserName]);
 

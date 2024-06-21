@@ -1,10 +1,10 @@
+import { getToken, removeToken, setToken } from "./utils";
+
 import type { Profile } from "@/types";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/utils/supabase";
-import { create } from "zustand";
-
 import type { TokenType } from "./utils";
-import { getToken, removeToken, setToken } from "./utils";
+import { create } from "zustand";
+import { supabase } from "@/utils/supabase";
 
 interface AuthState {
   session: Session | null;
@@ -42,17 +42,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ status: "signOut", token: null });
   },
   hydrate: () => {
-    try {
-      const userToken = getToken();
-      if (userToken !== null) {
-        get().signIn(userToken);
-      } else {
-        get().signOut();
-      }
-    } catch (e) {
-      get().signOut();
-    }
+    const userToken = getToken();
+    get().signIn(userToken);
   },
+
   setSession: (session) => set({ session }),
   setProfile: (profile) => set({ profile }),
   setLoading: (loading) => set({ loading }),
