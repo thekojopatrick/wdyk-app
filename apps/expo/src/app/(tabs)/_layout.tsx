@@ -1,18 +1,17 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, Redirect, SplashScreen, Tabs } from "expo-router";
-import { LeaderboardHeader } from "@/components/header";
-import { useAuth, useIsFirstTime } from "@/core";
-import { Pressable, Text } from "@/ui";
 import {
   AnalyticsUpIcon,
   Dashboard as DashboardIcon,
   Home as HomeIcon,
   Trophy as LeaderboardIcon,
 } from "@/ui/icons";
+import React, { useCallback, useEffect } from "react";
+import { Redirect, SplashScreen, Tabs } from "expo-router";
+import { useAuth, useIsFirstTime } from "@/core";
+
+import { LeaderboardHeader } from "@/components/header";
 
 export default function TabLayout() {
-  const { status, session, userName } = useAuth();
+  const { status, session } = useAuth();
   const [isFirstTime] = useIsFirstTime();
 
   const hideSplash = useCallback(async () => {
@@ -22,7 +21,7 @@ export default function TabLayout() {
   useEffect(() => {
     if (status !== "idle") {
       setTimeout(() => {
-        hideSplash();
+        void hideSplash();
       }, 1000);
     }
   }, [hideSplash, status]);
@@ -31,17 +30,11 @@ export default function TabLayout() {
     return <Redirect href="/splash" />;
   }
   if (!session) {
-    console.log({ status });
-
     return <Redirect href="/login" />;
   }
 
   if (status === "signOut") {
     return <Redirect href="/(auth)/login" />;
-  }
-
-  if (session) {
-    console.log({ userName, status });
   }
 
   return (
@@ -84,13 +77,3 @@ export default function TabLayout() {
     </Tabs>
   );
 }
-
-const CreateNewPostLink = () => {
-  return (
-    <Link href="/feed/add-post" asChild>
-      <Pressable>
-        <Text className="text-primary-300 px-3">Create</Text>
-      </Pressable>
-    </Link>
-  );
-};

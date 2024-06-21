@@ -1,10 +1,10 @@
-import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-//import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
+import { FocusAwareStatusBar, SafeAreaView, ThemedText, View } from "@/ui";
+
 import CustomHeader from "@/components/header/CustomHeader";
-import { EmptyList, FocusAwareStatusBar, Text, ThemedText, View } from "@/ui";
+import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { Stack } from "expo-router";
+import { StyleSheet } from "react-native";
 
 export default function Dashboard() {
   return (
@@ -21,7 +21,7 @@ export default function Dashboard() {
         <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           <View className="">
             <ThemedText variant="title3" className="">
-              Welcome back! Kojo
+              Dashboard
             </ThemedText>
           </View>
         </ScrollView>
