@@ -1,14 +1,14 @@
-import type { Option } from "@/ui";
-import type { SubmitHandler } from "react-hook-form";
-import React from "react";
-import { View } from "react-native";
-import { Link } from "expo-router";
 import { Button, ControlledSelect, ThemedText } from "@/ui";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Link } from "expo-router";
+import type { Option } from "@/ui";
+import React from "react";
+import SelectCountryInput from "./CountryPicker";
+import type { SubmitHandler } from "react-hook-form";
+import { View } from "react-native";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-import SelectCountryInput from "./CountryPicker";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const genderOptions: Option[] = [
   { value: "male", label: "Male" },
@@ -101,6 +101,7 @@ const SettingUpAccountForm = ({
           >
             <Button
               label="Done"
+              className=""
               loading={isSubmitting || isLoading}
               disabled={!isValid}
               onPress={handleSubmit(onSubmit)}

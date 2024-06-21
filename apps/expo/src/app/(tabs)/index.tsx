@@ -1,19 +1,19 @@
-import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
 import { Redirect, Stack } from "expo-router";
-import { gameplay } from "@/api/dummyData";
+import { SafeAreaView, StyleSheet } from "react-native";
+
+import CustomHeader from "@/components/header/CustomHeader";
 import DailyGameChallenge from "@/components/gameplay/ChallengeCard";
 import { GameInfoModal } from "@/components/gameplay/GameInfoModal";
-import CustomHeader from "@/components/header/CustomHeader";
+import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { gameplay } from "@/api/dummyData";
 import { useAuth } from "@/core/providers";
-import { FocusAwareStatusBar, ThemedText, View } from "@/ui";
 
 export default function Home() {
   const { profile, userName } = useAuth();
 
-  console.log({ profile });
-  if (!userName) {
+  if (!profile?.username) {
     return <Redirect href="/account/setting-up-profile" />;
   }
 
@@ -24,7 +24,7 @@ export default function Home() {
         options={{
           header: () => (
             <CustomHeader
-              title={`Welcome ${userName || "User"}!`}
+              title={`Welcome ${userName ?? "User"}!`}
               titleVariant="title1"
             />
           ),
