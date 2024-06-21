@@ -7,7 +7,6 @@ import {
   ThemedText,
   View,
 } from "@/ui";
-import { Adinkrahene, Sankofa } from "@/ui/icons/adinkra-symbols";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,7 +15,7 @@ import { SelectAvatar } from "../profile/select-avatar";
 
 const schema = z.object({
   username: z.string({ message: "Username must be more than 2 characters" }),
-  user_symbol: z.string().optional(),
+  user_symbol: z.string({ message: "Pick your wordy persona" }),
   avatar_url: z.string().optional(),
 });
 

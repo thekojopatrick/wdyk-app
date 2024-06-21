@@ -2,20 +2,17 @@ import type { InputControllerType } from "@/ui/input";
 import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 import type { FieldValues } from "react-hook-form";
 import type { PressableProps } from "react-native";
-import type { SvgProps } from "react-native-svg";
-import * as React from "react";
-import { Platform, Pressable, TouchableOpacity, View } from "react-native";
-import Svg, { Path } from "react-native-svg";
+import React, { useCallback, useMemo, useState } from "react";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import colors from "@/theme/colors";
-import { CaretDown } from "@/ui/icons";
-import { Adinkrahene } from "@/ui/icons/adinkra-symbols";
 import { Modal, useModal } from "@/ui/modal";
-import { Text, ThemedText } from "@/ui/text";
+import { ThemedText } from "@/ui/text";
 import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import { FlashList } from "@shopify/flash-list";
 import { useColorScheme } from "nativewind";
 import { useController } from "react-hook-form";
-import { tv } from "tailwind-variants";
+
+import AvatarList from "./AvatarList";
 
 const List = Platform.OS === "web" ? FlashList : BottomSheetFlatList;
 
@@ -24,20 +21,16 @@ interface Option {
   value: string | number;
 }
 
-interface ControlledSelectProps<T extends FieldValues>
-  extends SelectProps,
-    InputControllerType<T> {}
-
-type OptionsProps = {
+interface SelectProps {
   options: Option[];
   onSelect: (option: Option) => void;
   value?: string | number;
   testID?: string;
-};
-
-function keyExtractor(item: Option) {
-  return `select-item-${item.value}`;
 }
+
+interface ControlledSelectProps<T extends FieldValues>
+  extends SelectProps,
+    InputControllerType<T> {}
 
 const Option = React.memo(
   ({
@@ -49,25 +42,22 @@ const Option = React.memo(
     label: string;
   }) => {
     return (
-      <Pressable
-        className="flex-row items-center border-b-[1px] border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
-        {...props}
-      >
-        <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
+      <Pressable style={styles.option} {...props}>
+        <Text style={{ flex: 1 }}>{label}</Text>
         {selected && <Text>Selected</Text>}
       </Pressable>
     );
   },
 );
 
-const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
+const Options = React.forwardRef<BottomSheetModal, SelectProps>(
   ({ options, onSelect, value, testID }, ref) => {
     const height = options.length * 40 + 100;
-    const snapPoints = React.useMemo(() => [height], [height]);
+    const snapPoints = useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === "dark";
 
-    const renderSelectItem = React.useCallback(
+    const renderSelectItem = useCallback(
       ({ item }: { item: Option }) => (
         <Option
           key={`select-item-${item.value}`}
@@ -91,7 +81,7 @@ const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
       >
         <List
           data={options}
-          keyExtractor={keyExtractor}
+          keyExtractor={(item) => `select-item-${item.value}`}
           renderItem={renderSelectItem}
           testID={testID ? `${testID}-modal` : undefined}
           estimatedItemSize={52}
@@ -104,52 +94,45 @@ const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
 export function SelectAvatar<T extends FieldValues>(
   props: ControlledSelectProps<T>,
 ) {
-  const [selected, setSelected] = React.useState<Option | null>(null);
-  const [disabled, setDisabled] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>();
+  const [selectedAvatar, setSelectedAvatar] = useState<string>("");
   const modal = useModal();
 
-  const { name, control, rules, ...selectProps } = props;
+  const { name, control, rules } = props;
 
   const { field, fieldState } = useController<T>({ control, name, rules });
 
-  const onSelectOption = React.useCallback(
+  const onSelectOption = useCallback(
     (option: Option) => {
-      setSelected(option?.value);
-      console.log({ selected });
-      onSelect?.(option.value);
+      field.onChange(option.value);
       modal.dismiss();
     },
-    [modal],
+    [modal, field],
   );
 
-  const onSelect = () => {
-    if (selected.value !== "") {
-      console.log({ selected });
-    }
-  };
+  const handleAvatarPress = useCallback(
+    (avatarValue: string) => {
+      setSelectedAvatar(avatarValue);
+      field.onChange(avatarValue);
+      modal.present();
+    },
+    [field, modal],
+  );
 
   return (
     <>
-      <View className="gap-4">
+      <View style={styles.wrapper}>
         <ThemedText variant="subhead" testID={`select-avatar-label`}>
-          Pick Your Wordy Persona!
+          Select Avatar
         </ThemedText>
-        <TouchableOpacity
-          className={""}
-          disabled={disabled}
-          onPress={modal.present}
-          testID={`select-avatar-trigger`}
-        >
-          <View className="h-24 w-24 items-center justify-center rounded-xl bg-neutral-100 p-4">
-            <Adinkrahene />
-          </View>
-        </TouchableOpacity>
+        <View className="h-full">
+          <AvatarList
+            selectedValue={selectedAvatar}
+            onAvatarPress={handleAvatarPress}
+          />
+        </View>
+
         {fieldState.error?.message && (
-          <Text
-            testID={`select-avatar-error`}
-            className="text-danger-300 dark:text-danger-600 text-sm"
-          >
+          <Text testID={`select-avatar-error`} style={styles.errorText}>
             {fieldState.error?.message}
           </Text>
         )}
@@ -163,3 +146,20 @@ export function SelectAvatar<T extends FieldValues>(
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    gap: 4,
+  },
+  errorText: {
+    color: "#f00",
+    fontSize: 12,
+  },
+  option: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+  },
+});

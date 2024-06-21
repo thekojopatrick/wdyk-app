@@ -27,12 +27,12 @@ function AvatarExample() {
   );
 }
 
-type ComponentItem = {
+interface ComponentItem {
   name: string;
   points: number;
   avatar: string;
   rank: number;
-};
+}
 
 function keyExtractor(item: ComponentItem) {
   return item.name;
