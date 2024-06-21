@@ -1,15 +1,14 @@
 import React from "react";
 import { useRouter } from "expo-router";
-import { SettingAccountForm } from "@/components/auth";
-import { Button, SafeAreaView, View } from "@/ui";
+import { ActivityIndicator, Button, Text, View } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const SettingUpAccount = () => {
   const router = useRouter();
   return (
-    <SafeAreaView>
-      <View className="h-full w-full p-4 pb-2">
+    <>
+      <View className="h-full w-full bg-primary p-4 pb-2">
         <View className="mb-4 hidden w-full flex-row items-center justify-between">
           <Button
             variant="secondary"
@@ -21,9 +20,14 @@ const SettingUpAccount = () => {
           </Button>
           <PrimaryLogo />
         </View>
-        <SettingAccountForm />
+        <View className="h-full w-full items-center justify-center bg-current">
+          <ActivityIndicator size="large" />
+          <Text className="mt-4 text-center text-white">
+            Setting up your account
+          </Text>
+        </View>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 

@@ -65,9 +65,6 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
       setSession(session);
       if (session) {
         void fetchProfile(session);
-      } else {
-        setProfile(null);
-        setUserName(null);
       }
     });
 
@@ -95,6 +92,8 @@ export const useAuth = () => {
     signIn,
     signOut,
     hydrate,
+    setUserName,
+    setProfile,
   } = useAuthStore();
 
   useEffect(() => {
@@ -110,5 +109,7 @@ export const useAuth = () => {
     loading,
     signIn,
     signOut,
+    setUserName,
+    setProfile,
   };
 };

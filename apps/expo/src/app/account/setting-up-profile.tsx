@@ -1,24 +1,33 @@
 import type { SettingUpAccountFormProps } from "@/components/auth/SettingUpAccountForm";
 import type { SettingUpProfileFormProps } from "@/components/auth/SettingUpProfileForm";
+import type { Profile } from "@/types";
 import React, { useState } from "react";
-import { ActivityIndicator, Alert } from "react-native";
+import { ActivityIndicator, Alert, AppState } from "react-native";
 import { showMessage } from "react-native-flash-message";
 import { Redirect, useRouter } from "expo-router";
 import { SettingAccountForm, SettingUpProfileForm } from "@/components/auth";
 import { useAuth } from "@/core/providers";
-import { Button, SafeAreaView, View } from "@/ui";
+import { Button, SafeAreaView, Text, View } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 import { supabase } from "@/utils/supabase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+AppState.addEventListener("change", (state) => {
+  if (state === "active") {
+    void supabase.auth.startAutoRefresh();
+  } else {
+    void supabase.auth.stopAutoRefresh();
+  }
+});
+
 const SettingUpProfile = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { session, profile } = useAuth();
+  const { session, setProfile, userName } = useAuth();
   const [currentForm, setCurrentForm] = useState<number>(1);
   const [formData, setFormData] = useState({});
 
-  if (profile?.username) {
+  if (userName) {
     return <Redirect href={"/(tabs)/"} />;
   }
 
@@ -39,25 +48,36 @@ const SettingUpProfile = () => {
         .from("profiles")
         .upsert(updates)
         .eq("id", session?.user.id)
-        .select();
+        .select()
+        .single<Profile>();
 
       if (error) {
+        showMessage({
+          message: "Profile updated successfully",
+          type: "danger",
+        });
         console.error("Error updating profile:", error);
       } else {
         showMessage({
           message: "Profile updated successfully",
           type: "success",
         });
+
+        // const profile = data;
+        // setUserName(profile.username);
+
+        setProfile(data);
+
         console.log("Profile updated successfully:", data);
       }
     } catch (error) {
       if (error instanceof Error) {
         Alert.alert(error.message);
       }
-      console.error("Error updating profile:", error);
     } finally {
       setLoading(false);
-      router.push("/(tabs)/");
+
+      router.replace("/(tabs)/");
     }
   };
 
@@ -79,11 +99,12 @@ const SettingUpProfile = () => {
   };
 
   if (loading) {
-    return (
-      <View className="h-full w-full items-center justify-center">
-        <ActivityIndicator size="large" />
-      </View>
-    );
+    <View className="h-full w-full items-center justify-center bg-current">
+      <ActivityIndicator size="large" />
+      <Text className="mt-4 text-center text-white">
+        Setting up your account
+      </Text>
+    </View>;
   }
 
   return (

@@ -7,9 +7,9 @@ import { supabase } from "@/utils/supabase";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
-    supabase.auth.startAutoRefresh();
+    void supabase.auth.startAutoRefresh();
   } else {
-    supabase.auth.stopAutoRefresh();
+    void supabase.auth.stopAutoRefresh();
   }
 });
 

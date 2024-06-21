@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useIsFirstTime } from "@/core/hooks";
 import { Button, Image, SafeAreaView, Text, View } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
@@ -29,9 +29,9 @@ const Onboarding = () => {
             <View className="flex-1 items-center justify-center gap-6">
               <Text style={styles.title}>Welcome word wizard!</Text>
               <Text style={styles.subtitle}>
-                Get ready to embark on a fun and challenging word
-                adventure.Enhance your vocabulary and sharpeen your mind with
-                our engaging puzzles!
+                Get ready to embark on a fun and challenging word adventure.
+                Enhance your vocabulary and sharpen your mind with our engaging
+                puzzles!
               </Text>
             </View>
             <View className="max-h-12 flex-1 flex-row items-center gap-1">
