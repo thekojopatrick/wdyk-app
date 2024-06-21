@@ -90,7 +90,7 @@ const SettingUpProfileForm = () => {
     if (!usernameExists) {
       // Proceed with form submission
       console.log(data);
-      //router.push("/account/setting-up-account");
+      router.push("/account/setting-up-account");
     }
   };
 

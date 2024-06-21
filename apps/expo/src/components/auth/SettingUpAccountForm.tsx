@@ -1,24 +1,13 @@
-import React, { useState } from "react";
+import type { Option } from "@/ui";
+import React from "react";
 import { View } from "react-native";
-import { Link } from "expo-router";
-import { Button, Checkbox, Option, Select, ThemedText } from "@/ui";
+import { Link, useRouter } from "expo-router";
+import { Button, ControlledSelect, ThemedText } from "@/ui";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import SelectCountryModal from "./CountryPicker";
-
-const CheckboxExample = () => {
-  const [checked, setChecked] = React.useState(false);
-  return (
-    <Checkbox.Root
-      checked={checked}
-      onChange={setChecked}
-      accessibilityLabel="accept terms of condition"
-      className="pb-2"
-    >
-      <Checkbox.Icon checked={checked} />
-      <Checkbox.Label text="checkbox" />
-    </Checkbox.Root>
-  );
-};
 
 const genderOptions: Option[] = [
   { value: "male", label: "Male" },
@@ -33,10 +22,31 @@ const ageRangeOptions: Option[] = [
   { value: "25-above", label: "25-above" },
 ];
 
+const schema = z.object({
+  country: z.string().optional(),
+  age_range: z.string().optional(),
+  gender_identity: z.string().optional(),
+});
+
+type FormType = z.infer<typeof schema>;
+
 const SettingUpAccountForm = () => {
-  const [country, setSelectedCountry] = useState("");
-  const [selectedAgeRange, setSelectedAgeRange] = useState("");
-  const [selectedGender, setSelectedGender] = useState<string>("");
+  const router = useRouter();
+
+  const {
+    handleSubmit,
+    control,
+
+    formState: { isSubmitting, isLoading, isValid },
+  } = useForm<FormType>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FormType) => {
+    // Proceed with form submission
+    console.log(data);
+    //router.push("/account/setting-up-account");
+  };
 
   return (
     <View className="flex-1">
@@ -60,19 +70,19 @@ const SettingUpAccountForm = () => {
             </ThemedText>
             <SelectCountryModal />
           </View>
-          <Select
+          <ControlledSelect
+            name="age_range"
+            control={control}
             label="Select your age range"
-            value={selectedAgeRange}
             options={ageRangeOptions}
-            onSelect={(val) => setSelectedAgeRange(val as string)}
             testID="select"
             placeholder="Select.."
           />
-          <Select
+          <ControlledSelect
+            name="gender_identity"
             label="How do you identify?"
-            value={selectedGender}
             options={genderOptions}
-            onSelect={(val) => setSelectedGender(val as string)}
+            control={control}
             testID="select"
             placeholder="Select.."
           />
@@ -87,17 +97,12 @@ const SettingUpAccountForm = () => {
             }}
             asChild
           >
-            <Button label="Done" onPress={() => {}} />
-          </Link>
-        </View>
-        <View className="my-2 hidden text-center">
-          <Link href="/modal" asChild>
-            <ThemedText
-              variant="subhead"
-              className="text-primary-600 text-center font-medium"
-            >
-              Maybe later
-            </ThemedText>
+            <Button
+              label="Done"
+              loading={isSubmitting || isLoading}
+              disabled={!isValid}
+              onPress={handleSubmit(onSubmit)}
+            />
           </Link>
         </View>
       </View>

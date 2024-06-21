@@ -17,8 +17,6 @@ import type { InputControllerType } from "../input";
 import { Modal, useModal } from "../modal";
 import { Text } from "../text";
 
-/* eslint-disable max-lines-per-function */
-
 const selectTv = tv({
   slots: {
     container: "mb-0",
@@ -55,14 +53,17 @@ const selectTv = tv({
 
 const List = Platform.OS === "web" ? FlashList : BottomSheetFlatList;
 
-export type Option = { label: string; value: string | number };
+export interface Option {
+  label: string;
+  value: string | number;
+}
 
-type OptionsProps = {
+interface OptionsProps {
   options: Option[];
   onSelect: (option: Option) => void;
   value?: string | number;
   testID?: string;
-};
+}
 
 function keyExtractor(item: Option) {
   return `select-item-${item.value}`;
@@ -124,7 +125,7 @@ const Option = React.memo(
         {...props}
       >
         <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
-        {selected && <Text>Selected</Text>}
+        {selected && <Check />}
       </Pressable>
     );
   },
@@ -178,7 +179,7 @@ export const Select = (props: SelectProps) => {
   const textValue = React.useMemo(
     () =>
       value !== undefined
-        ? options?.filter((t) => t.value === value)?.[0]?.label ?? placeholder
+        ? options.filter((t) => t.value === value)[0]?.label ?? placeholder
         : placeholder,
     [value, options, placeholder],
   );

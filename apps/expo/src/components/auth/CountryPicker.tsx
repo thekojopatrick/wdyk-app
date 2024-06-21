@@ -1,6 +1,5 @@
 import type {
   CountryItem,
-  ItemTemplateProps,
   ListHeaderComponentProps,
   Style,
 } from "react-native-country-codes-picker";
@@ -21,20 +20,22 @@ interface ListItemProps {
   item: CountryItem;
   name: string;
   style?: Style;
-  onPress?: (arg: any) => any;
+  onPress?: (item: CountryItem) => void;
 }
 
 const ListItem = memo(
   ({ selectedItem, item, name, onPress }: ListItemProps) => {
     function handleOnPress() {
-      onPress(item);
+      if (onPress) {
+        onPress(item);
+      }
     }
 
     return (
       <TouchableOpacity onPress={handleOnPress} style={styles.buttonContainer}>
         <View className="flex flex-1 flex-row items-center gap-2">
-          <Text>{item?.flag}</Text>
-          <Text className="text-lg">{item?.name?.en || name}</Text>
+          <Text>{item.flag}</Text>
+          <Text className="text-lg">{item.name.en || name}</Text>
         </View>
         {selectedItem === name ? (
           <CheckCircleIcon width={24} height={24} />
@@ -56,12 +57,12 @@ const ListHeaderComponent = memo(
     return (
       <View style={styles.headerContainer}>
         <Text className="py-2 font-semibold">Popular countries</Text>
-        {countries?.map((country, index) => (
+        {countries.map((country, index) => (
           <ListItem
             key={index}
             item={country}
             onPress={() => onPress(country)}
-            name={country?.name?.[lang || "en"]}
+            name={country.name[lang || "en"]}
             selectedItem={selectedItem}
           />
         ))}
@@ -76,9 +77,9 @@ export default function SelectCountryModal() {
   const [countryCode, setCountryCode] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  const handlePickerButtonPress = useCallback((item) => {
+  const handlePickerButtonPress = useCallback((item: CountryItem) => {
     setCountryCode(item.dial_code);
-    setSelectedCountry(item.name["en"]);
+    setSelectedCountry(item.name.en || "");
     setShow(false);
   }, []);
 
