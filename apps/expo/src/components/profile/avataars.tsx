@@ -3,7 +3,9 @@ import {
   Adinkrahene,
   Akoma,
   AnanseNtontan,
+  Dwennimmen,
   GyeNyame,
+  Nkyinkyim,
   Sankofa,
 } from "@/ui/icons/adinkra-symbols";
 
@@ -18,10 +20,10 @@ export interface AvatarProps {
 export const avataars: AvatarProps[] = [
   {
     id: 1,
-    label: "Adinkrahene",
+    label: "Adinkrahene (Greatness)",
     value: "adinkrahene",
     icon: <Adinkrahene />,
-    meaning: "A symbol of authority, leadership, and charisma",
+    meaning: "A symbol of authority, leadership, and charisma.",
   },
   {
     id: 2,
@@ -35,27 +37,42 @@ export const avataars: AvatarProps[] = [
     label: "GyeNyame",
     value: "gyeNyame",
     icon: <GyeNyame />,
-    meaning: "Except for God",
+    meaning: "Expresses the omnipotence and supremacy of God.",
   },
   {
     id: 4,
-    label: "Akoma",
+    label: "Akoma (Love)",
     value: "akoma ",
     icon: <Akoma />,
-    meaning: "Love",
+    meaning:
+      "A symbol of love, goodwill, patience, faithfulness, fondness, endurance, and consistency.",
   },
   {
     id: 5,
     label: "Aban",
     value: "aban",
     icon: <Aban />,
-    meaning: "Freedom",
+    meaning: "A symbol of strength, seat of power, authority and magnificence.",
   },
   {
     id: 6,
-    label: "AnanseNtontan ",
+    label: "AnanseNtontan (Spider's web)",
     value: "ananseNtontan ",
     icon: <AnanseNtontan />,
-    meaning: "God’s tree",
+    meaning: "A symbol of wisdom, creativity, and the complexities of life.",
+  },
+  {
+    id: 7,
+    label: "Dwennimmen",
+    value: "Dwennimmen",
+    icon: <Dwennimmen />,
+    meaning: "A symbol of strength and humility.",
+  },
+  {
+    id: 8,
+    label: "Nkyinkyim (twisted)",
+    value: "Nkyinkyim",
+    icon: <Nkyinkyim />,
+    meaning: "Represents life's journey, initiative, dynamism and versatility.",
   },
 ];

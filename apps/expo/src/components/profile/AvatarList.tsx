@@ -115,5 +115,6 @@ const styles = StyleSheet.create({
   },
   avatarLabel: {
     fontSize: 10,
+    textAlign: "center",
   },
 });
