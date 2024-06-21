@@ -1,18 +1,18 @@
-import type { InputControllerType } from "@/ui/input";
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import type { FieldValues } from "react-hook-form";
-import type { PressableProps } from "react-native";
-import React, { useCallback, useMemo, useState } from "react";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
-import colors from "@/theme/colors";
 import { Modal, useModal } from "@/ui/modal";
-import { ThemedText } from "@/ui/text";
-import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
-import { FlashList } from "@shopify/flash-list";
-import { useColorScheme } from "nativewind";
-import { useController } from "react-hook-form";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useMemo, useState } from "react";
 
 import AvatarList from "./AvatarList";
+import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import type { BottomSheetModal } from "@gorhom/bottom-sheet";
+import type { FieldValues } from "react-hook-form";
+import { FlashList } from "@shopify/flash-list";
+import type { InputControllerType } from "@/ui/input";
+import type { PressableProps } from "react-native";
+import { ThemedText } from "@/ui/text";
+import colors from "@/theme/colors";
+import { useColorScheme } from "nativewind";
+import { useController } from "react-hook-form";
 
 const List = Platform.OS === "web" ? FlashList : BottomSheetFlatList;
 
@@ -133,7 +133,7 @@ export function SelectAvatar<T extends FieldValues>(
 
         {fieldState.error?.message && (
           <Text testID={`select-avatar-error`} style={styles.errorText}>
-            {fieldState.error?.message}
+            {fieldState.error.message}
           </Text>
         )}
       </View>

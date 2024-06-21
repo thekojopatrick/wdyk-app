@@ -1,21 +1,30 @@
 {
   "extends": ["expo/tsconfig.base"],
   "compilerOptions": {
-    "strict": true,
-    "baseUrl": ".",
+    "strict": true, // This enables all strict type-checking options.
+    "baseUrl": ".", // This sets the base URL for module resolution.
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"], // This sets up path aliases for cleaner imports.
       "@env": ["./src/core/env.js"]
     },
-    "jsx": "react-native",
-    "types": ["nativewind/types", "@testing-library/jest-dom"],
-    "checkJs": false
+    "jsx": "react-native", // This specifies the JSX factory for React Native.
+    "types": ["nativewind/types", "@testing-library/jest-dom"], // This includes additional type definitions.
+    "checkJs": false, // This disables type-checking in JavaScript files.
+    "noEmit": true, // This disables emitting files from the compiler.
+    "skipLibCheck": true, // This skips type checking of all declaration files.
+    "forceConsistentCasingInFileNames": true, // This ensures consistent casing in file names.
+    "esModuleInterop": true, // This allows default imports from CommonJS modules.
+    "allowSyntheticDefaultImports": true, // This allows default imports from modules with no default export.
+    "moduleResolution": "node", // This specifies module resolution strategy.
+    "resolveJsonModule": true, // This allows importing JSON files as modules.
+    "isolatedModules": true // This performs additional checks to ensure that each file can be safely transpiled without relying on other files.
   },
   "include": [
     "src",
     "**/*.ts",
     "**/*.tsx",
     "*.ts",
+    "*.tsx",
     "*.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
@@ -28,6 +37,10 @@
     "docs",
     "cli",
     "android",
-    "ios"
+    "ios",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }

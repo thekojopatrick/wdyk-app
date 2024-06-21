@@ -1,4 +1,3 @@
-import React, { useCallback } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -6,6 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import React, { useCallback } from "react";
 
 import { avataars } from "./avataars";
 
@@ -15,7 +15,7 @@ export interface AvatarOptionProps {
   value: string;
   icon: React.ReactNode;
   onPress: (value: string) => void;
-  selectedValue: string;
+  selectedValue?: string;
   testID?: string;
 }
 
@@ -74,7 +74,10 @@ const AvatarList = ({
   return (
     <View style={styles.container}>
       <FlatList
-        data={avataars}
+        data={avataars.map((avatar) => ({
+          ...avatar,
+          onPress: onAvatarPress,
+        }))}
         keyExtractor={(item) => `select-avatar-item-${item.value}`}
         renderItem={renderSelectItem}
         numColumns={3}

@@ -7,7 +7,7 @@ import {
   Sankofa,
 } from "@/ui/icons/adinkra-symbols";
 
-interface AvatarProps {
+export interface AvatarProps {
   id: number;
   label: string;
   value: string;
