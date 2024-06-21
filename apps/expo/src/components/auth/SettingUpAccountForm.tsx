@@ -1,13 +1,13 @@
 import type { Option } from "@/ui";
 import React from "react";
 import { View } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import { Button, ControlledSelect, ThemedText } from "@/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import SelectCountryModal from "./CountryPicker";
+import SelectCountryInput from "./CountryPicker";
 
 const genderOptions: Option[] = [
   { value: "male", label: "Male" },
@@ -31,7 +31,7 @@ const schema = z.object({
 type FormType = z.infer<typeof schema>;
 
 const SettingUpAccountForm = () => {
-  const router = useRouter();
+  //const router = useRouter();
 
   const {
     handleSubmit,
@@ -68,7 +68,7 @@ const SettingUpAccountForm = () => {
             >
               Country of residence
             </ThemedText>
-            <SelectCountryModal />
+            <SelectCountryInput name={"country"} control={control} />
           </View>
           <ControlledSelect
             name="age_range"
