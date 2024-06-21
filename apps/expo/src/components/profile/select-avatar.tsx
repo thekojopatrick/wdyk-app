@@ -1,30 +1,20 @@
-import { Modal, useModal } from "@/ui/modal";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useCallback, useMemo, useState } from "react";
-
-import AvatarList from "./AvatarList";
-import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import type { InputControllerType } from "@/ui/input";
 import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 import type { FieldValues } from "react-hook-form";
-import { FlashList } from "@shopify/flash-list";
-import type { InputControllerType } from "@/ui/input";
-import type { PressableProps } from "react-native";
-import { ThemedText } from "@/ui/text";
+import React, { useCallback, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import colors from "@/theme/colors";
+import { Modal, useModal } from "@/ui/modal";
+import { ThemedText } from "@/ui/text";
 import { useColorScheme } from "nativewind";
 import { useController } from "react-hook-form";
 
-const List = Platform.OS === "web" ? FlashList : BottomSheetFlatList;
-
-interface Option {
-  label: string;
-  value: string | number;
-}
+import AvatarList from "./AvatarList";
+import CustomizeAvatar from "./CustomizeAvatar";
 
 interface SelectProps {
-  options: Option[];
-  onSelect: (option: Option) => void;
-  value?: string | number;
+  selected: string;
+  onSelect: () => void;
   testID?: string;
 }
 
@@ -32,59 +22,26 @@ interface ControlledSelectProps<T extends FieldValues>
   extends SelectProps,
     InputControllerType<T> {}
 
-const Option = React.memo(
-  ({
-    label,
-    selected = false,
-    ...props
-  }: PressableProps & {
-    selected?: boolean;
-    label: string;
-  }) => {
-    return (
-      <Pressable style={styles.option} {...props}>
-        <Text style={{ flex: 1 }}>{label}</Text>
-        {selected && <Text>Selected</Text>}
-      </Pressable>
-    );
-  },
-);
-
-const Options = React.forwardRef<BottomSheetModal, SelectProps>(
-  ({ options, onSelect, value, testID }, ref) => {
-    const height = options.length * 40 + 100;
-    const snapPoints = useMemo(() => [height], [height]);
+const SelectedAvatar = React.forwardRef<BottomSheetModal, SelectProps>(
+  ({ selected, onSelect, testID }, ref) => {
+    //const height = 3 * 50 + 100;
+    //const snapPoints = useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === "dark";
-
-    const renderSelectItem = useCallback(
-      ({ item }: { item: Option }) => (
-        <Option
-          key={`select-item-${item.value}`}
-          label={item.label}
-          selected={value === item.value}
-          onPress={() => onSelect(item)}
-          testID={testID ? `${testID}-item-${item.value}` : undefined}
-        />
-      ),
-      [onSelect, value, testID],
-    );
 
     return (
       <Modal
         ref={ref}
         index={0}
-        snapPoints={snapPoints}
+        snapPoints={["50%"]}
         backgroundStyle={{
           backgroundColor: isDark ? colors.neutral[800] : colors.white,
         }}
       >
-        <List
-          data={options}
-          keyExtractor={(item) => `select-item-${item.value}`}
-          renderItem={renderSelectItem}
-          testID={testID ? `${testID}-modal` : undefined}
-          estimatedItemSize={52}
+        <CustomizeAvatar
+          selected={selected}
+          testID={testID}
+          onPress={() => onSelect()}
         />
       </Modal>
     );
@@ -101,13 +58,9 @@ export function SelectAvatar<T extends FieldValues>(
 
   const { field, fieldState } = useController<T>({ control, name, rules });
 
-  const onSelectOption = useCallback(
-    (option: Option) => {
-      field.onChange(option.value);
-      modal.dismiss();
-    },
-    [modal, field],
-  );
+  const handleAvatarChanged = useCallback(() => {
+    modal.dismiss();
+  }, [modal]);
 
   const handleAvatarPress = useCallback(
     (avatarValue: string) => {
@@ -126,22 +79,21 @@ export function SelectAvatar<T extends FieldValues>(
         </ThemedText>
         <View className="h-full">
           <AvatarList
-            selectedValue={selectedAvatar}
+            selectedAvatar={selectedAvatar}
             onAvatarPress={handleAvatarPress}
           />
         </View>
-
         {fieldState.error?.message && (
           <Text testID={`select-avatar-error`} style={styles.errorText}>
             {fieldState.error.message}
           </Text>
         )}
       </View>
-      <Options
+      <SelectedAvatar
         testID={"select-avatar-modal"}
         ref={modal.ref}
-        options={[]}
-        onSelect={onSelectOption}
+        selected={selectedAvatar}
+        onSelect={handleAvatarChanged}
       />
     </>
   );

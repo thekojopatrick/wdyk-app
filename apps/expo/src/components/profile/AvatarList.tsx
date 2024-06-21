@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -5,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useCallback } from "react";
 
 import { avataars } from "./avataars";
 
@@ -14,8 +14,9 @@ export interface AvatarOptionProps {
   label: string;
   value: string;
   icon: React.ReactNode;
+  meaning?: string; // Added meaning property
   onPress: (value: string) => void;
-  selectedValue?: string;
+  selected?: string;
   testID?: string;
 }
 
@@ -24,9 +25,9 @@ const AvatarOption = ({
   icon,
   value,
   onPress,
-  selectedValue,
   testID,
   id,
+  selected,
 }: AvatarOptionProps) => {
   const handlePress = useCallback(() => {
     onPress(value);
@@ -37,7 +38,7 @@ const AvatarOption = ({
       id={`${id}`}
       style={[
         styles.avatarOption,
-        selectedValue === value && styles.avatarOptionSelected,
+        selected === value && styles.avatarOptionSelected,
       ]}
       onPress={handlePress}
       testID={testID}
@@ -49,10 +50,10 @@ const AvatarOption = ({
 };
 
 const AvatarList = ({
-  selectedValue,
+  selectedAvatar,
   onAvatarPress,
 }: {
-  selectedValue: string;
+  selectedAvatar: string;
   onAvatarPress: (value: string) => void;
 }) => {
   const renderSelectItem = useCallback(
@@ -63,12 +64,13 @@ const AvatarList = ({
         label={item.label}
         value={item.value}
         icon={item.icon}
+        meaning={item.meaning}
         onPress={onAvatarPress}
-        selectedValue={selectedValue}
+        selected={selectedAvatar}
         testID={`select-avatar-item-${item.value}`}
       />
     ),
-    [onAvatarPress, selectedValue],
+    [onAvatarPress, selectedAvatar],
   );
 
   return (
