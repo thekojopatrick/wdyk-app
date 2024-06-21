@@ -1,16 +1,15 @@
-import { ActivityIndicator, Alert } from "react-native";
-import { Button, SafeAreaView, View } from "@/ui";
-import React, { useState } from "react";
-import { Redirect, useRouter } from "expo-router";
-import { SettingAccountForm, SettingUpProfileForm } from "@/components/auth";
-
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { PrimaryLogo } from "@/ui/icons";
 import type { SettingUpAccountFormProps } from "@/components/auth/SettingUpAccountForm";
 import type { SettingUpProfileFormProps } from "@/components/auth/SettingUpProfileForm";
+import React, { useState } from "react";
+import { ActivityIndicator, Alert } from "react-native";
 import { showMessage } from "react-native-flash-message";
-import { supabase } from "@/utils/supabase";
+import { Redirect, useRouter } from "expo-router";
+import { SettingAccountForm, SettingUpProfileForm } from "@/components/auth";
 import { useAuth } from "@/core/providers";
+import { Button, SafeAreaView, View } from "@/ui";
+import { PrimaryLogo } from "@/ui/icons";
+import { supabase } from "@/utils/supabase";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const SettingUpProfile = () => {
   const router = useRouter();

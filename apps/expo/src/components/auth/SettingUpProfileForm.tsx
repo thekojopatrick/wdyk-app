@@ -1,12 +1,12 @@
-import { Button, ControlledInput, ThemedText, View } from "@/ui";
-import React, { useEffect, useState } from "react";
-
-import { SelectAvatar } from "../profile/select-avatar";
 import type { SubmitHandler } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { Button, ControlledInput, ThemedText, View } from "@/ui";
 import { supabase } from "@/utils/supabase";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { SelectAvatar } from "../profile/select-avatar";
 
 const schema = z.object({
   username: z

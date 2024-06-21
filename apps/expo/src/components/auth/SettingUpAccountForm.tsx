@@ -1,14 +1,14 @@
-import { Button, ControlledSelect, ThemedText } from "@/ui";
-
-import { Link } from "expo-router";
 import type { Option } from "@/ui";
-import React from "react";
-import SelectCountryInput from "./CountryPicker";
 import type { SubmitHandler } from "react-hook-form";
+import React from "react";
 import { View } from "react-native";
+import { Link } from "expo-router";
+import { Button, ControlledSelect, ThemedText } from "@/ui";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import SelectCountryInput from "./CountryPicker";
 
 const genderOptions: Option[] = [
   { value: "male", label: "Male" },
