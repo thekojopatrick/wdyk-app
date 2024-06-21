@@ -1,4 +1,5 @@
 import type { Option } from "@/ui";
+import type { SubmitHandler } from "react-hook-form";
 import React from "react";
 import { View } from "react-native";
 import { Link } from "expo-router";
@@ -30,23 +31,24 @@ const schema = z.object({
 
 type FormType = z.infer<typeof schema>;
 
-const SettingUpAccountForm = () => {
-  //const router = useRouter();
+export interface SettingUpAccountFormProps {
+  onSubmit?: SubmitHandler<FormType>;
+}
 
+const SettingUpAccountForm = ({
+  onSubmit = () => {},
+}: SettingUpAccountFormProps) => {
   const {
     handleSubmit,
     control,
-
     formState: { isSubmitting, isLoading, isValid },
   } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormType) => {
-    // Proceed with form submission
-    console.log(data);
-    //router.push("/account/setting-up-account");
-  };
+  // const handleFormSubmit = (data: FormType) => {
+  //   onSubmit(data);
+  // };
 
   return (
     <View className="flex-1">

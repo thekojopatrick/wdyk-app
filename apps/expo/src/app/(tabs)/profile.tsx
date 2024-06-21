@@ -1,3 +1,13 @@
+import React from "react";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Stack } from "expo-router";
+import CustomHeader from "@/components/header/CustomHeader";
+import { ProfileContainer } from "@/components/profile";
+import { Item } from "@/components/settings/item";
+import { ItemsContainer } from "@/components/settings/items-container";
+import { useAuth } from "@/core/providers";
+import { colors } from "@/theme";
+import { FocusAwareStatusBar } from "@/ui";
 import {
   NotificationIcon,
   Rate,
@@ -6,18 +16,7 @@ import {
   Support,
   UserSettings as UserSettingsIcon,
 } from "@/ui/icons";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-
 import { AntDesign } from "@expo/vector-icons";
-import CustomHeader from "@/components/header/CustomHeader";
-import { FocusAwareStatusBar } from "@/ui";
-import { Item } from "@/components/settings/item";
-import { ItemsContainer } from "@/components/settings/items-container";
-import { ProfileContainer } from "@/components/profile";
-import React from "react";
-import { Stack } from "expo-router";
-import { colors } from "@/theme";
-import { useAuth } from "@/core/providers";
 import { useColorScheme } from "nativewind";
 
 const Profile = () => {

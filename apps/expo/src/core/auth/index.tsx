@@ -1,10 +1,10 @@
-import { getToken, removeToken, setToken } from "./utils";
-
 import type { Profile } from "@/types";
 import type { Session } from "@supabase/supabase-js";
-import type { TokenType } from "./utils";
-import { create } from "zustand";
 import { supabase } from "@/utils/supabase";
+import { create } from "zustand";
+
+import type { TokenType } from "./utils";
+import { getToken, removeToken, setToken } from "./utils";
 
 interface AuthState {
   session: Session | null;

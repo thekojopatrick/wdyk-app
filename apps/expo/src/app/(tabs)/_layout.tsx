@@ -1,14 +1,13 @@
+import React, { useCallback, useEffect } from "react";
+import { Redirect, SplashScreen, Tabs } from "expo-router";
+import { LeaderboardHeader } from "@/components/header";
+import { useAuth, useIsFirstTime } from "@/core";
 import {
   AnalyticsUpIcon,
   Dashboard as DashboardIcon,
   Home as HomeIcon,
   Trophy as LeaderboardIcon,
 } from "@/ui/icons";
-import React, { useCallback, useEffect } from "react";
-import { Redirect, SplashScreen, Tabs } from "expo-router";
-import { useAuth, useIsFirstTime } from "@/core";
-
-import { LeaderboardHeader } from "@/components/header";
 
 export default function TabLayout() {
   const { status, session } = useAuth();

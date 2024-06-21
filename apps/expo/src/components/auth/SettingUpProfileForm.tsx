@@ -1,5 +1,5 @@
+import type { SubmitHandler } from "react-hook-form";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
 import { Button, ControlledInput, ThemedText, View } from "@/ui";
 import { supabase } from "@/utils/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +18,9 @@ const schema = z.object({
 
 type FormType = z.infer<typeof schema>;
 
+export interface SettingUpProfileFormProps {
+  onSubmit?: SubmitHandler<FormType>;
+}
 const suggestUsernames = (
   base: string,
   existingUsernames: string[],
@@ -43,8 +46,9 @@ const checkUsernameExists = async (username: string): Promise<boolean> => {
   return profiles ? profiles.length > 0 : false;
 };
 
-const SettingUpProfileForm = () => {
-  const router = useRouter();
+const SettingUpProfileForm = ({
+  onSubmit = () => {},
+}: SettingUpProfileFormProps) => {
   const [usernameExists, setUsernameExists] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const {
@@ -86,13 +90,13 @@ const SettingUpProfileForm = () => {
     void checkUsername();
   }, [username]);
 
-  const onSubmit = (data: FormType) => {
-    if (!usernameExists) {
-      // Proceed with form submission
-      console.log(data);
-      router.push("/account/setting-up-account");
-    }
-  };
+  // const onSubmit = (data: FormType) => {
+  //   if (!usernameExists) {
+  //     // Proceed with form submission
+  //     console.log(data);
+  //     router.push("/account/setting-up-account");
+  //   }
+  // };
 
   return (
     <View className="flex-1">

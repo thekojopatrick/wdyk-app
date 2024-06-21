@@ -1,8 +1,7 @@
+import type { ButtonProps } from "react-native";
 import { Pressable, Text, View } from "react-native";
 import { Sheet, useSheetRef } from "@/ui/sheet";
-
 import { AntDesign } from "@expo/vector-icons";
-import type { ButtonProps } from "react-native";
 
 interface SelectCountryProps {
   placeholder: string;

@@ -1,10 +1,9 @@
-import { FocusAwareStatusBar, SafeAreaView, ThemedText, View } from "@/ui";
-
-import CustomHeader from "@/components/header/CustomHeader";
 import React from "react";
+import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import CustomHeader from "@/components/header/CustomHeader";
+import { FocusAwareStatusBar, SafeAreaView, ThemedText, View } from "@/ui";
 
 export default function Dashboard() {
   return (
