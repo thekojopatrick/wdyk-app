@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { colors } from "@/theme";
 
 import { avataars } from "./avataars";
 
@@ -44,7 +45,7 @@ const AvatarOption = ({
       testID={testID}
     >
       <View style={styles.iconContainer}>{icon}</View>
-      <Text>{label}</Text>
+      <Text style={styles.avatarLabel}>{label}</Text>
     </TouchableOpacity>
   );
 };
@@ -106,10 +107,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
   },
   avatarOptionSelected: {
-    borderColor: "red",
-    borderWidth: 2,
+    borderColor: colors.primary[400],
+    borderWidth: 1.5,
   },
   iconContainer: {
     marginBottom: 5,
+  },
+  avatarLabel: {
+    fontSize: 10,
   },
 });
