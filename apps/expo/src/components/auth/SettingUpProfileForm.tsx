@@ -1,12 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
-import {
-  Button,
-  ControlledInput,
-  ControlledSelect,
-  ThemedText,
-  View,
-} from "@/ui";
+import { Button, ControlledInput, ThemedText, View } from "@/ui";
+import { supabase } from "@/utils/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -14,30 +9,89 @@ import { z } from "zod";
 import { SelectAvatar } from "../profile/select-avatar";
 
 const schema = z.object({
-  username: z.string({ message: "Username must be more than 2 characters" }),
+  username: z
+    .string()
+    .min(3, { message: "Username must be more than 2 characters" }),
   user_symbol: z.string({ message: "Pick your wordy persona" }),
   avatar_url: z.string().optional(),
 });
 
 type FormType = z.infer<typeof schema>;
 
-//TODO:Use flatlist to display symbols
-//Todo: On tap on sybmol open bottomsheet to customize symbol
-//Todo: Show selected symbol
+const suggestUsernames = (
+  base: string,
+  existingUsernames: string[],
+): string[] => {
+  const suggestions: string[] = [];
+  for (let i = 1; suggestions.length < 5; i++) {
+    const suggestion = `${base}${i}`;
+    if (!existingUsernames.includes(suggestion)) {
+      suggestions.push(suggestion);
+    }
+  }
+  return suggestions;
+};
+
+const checkUsernameExists = async (username: string): Promise<boolean> => {
+  const { data: profiles, error } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("username", username);
+
+  if (error) console.error("Error fetching data:", error);
+
+  return profiles ? profiles.length > 0 : false;
+};
 
 const SettingUpProfileForm = () => {
   const router = useRouter();
+  const [usernameExists, setUsernameExists] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const {
     handleSubmit,
     control,
-    formState: { isDirty, isSubmitting, isLoading, isValid },
+    watch,
+    formState: { isSubmitting, isLoading, isValid },
   } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
 
+  const username = watch("username");
+
+  useEffect(() => {
+    const checkUsername = async () => {
+      if (username) {
+        const exists = await checkUsernameExists(username);
+        setUsernameExists(exists);
+
+        if (exists) {
+          // Fetch all usernames to avoid conflicts in suggestions
+          const { data: profiles, error } = await supabase
+            .from("profiles")
+            .select("username");
+          const existingUsernames =
+            profiles?.map(
+              (profile: { username: string }) => profile.username,
+            ) ?? [];
+
+          if (error) console.error("Error fetching data:", error);
+
+          setSuggestions(suggestUsernames(username, existingUsernames));
+        } else {
+          setSuggestions([]);
+        }
+      }
+    };
+
+    void checkUsername();
+  }, [username]);
+
   const onSubmit = (data: FormType) => {
-    console.log(data);
-    //router.push("/account/setting-up-account");
+    if (!usernameExists) {
+      // Proceed with form submission
+      console.log(data);
+      //router.push("/account/setting-up-account");
+    }
   };
 
   return (
@@ -61,6 +115,28 @@ const SettingUpProfileForm = () => {
           label="Username"
           placeholder="Pick a unique username"
         />
+        {usernameExists && (
+          <View className="mb-4">
+            <ThemedText
+              testID="username-error"
+              className="mb-2 text-red-500"
+              variant={"callout"}
+            >
+              Username already exists. Here are some suggestions:
+            </ThemedText>
+            <View className="flex flex-row flex-wrap gap-2">
+              {suggestions.map((suggestion) => (
+                <View
+                  key={suggestion}
+                  className="rounded-full bg-gray-100 px-2"
+                  testID={`suggestion-${suggestion}`}
+                >
+                  <ThemedText variant={"callout"}>{suggestion}</ThemedText>
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
         <ThemedText
           testID="form-description"
           variant="footnote"

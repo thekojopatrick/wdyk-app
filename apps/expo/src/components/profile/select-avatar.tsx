@@ -13,6 +13,10 @@ import AvatarList from "./AvatarList";
 import CustomizeAvatar from "./CustomizeAvatar";
 
 interface SelectProps {
+  //onSelect: () => void;
+  testID?: string;
+}
+interface SelectedAvatarProps {
   selected: string;
   onSelect: () => void;
   testID?: string;
@@ -22,7 +26,7 @@ interface ControlledSelectProps<T extends FieldValues>
   extends SelectProps,
     InputControllerType<T> {}
 
-const SelectedAvatar = React.forwardRef<BottomSheetModal, SelectProps>(
+const SelectedAvatar = React.forwardRef<BottomSheetModal, SelectedAvatarProps>(
   ({ selected, onSelect, testID }, ref) => {
     //const height = 3 * 50 + 100;
     //const snapPoints = useMemo(() => [height], [height]);
