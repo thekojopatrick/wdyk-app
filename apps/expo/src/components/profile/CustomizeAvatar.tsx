@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text, ThemedText, View } from "@/ui";
 
+import { avataars } from "./avataars";
+
 const backgroundColors = [
   "#FF3B30",
   "#007AFF",
@@ -16,26 +18,50 @@ interface CustomizeAvatarProps {
   onPress: () => void;
 }
 
-const CustomizeAvatar = ({ selected, onPress }: CustomizeAvatarProps) => {
-  const [bgColor, setBackgroundColor] = useState<string | null>(null);
+const SelectedAvatar = ({
+  selected,
+  backgroundColor,
+}: {
+  selected: string;
+  backgroundColor: string | null;
+}) => {
+  const selectedAvatar = avataars.find((avatar) =>
+    avatar.value.includes(selected),
+  );
+  return (
+    <View className="mb-6 items-center">
+      <View
+        style={[
+          styles.selectedAvatar,
+          { backgroundColor: `${backgroundColor}` },
+        ]}
+      >
+        {selectedAvatar?.icon}
+      </View>
+      <ThemedText style={styles.avatarLabel}>
+        {selectedAvatar?.label}
+      </ThemedText>
+      <ThemedText style={styles.avatarMeaning}>
+        {selectedAvatar?.meaning}
+      </ThemedText>
+    </View>
+  );
+};
 
-  console.log({ bgColor });
+const CustomizeAvatar = ({ selected, onPress }: CustomizeAvatarProps) => {
+  const [bgColor, setBackgroundColor] = useState<string | null>("#f0f0f0");
 
   return (
     <View style={styles.container}>
-      <ThemedText style={styles.heading}>Your avatar</ThemedText>
-      <Text style={styles.subheading}>
-        Choose an avatar that reflects your wordy style.
-      </Text>
+      <View className="gap-2 text-left">
+        <ThemedText style={styles.heading}>Your avatar</ThemedText>
+        <ThemedText style={styles.subheading}>
+          Choose an avatar that reflects your wordy style.
+        </ThemedText>
+      </View>
       {selected && (
-        <View
-          style={[styles.selectedAvatar, { backgroundColor: `${bgColor}` }]}
-        >
-          {/* Assuming selectedAvatar has the shape of AvatarOptionProps */}
-          <ThemedText style={styles.avatarLabel}>{selected}</ThemedText>
-        </View>
+        <SelectedAvatar selected={selected} backgroundColor={bgColor} />
       )}
-
       <Text style={styles.label}>Choose a background color</Text>
       <View style={styles.colorContainer}>
         {backgroundColors.map((color) => (
@@ -60,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    padding: 20,
+    //padding: 20,
   },
   heading: {
     fontSize: 24,
@@ -77,11 +103,18 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    backgroundColor: "#f0f0f0",
+    marginBottom: 8,
   },
   avatarLabel: {
     fontSize: 18,
     fontWeight: "bold",
+    textTransform: "capitalize",
+    marginBottom: 5,
+  },
+  avatarMeaning: {
+    fontSize: 14,
+    color: "#666",
   },
   label: {
     fontSize: 16,

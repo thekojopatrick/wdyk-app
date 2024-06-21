@@ -1,16 +1,16 @@
-import type { InputControllerType } from "@/ui/input";
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import type { FieldValues } from "react-hook-form";
+import { Modal, useModal } from "@/ui/modal";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import colors from "@/theme/colors";
-import { Modal, useModal } from "@/ui/modal";
-import { ThemedText } from "@/ui/text";
-import { useColorScheme } from "nativewind";
-import { useController } from "react-hook-form";
 
 import AvatarList from "./AvatarList";
+import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 import CustomizeAvatar from "./CustomizeAvatar";
+import type { FieldValues } from "react-hook-form";
+import type { InputControllerType } from "@/ui/input";
+import { ThemedText } from "@/ui/text";
+import colors from "@/theme/colors";
+import { useColorScheme } from "nativewind";
+import { useController } from "react-hook-form";
 
 interface SelectProps {
   selected: string;
@@ -33,7 +33,7 @@ const SelectedAvatar = React.forwardRef<BottomSheetModal, SelectProps>(
       <Modal
         ref={ref}
         index={0}
-        snapPoints={["50%"]}
+        snapPoints={["55%", "60%"]}
         backgroundStyle={{
           backgroundColor: isDark ? colors.neutral[800] : colors.white,
         }}
