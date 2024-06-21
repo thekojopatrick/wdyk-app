@@ -1,16 +1,16 @@
-import { Modal, useModal } from "@/ui/modal";
+import type { InputControllerType } from "@/ui/input";
+import type { BottomSheetModal } from "@gorhom/bottom-sheet";
+import type { FieldValues } from "react-hook-form";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-
-import AvatarList from "./AvatarList";
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import CustomizeAvatar from "./CustomizeAvatar";
-import type { FieldValues } from "react-hook-form";
-import type { InputControllerType } from "@/ui/input";
-import { ThemedText } from "@/ui/text";
 import colors from "@/theme/colors";
+import { Modal, useModal } from "@/ui/modal";
+import { ThemedText } from "@/ui/text";
 import { useColorScheme } from "nativewind";
 import { useController } from "react-hook-form";
+
+import AvatarList from "./AvatarList";
+import CustomizeAvatar from "./CustomizeAvatar";
 
 interface SelectProps {
   selected: string;

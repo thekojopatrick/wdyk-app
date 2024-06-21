@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { Text, ThemedText, View } from "@/ui";
+import { Button, Text, ThemedText, View } from "@/ui";
 
 import { avataars } from "./avataars";
 
@@ -72,10 +72,7 @@ const CustomizeAvatar = ({ selected, onPress }: CustomizeAvatarProps) => {
           />
         ))}
       </View>
-
-      <TouchableOpacity onPress={onPress} style={styles.button}>
-        <Text style={styles.buttonText}>Rock this Avatar!</Text>
-      </TouchableOpacity>
+      <Button onPress={onPress} label="Rock this Avatar!" fullWidth={true} />
     </View>
   );
 };
@@ -85,8 +82,8 @@ export default CustomizeAvatar;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    //padding: 20,
+    //alignItems: "center",
+    paddingHorizontal: 20,
   },
   heading: {
     fontSize: 24,
@@ -118,6 +115,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
+    fontWeight: "600",
     marginBottom: 10,
   },
   colorContainer: {
@@ -127,7 +125,7 @@ const styles = StyleSheet.create({
   colorOption: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 8,
     marginHorizontal: 5,
   },
   button: {
