@@ -53,10 +53,10 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
         snapPoints={["60%"]} // optional
         ref={ref}
         backgroundStyle={{
-          backgroundColor: isDark ? colors.neutral[800] : colors.white,
+          backgroundColor: isDark ? colors.white : colors.white,
         }}
       >
-        <View className="h-full w-full flex-1 bg-black p-4">
+        <View className="h-full w-full flex-1 p-4">
           <View className="mb-10">
             <View className="flex-row gap-6">
               <View className="h-24 w-24 items-center justify-center rounded-md bg-green-500 px-4 ">
@@ -69,10 +69,10 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
               </View>
               <View className="items-start gap-2 text-left">
                 <ThemedText variant="title2" className="font-bold">
-                  {gameplay.title}
+                  {gameplay?.title}
                 </ThemedText>
                 <ThemedText variant="body" className="text-md">
-                  {gameplay.description}
+                  {gameplay?.description}
                 </ThemedText>
                 <View className="items-center rounded-full bg-lime-100 px-2 py-1 ">
                   <ThemedText

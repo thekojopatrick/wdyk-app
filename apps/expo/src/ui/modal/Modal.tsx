@@ -28,19 +28,21 @@
  *
  */
 
+import * as React from "react";
+
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import type {
   BottomSheetBackdropProps,
   BottomSheetModalProps,
 } from "@gorhom/bottom-sheet";
-import * as React from "react";
-import { Pressable, View } from "react-native";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { Path, Svg } from "react-native-svg";
-import { useThemeConfig } from "@/core/use-theme-config";
-import { colors } from "@/theme";
 import { BottomSheetModal, useBottomSheet } from "@gorhom/bottom-sheet";
+import { Path, Svg } from "react-native-svg";
+import { Pressable, View } from "react-native";
 
 import { Text } from "../text";
+import { colors } from "@/theme";
+
+//import { useThemeConfig } from "@/core/use-theme-config";
 
 type ModalProps = BottomSheetModalProps & {
   title?: string;
@@ -55,7 +57,7 @@ interface ModalHeaderProps {
 
 export const useModal = () => {
   const ref = React.useRef<BottomSheetModal>(null);
-  const present = React.useCallback((data?: any) => {
+  const present = React.useCallback((data?: unknown) => {
     ref.current?.present(data);
   }, []);
   const dismiss = React.useCallback(() => {
@@ -83,7 +85,7 @@ export const Modal = React.forwardRef(
 
     React.useImperativeHandle(
       ref,
-      () => (modal.ref.current as BottomSheetModal) || null,
+      () => (modal.ref.current as BottomSheetModal) ?? null,
     );
 
     const renderHandleComponent = React.useCallback(
@@ -105,7 +107,7 @@ export const Modal = React.forwardRef(
         ref={modal.ref}
         index={0}
         snapPoints={snapPoints}
-        backdropComponent={props.backdropComponent || renderBackdrop}
+        backdropComponent={props.backdropComponent ?? renderBackdrop}
         handleComponent={renderHandleComponent}
         handleIndicatorStyle={{ display: "none" }}
       />
@@ -126,7 +128,6 @@ const CustomBackdrop = ({ style }: BottomSheetBackdropProps) => {
       onPress={() => close()}
       entering={FadeIn.duration(50)}
       exiting={FadeOut.duration(20)}
-      // eslint-disable-next-line react-native/no-inline-styles
       style={[style, { backgroundColor: "rgba(0, 0, 0, 0.4)" }]}
     />
   );
