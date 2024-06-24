@@ -5,7 +5,8 @@
     "baseUrl": ".", // This sets the base URL for module resolution.
     "paths": {
       "@/*": ["./src/*"], // This sets up path aliases for cleaner imports.
-      "@env": ["./src/core/env.js"]
+      "@env": ["./src/core/env.js"],
+      "@assets/*": ["./assets/*"]
     },
     "jsx": "react-native", // This specifies the JSX factory for React Native.
     "types": ["nativewind/types", "@testing-library/jest-dom"], // This includes additional type definitions.

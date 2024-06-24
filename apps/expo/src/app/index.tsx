@@ -1,9 +1,13 @@
+import { Button, Image, SafeAreaView, Text, View } from "@/ui";
+import { Link, Redirect } from "expo-router";
+
+import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Link, Redirect } from "expo-router";
+import onboardingImage from "@assets/onboarding-image-02.png";
 import { useAuth } from "@/core/providers";
-import { Button, Image, SafeAreaView, Text, View } from "@/ui";
-import { PrimaryLogo } from "@/ui/icons";
+
+//const onboardingImage = require("../../assets/onboarding-image-02.png");
 
 const GetStarted = () => {
   const { session } = useAuth();
@@ -24,14 +28,14 @@ const GetStarted = () => {
               className="h-full w-full rounded-t-xl"
               style={styles.image}
               contentFit="contain"
-              source={require("../../assets/onboarding-image-02.png")}
+              source={onboardingImage as string}
             />
           </View>
           <View style={styles.main}>
             <View className="flex-1 items-center justify-end gap-6">
               <Text style={styles.title}>Welcome word wizard!</Text>
               <Text style={styles.subtitle}>
-                Enhance your vocabulary and sharpeen your mind with our engaging
+                Enhance your vocabulary and sharpen your mind with our engaging
                 puzzles!
               </Text>
             </View>

@@ -1,11 +1,7 @@
 import type { RouterOutputs } from "@/utils/api";
-import { useState } from "react";
 import { Pressable } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
-import { Button, EmptyList, FocusAwareStatusBar, Text, View } from "@/ui";
-import { api } from "@/utils/api";
-import { FlashList } from "@shopify/flash-list";
+import { Button, Text, View } from "@/ui";
 
 function GameplayCard(props: {
   Gameplay: RouterOutputs["Gameplay"]["all"][number];
@@ -18,15 +14,15 @@ function GameplayCard(props: {
           asChild
           href={{
             pathname: "/Gameplay/[id]",
-            params: { id: props.Gameplay.id },
+            params: { id: props.Gameplay?.id },
           }}
         >
           <Pressable className="">
             <Text className=" text-xl font-semibold text-primary">
-              {props.Gameplay.title}
+              {props.Gameplay?.title}
             </Text>
             <Text className="mt-2 text-foreground">
-              {props.Gameplay.content}
+              {props.Gameplay?.content}
             </Text>
           </Pressable>
         </Link>

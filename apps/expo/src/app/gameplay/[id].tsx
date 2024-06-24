@@ -1,9 +1,8 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { Stack, useGlobalSearchParams } from "expo-router";
 import GamePlayScreen from "@/components/gameplay/GamePlayScreen";
 import GamePlayHeader from "@/components/header/GamePlayHeader";
 import { colors } from "@/theme";
-import { api } from "@/utils/api";
 
 export default function Gameplay() {
   const { id } = useGlobalSearchParams();
