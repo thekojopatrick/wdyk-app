@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  Vibration,
-  View,
-} from "react-native";
-import { Link } from "expo-router";
+import { Pressable, StyleSheet, Text, Vibration, View } from "react-native";
 import { wordData } from "@/api/dummyData";
 import { colors } from "@/theme";
 import { Button, Input, ThemedText } from "@/ui";
@@ -29,7 +21,7 @@ const WordMeaning: React.FC<{ title: string; content: string }> = ({
   );
 };
 
-const FAB = ({ onPress }) => {
+const FAB = ({ onPress }: { onPress: () => void }) => {
   return (
     <View className="absolute bottom-[125px] right-4">
       <Button

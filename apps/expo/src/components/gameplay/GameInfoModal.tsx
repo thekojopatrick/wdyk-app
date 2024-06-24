@@ -1,10 +1,10 @@
-import { Button, Modal, ThemedText, View, useModal } from "@/ui";
-import { FontAwesome6, Ionicons } from "@expo/vector-icons";
-
-import { Link } from "expo-router";
-import { Pressable } from "react-native";
 import type { ReactNode } from "react";
+import { Pressable } from "react-native";
+import { Link } from "expo-router";
+import { runGeminiAPI } from "@/api/gemini";
 import colors from "@/theme/colors";
+import { Button, Modal, ThemedText, useModal, View } from "@/ui";
+import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "nativewind";
 
 interface GameInfoProps {
@@ -44,6 +44,11 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
   const { ref, present, dismiss } = useModal();
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === "dark";
+
+  const handleDimiss = async () => {
+    ref.current?.dismiss();
+    await runGeminiAPI();
+  };
 
   return (
     <View testID={`game-ID`}>
@@ -98,7 +103,11 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
             </View>
           </View>
           <Link href={`/gameplay/${id}`} asChild>
-            <Button label="Start game" className="mb-3" onPress={dismiss} />
+            <Button
+              label="Start game"
+              className="mb-3"
+              onPress={handleDimiss}
+            />
           </Link>
         </View>
       </Modal>

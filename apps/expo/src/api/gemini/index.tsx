@@ -1,28 +1,39 @@
+import { Env } from "@env";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const apiKey = process.env.GOOGLE_GEMINI_API_KEY ?? null;
-const genAI = new GoogleGenerativeAI(apiKey as never);
+//'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=YOUR_API_KEY'
 
-const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
-});
+const apiKey = Env.GOOGLE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey);
+console.log({ apiKey });
 
 const generationConfig = {
-  temperature: 2,
-  topP: 0.95,
-  topK: 64,
-  maxOutputTokens: 1024,
   responseMimeType: "application/json",
 };
 
-async function run() {
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  generationConfig,
+});
+
+// const generationConfig = {
+//   temperature: 2,
+//   topP: 0.95,
+//   topK: 64,
+//   maxOutputTokens: 1024,
+//   responseMimeType: "application/json",
+// };
+
+async function runGeminiAPI() {
   // Choose a model that's appropriate for your use case.
-  const prompt = "Write a story about a magic backpack.";
+  const prompt = `List a few popular cookie recipes using this JSON schema:
+Recipe = {'recipe_name': str}
+Return: list[Recipe]`;
 
   const result = await model.generateContent(prompt);
   const response = result.response;
-  const text = response.text();
-  console.log(text);
+  const resOutput = response.text();
+  console.log({ resOutput });
 }
 
-export { run };
+export { runGeminiAPI };
