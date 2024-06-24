@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 import WordPlayGame from "./WordPlayGame";
 
@@ -17,7 +17,7 @@ import WordPlayGame from "./WordPlayGame";
 
 const GamePlayScreen = () => {
   return (
-    <View className="h-full w-full p-4">
+    <View className={styles.container}>
       <WordPlayGame />
     </View>
   );
@@ -25,4 +25,6 @@ const GamePlayScreen = () => {
 
 export default GamePlayScreen;
 
-const styles = StyleSheet.create({});
+const styles = {
+  container: "h-full w-full p-4",
+};
