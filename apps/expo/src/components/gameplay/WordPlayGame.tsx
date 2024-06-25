@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, Vibration, View } from "react-native";
 import { colors } from "@/theme";
 import { Button, Input, ThemedText } from "@/ui";
@@ -19,111 +19,98 @@ interface WordPlayGameProps {
 const WordMeaning: React.FC<{ title: string; content: string }> = ({
   title,
   content,
-}) => {
-  return (
-    <View>
-      <ThemedText variant="subhead" className="font-semibold">
-        {title}
-      </ThemedText>
-      <ThemedText variant="body" className="text-md">
-        {content}
-      </ThemedText>
-    </View>
-  );
-};
+}) => (
+  <View>
+    <ThemedText variant="subhead" className="font-semibold">
+      {title}
+    </ThemedText>
+    <ThemedText variant="body" className="text-md">
+      {content}
+    </ThemedText>
+  </View>
+);
 
-const FAB = ({ onPress }: { onPress: () => void }) => {
-  return (
-    <View className="absolute bottom-[125px] right-4">
-      <Button
-        size="icon"
-        className="h-12 w-12 items-center justify-center pl-3 pr-2"
-        style={{ backgroundColor: colors.secondary[400] }}
-        onPress={onPress}
-      >
-        <FontAwesome5 name="play" size={18} color="black" />
-        {/* <MaterialIcons name="replay" size={24} color="black" /> */}
-      </Button>
-    </View>
-  );
-};
+const FAB: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+  <View className="absolute bottom-[125px] right-4">
+    <Button
+      size="icon"
+      className="h-12 w-12 items-center justify-center pl-3 pr-2"
+      style={{ backgroundColor: colors.secondary[400] }}
+      onPress={onPress}
+    >
+      <FontAwesome5 name="play" size={18} color="black" />
+    </Button>
+  </View>
+);
 
-const WordPlayGame = ({ data }: WordPlayGameProps) => {
+const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentQuestion, setCurrentQuestion] = useState<WordProps>(
-    data[currentIndex],
-  );
   const [userInput, setUserInput] = useState<string>("");
   const [userScore, setUserScore] = useState<number>(0);
-
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [showNextButton, setShowNextButton] = useState(false);
-  const [showWord, setShowWord] = useState<boolean>();
-
-  const word = currentQuestion.word;
-  const origin = currentQuestion.origin;
-  const partOfSpeech = currentQuestion.partOfSpeech;
-  const definition = currentQuestion.definition;
-
+  const [showNextButton, setShowNextButton] = useState<boolean>(false);
+  const [showWord, setShowWord] = useState<boolean>(false);
   const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
-
   const [startTime, setStartTime] = useState<number>(Date.now());
   const [timer, setTimer] = useState<NodeJS.Timeout>();
+
+  const currentQuestion = data[currentIndex];
+  const { word, origin, partOfSpeech, definition } = currentQuestion;
+
+  useEffect(() => {
+    return () => clearTimeout(timer);
+  }, [timer]);
 
   const handleTextChange = (text: string) => {
     const inputWord = text.trim().toLowerCase();
     const comparedWord = word.toLowerCase();
     setUserInput(text);
+
     if (inputWord === comparedWord) {
-      setIsCorrect(true);
-      setShowNextButton(true);
-      setShowWord(true);
-      setIsInputDisabled(true);
-      setUserScore(userScore + 1);
-      //   saveWordGameplayData(text, true);
+      setCorrectState(true);
     } else {
       setIsCorrect(false);
       setShowWord(false);
       setShowNextButton(false);
-      //Vibration.vibrate();
-    }
 
-    if (inputWord.length > comparedWord.length) {
-      const timerId = setTimeout(() => {
-        if (userInput.trim() !== "") {
-          setShowWord(true);
-          setIsCorrect(false);
-          setShowNextButton(true);
-          setIsInputDisabled(true);
-          //   saveWordGameplayData(userInput, false);
-          Vibration.vibrate();
-        }
-      }, 5000); // 10 seconds delay
-      setTimer(timerId);
-    } else {
-      clearTimeout(timer);
-      //setIsCorrect(true);
-      //setShowWord(false);
+      if (inputWord.length > comparedWord.length) {
+        startTimeout();
+      } else {
+        clearTimeout(timer);
+      }
     }
+  };
+
+  const setCorrectState = (isCorrect: boolean) => {
+    setIsCorrect(isCorrect);
+    setShowNextButton(true);
+    setShowWord(true);
+    setIsInputDisabled(true);
+    if (isCorrect) setUserScore(userScore + 1);
+  };
+
+  const startTimeout = () => {
+    const timerId = setTimeout(() => {
+      if (userInput.trim() !== "") {
+        setCorrectState(false);
+        Vibration.vibrate();
+      }
+    }, 5000);
+    setTimer(timerId);
   };
 
   const handleNextQuestion = () => {
-    setShowNextButton(false);
-    setShowWord(false);
-    setIsInputDisabled(false);
-    setUserInput("");
-    setCurrentIndex((prevVal) => prevVal + 1);
-    setCurrentQuestion(data[currentIndex]);
-    setStartTime(Date.now());
-    setIsCorrect(null);
+    setCurrentIndex((prev) => prev + 1);
+    resetState();
   };
 
-  const handleRestGame = () => {
+  const resetState = () => {
     setShowNextButton(false);
     setShowWord(false);
-    setUserInput("");
-    setIsCorrect(null);
     setIsInputDisabled(false);
+    setUserInput("");
+    setStartTime(Date.now());
+    setIsCorrect(null);
   };
 
   return (
@@ -156,24 +143,20 @@ const WordPlayGame = ({ data }: WordPlayGameProps) => {
           <Text className="font-medium">
             Listen to the word and type it below:
           </Text>
-          {/* <AudioPlay /> */}
           <Pressable>
             <MaterialIcons name="play-circle" size={24} color="black" />
           </Pressable>
         </View>
         <View className="gap-5">
-          <ThemedText className="text-md hidden"></ThemedText>
           <ThemedText className="text-md capitalize">
-            Part of Speech :{" "}
+            Part of Speech:{" "}
             <Text className="font-semibold">{partOfSpeech}</Text>
           </ThemedText>
           <ThemedText className="text-md">
-            Origin : <Text className="font-semibold">{origin}</Text>
+            Origin: <Text className="font-semibold">{origin}</Text>
           </ThemedText>
-          {/* <WordMeaning title="Origin" content={origin} /> */}
           <WordMeaning title="Definition" content={definition} />
         </View>
-
         <View className="mt-6">
           <Input
             style={[
@@ -197,23 +180,17 @@ const WordPlayGame = ({ data }: WordPlayGameProps) => {
           />
         </View>
       </View>
-      <FAB
-        onPress={() => {
-          console.log("Play audio");
-        }}
-      />
+      <FAB onPress={() => console.log("Play audio")} />
       <View className="mt-auto">
         {showNextButton && (
           <View className="gap-2">
-            <Button label="Try Again" onPress={handleRestGame} />
+            <Button label="Try Again" onPress={resetState} />
             <Button
               variant="secondary"
               label="Next"
               onPress={handleNextQuestion}
               textClassName="text-black"
-              style={{
-                backgroundColor: colors.secondary[400],
-              }}
+              style={{ backgroundColor: colors.secondary[400] }}
             />
           </View>
         )}
