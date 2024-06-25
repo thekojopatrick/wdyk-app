@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 
+import type { WordProps } from "./WordPlayGame";
 import WordPlayGame from "./WordPlayGame";
 
 //TODO:Draft and load sample questions
@@ -15,10 +16,10 @@ import WordPlayGame from "./WordPlayGame";
 //TODO:Implement game info
 //TODO:Implement game start
 
-const GamePlayScreen = () => {
+const GamePlayScreen = ({ data }: { data: [] }) => {
   return (
     <View className={styles.container}>
-      <WordPlayGame />
+      <WordPlayGame data={data as WordProps[]} />
     </View>
   );
 };

@@ -1,11 +1,15 @@
 import { Env } from "@env";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
-//'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=YOUR_API_KEY'
+import { useQuery } from "@tanstack/react-query";
 
 const apiKey = Env.GOOGLE_GEMINI_API_KEY;
+if (!apiKey) {
+  throw new Error(
+    "Google Gemini API key is not defined in the environment variables",
+  );
+}
+
 const genAI = new GoogleGenerativeAI(apiKey);
-console.log({ apiKey });
 
 const generationConfig = {
   responseMimeType: "application/json",
@@ -16,28 +20,35 @@ const model = genAI.getGenerativeModel({
   generationConfig,
 });
 
-// const generationConfig = {
-//   temperature: 2,
-//   topP: 0.95,
-//   topK: 64,
-//   maxOutputTokens: 1024,
-//   responseMimeType: "application/json",
-// };
-
-async function runGeminiAPI() {
-  // Choose a model that's appropriate for your use case.
-  const prompt = `List ten words from past National Spelling Bee competitions using this JSON schema:{
-  "word": "",
-  "origin": "",
-  "definition": "",
-  "partOfSpeech": "",
-  "difficulty": ""
-} Return: list[object]`;
+async function fetchGeminiAPIData() {
+  const prompt = `
+    List ten words from past National Spelling Bee competitions using this JSON schema:
+    {
+      "word": "",
+      "origin": "",
+      "definition": "",
+      "partOfSpeech": "",
+      "difficulty": ""
+    }
+    Return: list[object]
+  `;
 
   const result = await model.generateContent(prompt);
   const response = result.response;
-  const resOutput = response.text();
-  console.log({ resOutput });
+  return JSON.parse(response.text()) as {
+    word: string;
+    origin: string;
+    definition: string;
+    partOfSpeech: string;
+    difficulty: string;
+  }[];
 }
 
-export { runGeminiAPI };
+export function useGeminiAPI() {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["geminiAPI"],
+    queryFn: fetchGeminiAPIData,
+  });
+
+  return { data, isLoading, error };
+}
