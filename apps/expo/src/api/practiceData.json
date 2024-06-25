@@ -1,0 +1,142 @@
+[
+  {
+    "word": "serendipitous",
+    "origin": "Persian",
+    "definition": "occurring or discovered by chance in a happy or beneficial way.",
+    "difficulty": "Medium",
+    "partOfSpeech": "adjective"
+  },
+  {
+    "word": "onomatopoeia",
+    "origin": "Greek",
+    "definition": "the formation of a word from a sound associated with what is named.",
+    "difficulty": "Hard",
+    "partOfSpeech": "noun"
+  },
+  {
+    "word": "pneumonoultramicroscopicsilicovolcanoconiosis",
+    "origin": "Coined",
+    "definition": "a lung disease caused by the inhalation of very fine silica dust.",
+    "difficulty": "Extremely Hard",
+    "partOfSpeech": "noun"
+  },
+  {
+    "word": "schadenfreude",
+    "origin": "German",
+    "definition": "pleasure derived by someone from another person's misfortune.",
+    "difficulty": "Medium",
+    "partOfSpeech": "noun"
+  },
+  {
+    "word": "logorrhea",
+    "origin": "Greek",
+    "definition": "excessively talkative.",
+    "difficulty": "Medium",
+    "partOfSpeech": "noun"
+  },
+  {
+    "word": "chrysanthemum",
+    "origin": "Greek",
+    "definition": "a type of flowering plant with brightly colored flower heads.",
+    "difficulty": "Easy",
+    "partOfSpeech": "noun"
+  },
+  {
+    "word": "euphony",
+    "origin": "Greek",
+    "definition": "the quality of being pleasing to the ear, especially through a harmonious combination of sounds.",
+    "difficulty": "Medium",
+    "partOfSpeech": "noun"
+  },
+  {
+    "word": "ephemeral",
+    "origin": "Greek",
+    "definition": "lasting for a very short time.",
+    "difficulty": "Medium",
+    "partOfSpeech": "adjective"
+  },
+  {
+    "word": "ubiquitous",
+    "origin": "Latin",
+    "definition": "present, appearing, or found everywhere.",
+    "difficulty": "Medium",
+    "partOfSpeech": "adjective"
+  },
+  {
+    "word": "labyrinthine",
+    "origin": "Greek",
+    "definition": "like a labyrinth; very complicated or confusing.",
+    "difficulty": "Medium",
+    "partOfSpeech": "adjective"
+  },
+  {
+    "word": "schadenfreude",
+    "origin": "German",
+    "definition": "pleasure derived from the misfortunes of others",
+    "partOfSpeech": "noun",
+    "difficulty": "hard"
+  },
+  {
+    "word": "onomatopoeia",
+    "origin": "Greek",
+    "definition": "the formation of a word from a sound associated with what it is named",
+    "partOfSpeech": "noun",
+    "difficulty": "medium"
+  },
+  {
+    "word": "serendipity",
+    "origin": "Persian",
+    "definition": "the occurrence and development of events by chance in a happy or beneficial way",
+    "partOfSpeech": "noun",
+    "difficulty": "medium"
+  },
+  {
+    "word": "philately",
+    "origin": "Greek",
+    "definition": "the collection and study of postage stamps",
+    "partOfSpeech": "noun",
+    "difficulty": "easy"
+  },
+  {
+    "word": "logorrhea",
+    "origin": "Greek",
+    "definition": "excessive and incoherent talkativeness",
+    "partOfSpeech": "noun",
+    "difficulty": "hard"
+  },
+  {
+    "word": "chrysanthemum",
+    "origin": "Greek",
+    "definition": "a type of flowering plant with brightly colored daisy-like flowers",
+    "partOfSpeech": "noun",
+    "difficulty": "medium"
+  },
+  {
+    "word": "ephemeral",
+    "origin": "Greek",
+    "definition": "lasting for a very short time",
+    "partOfSpeech": "adjective",
+    "difficulty": "medium"
+  },
+  {
+    "word": "ubiquitous",
+    "origin": "Latin",
+    "definition": "present, appearing, or found everywhere",
+    "partOfSpeech": "adjective",
+    "difficulty": "easy"
+  },
+  {
+    "word": "incognito",
+    "origin": "Italian",
+    "definition": "having one's true identity concealed",
+    "partOfSpeech": "adjective",
+    "difficulty": "medium"
+  },
+  {
+    "word": "labyrinthine",
+    "origin": "Greek",
+    "definition": "like a labyrinth; intricate and confusing",
+    "partOfSpeech": "adjective",
+    "difficulty": "hard"
+  }
+]

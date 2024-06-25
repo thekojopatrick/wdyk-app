@@ -1,3 +1,5 @@
+import gameData from "./practiceData.json";
+
 export const topUsers = [
   { name: "Arlene McCoy", points: 250, avatar: "heart", rank: 3 },
   { name: "Guy Hawkins", points: 305, avatar: "adinkrahene", rank: 1 },
@@ -36,3 +38,5 @@ export const gameplay = {
   title: "Wordplay(Practice)",
   description: "Score a point for each word spelt",
 };
+
+export const practiceDictation = gameData;

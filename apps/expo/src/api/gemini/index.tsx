@@ -26,9 +26,13 @@ const model = genAI.getGenerativeModel({
 
 async function runGeminiAPI() {
   // Choose a model that's appropriate for your use case.
-  const prompt = `List a few popular cookie recipes using this JSON schema:
-Recipe = {'recipe_name': str}
-Return: list[Recipe]`;
+  const prompt = `List ten words from past National Spelling Bee competitions using this JSON schema:{
+  "word": "",
+  "origin": "",
+  "definition": "",
+  "partOfSpeech": "",
+  "difficulty": ""
+} Return: list[object]`;
 
   const result = await model.generateContent(prompt);
   const response = result.response;
