@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Pressable } from "react-native";
 import { Link } from "expo-router";
-import { runGeminiAPI } from "@/api/gemini";
+import { useGeminiAPI } from "@/api/gemini";
 import colors from "@/theme/colors";
 import { Button, Modal, ThemedText, useModal, View } from "@/ui";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
@@ -47,7 +47,7 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
 
   const handleDimiss = async () => {
     ref.current?.dismiss();
-    await runGeminiAPI();
+    await useGeminiAPI();
   };
 
   return (
@@ -102,7 +102,13 @@ export const GameInfoModal: React.FC<GameInfoModalProps> = ({
               <ListItem text="Earn a point" />
             </View>
           </View>
-          <Link href={`/gameplay/${id}`} asChild>
+          <Link
+            href={{
+              pathname: "/gameplay/[id]",
+              params: { id: gameplay?.id },
+            }}
+            asChild
+          >
             <Button
               label="Start game"
               className="mb-3"

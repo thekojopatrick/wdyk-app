@@ -4,7 +4,7 @@ import { Link, Stack } from "expo-router";
 import { Button, Text, View } from "@/ui";
 
 function GameplayCard(props: {
-  Gameplay: RouterOutputs["Gameplay"]["all"][number];
+  Gameplay: RouterOutputs["gameplay"]["all"][number];
   onDelete: () => void;
 }) {
   return (
@@ -13,7 +13,7 @@ function GameplayCard(props: {
         <Link
           asChild
           href={{
-            pathname: "/Gameplay/[id]",
+            pathname: "/gameplay/[id]",
             params: { id: props.Gameplay?.id },
           }}
         >

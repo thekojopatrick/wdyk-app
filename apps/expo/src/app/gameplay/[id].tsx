@@ -11,7 +11,11 @@ export default function Gameplay() {
   const { data, error, isLoading } = useGeminiAPI();
 
   if (isLoading) {
-    return <ActivityIndicator />;
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   if (error) {
@@ -23,7 +27,10 @@ export default function Gameplay() {
   return (
     <SafeAreaView style={{ backgroundColor: colors.primary[600] }}>
       <Stack.Screen
-        options={{ header: () => <GamePlayHeader title="Wordplay" /> }}
+        options={{
+          header: () => <GamePlayHeader title="Wordplay" />,
+          headerShown: true,
+        }}
       />
       <View className="mt-6">
         <GamePlayScreen data={data as []} />

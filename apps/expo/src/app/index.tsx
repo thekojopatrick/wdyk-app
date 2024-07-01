@@ -1,11 +1,11 @@
-import { Button, Image, SafeAreaView, Text, View } from "@/ui";
-import { Link, Redirect } from "expo-router";
-
-import { PrimaryLogo } from "@/ui/icons";
 import React from "react";
 import { StyleSheet } from "react-native";
-import onboardingImage from "@assets/onboarding-image-02.png";
+import { Link, Redirect } from "expo-router";
 import { useAuth } from "@/core/providers";
+import { Button, Image, SafeAreaView, Text, View } from "@/ui";
+import { PrimaryLogo } from "@/ui/icons";
+
+const onboardingImage = require("@assets/onboarding-image-02.png");
 
 //const onboardingImage = require("../../assets/onboarding-image-02.png");
 
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginHorizontal: "auto",
     marginBottom: 24,
-    //borderWidth: 1,
   },
   title: {
     fontSize: 24,

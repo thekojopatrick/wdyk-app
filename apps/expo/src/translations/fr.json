@@ -1,0 +1,43 @@
+{
+  "onboarding": {
+    "message": "Bienvenue sur Wdyk?"
+  },
+  "settings": {
+    "about": "À propos",
+    "account_settings": "Paramètres du compte",
+    "account": "Compte",
+    "update": "Quoi de neuf",
+    "about_us": "À propos de nous",
+    "preferences": "Préférences",
+    "appearance": "Apparence",
+    "notifications": "Notifications",
+    "feedback": "Retour d'information",
+    "rate_us": "Laissez-nous un avis",
+    "app_name": "Nom de l'application",
+    "arabic": "Arabe",
+    "english": "Anglais",
+    "generale": "Général",
+    "github": "Github",
+    "language": "Langue",
+    "links": "Liens",
+    "logout": "Déconnexion",
+    "more": "Plus",
+    "privacy": "Politique de confidentialité",
+    "rate": "Évaluer",
+    "share": "Partager",
+    "support": "Support",
+    "support_us": "Soutenez-nous",
+    "terms": "Conditions d'utilisation",
+    "legal": "Légal",
+    "theme": {
+      "dark": "Sombre",
+      "light": "Clair",
+      "system": "Système",
+      "title": "Thème"
+    },
+    "title": "Paramètres",
+    "version": "Version",
+    "website": "Site web"
+  },
+  "welcome": "Bienvenue sur Wdyk"
+}

@@ -1,9 +1,18 @@
 {
   "onboarding": {
-    "message": "مرحبا بكم في موقع تطبيق obytes"
+    "message": "مرحبا بكم في Wdyk؟"
   },
   "settings": {
-    "about": "حول التطبيق ",
+    "about": "حول",
+    "account_settings": "إعدادات الحساب",
+    "account": "الحساب",
+    "update": "ما الجديد",
+    "about_us": "معلومات عنا",
+    "preferences": "التفضيلات",
+    "appearance": "المظهر",
+    "notifications": "الإشعارات",
+    "feedback": "التعليقات",
+    "rate_us": "اترك لنا مراجعة",
     "app_name": "اسم التطبيق",
     "arabic": "عربي",
     "english": "إنجليزي",
@@ -19,6 +28,7 @@
     "support": "الدعم",
     "support_us": "ادعمنا",
     "terms": "شروط الخدمة",
+    "legal": "قانوني",
     "theme": {
       "dark": "مظلم",
       "light": "خفيفة",
@@ -29,5 +39,5 @@
     "version": "إصدار",
     "website": "موقع الكتروني"
   },
-  "welcome": "test arabic"
+  "welcome": "مرحبا بكم في Wdyk"
 }

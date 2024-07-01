@@ -5,8 +5,7 @@ import Constants from "expo-constants";
 import { useRouter } from "expo-router";
 import { colors } from "@/theme";
 import { Button, ThemedText } from "@/ui";
-import { NotificationIcon, Settings as SettingsIcon } from "@/ui/icons";
-import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 interface GamePlayHeaderProps {
   title?: string;
