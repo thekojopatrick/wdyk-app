@@ -2,7 +2,7 @@ import { Env } from "@env";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useQuery } from "@tanstack/react-query";
 
-const apiKey = Env.GOOGLE_GEMINI_API_KEY;
+const apiKey = Env.GOOGLE_GEMINI_API_KEY!;
 if (!apiKey) {
   throw new Error(
     "Google Gemini API key is not defined in the environment variables",

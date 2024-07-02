@@ -53,6 +53,7 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
   const [startTime, setStartTime] = useState<number>(Date.now());
   const [timer, setTimer] = useState<NodeJS.Timeout>();
+  const [countdown, setCountdown] = useState<number>(15);
 
   const currentQuestion = data[currentIndex];
   const { word, origin, partOfSpeech, definition } = currentQuestion;
@@ -60,6 +61,14 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   useEffect(() => {
     return () => clearTimeout(timer);
   }, [timer]);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      setShowWord(true);
+      setIsInputDisabled(true);
+      setShowNextButton(true); // Show next button when countdown ends
+    }
+  }, [countdown]);
 
   const handleTextChange = (text: string) => {
     const inputWord = text.trim().toLowerCase();
@@ -111,6 +120,18 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
     setUserInput("");
     setStartTime(Date.now());
     setIsCorrect(null);
+    setCountdown(15);
+  };
+
+  const startCountdown = () => {
+    const countdownInterval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev === 1) {
+          clearInterval(countdownInterval);
+        }
+        return prev - 1;
+      });
+    }, 1000);
   };
 
   return (
@@ -122,7 +143,7 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
               W{currentIndex + 1}
             </ThemedText>
           </View>
-          <ThemedText variant="subhead">00:15</ThemedText>
+          <ThemedText variant="subhead">{`00:${countdown < 10 ? `0${countdown}` : countdown}`}</ThemedText>
         </View>
         <View className="mb-4 gap-2">
           <ThemedText variant="footnote" className="font-semibold uppercase">
@@ -177,6 +198,7 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
             returnKeyType="done"
             spellCheck={false}
             editable={!isInputDisabled}
+            onFocus={startCountdown}
           />
         </View>
       </View>
