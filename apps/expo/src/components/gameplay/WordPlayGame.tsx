@@ -54,6 +54,8 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   const [startTime, setStartTime] = useState<number>(Date.now());
   const [timer, setTimer] = useState<NodeJS.Timeout>();
   const [countdown, setCountdown] = useState<number>(15);
+  const [totalTimeSpent, setTotalTimeSpent] = useState<number>(0);
+  const [gameEnded, setGameEnded] = useState<boolean>(false);
 
   const currentQuestion = data[currentIndex];
   const { word, origin, partOfSpeech, definition } = currentQuestion;
@@ -95,7 +97,11 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
     setShowNextButton(true);
     setShowWord(true);
     setIsInputDisabled(true);
-    if (isCorrect) setUserScore(userScore + 1);
+    if (isCorrect) {
+      setUserScore(userScore + 10); // Each correct answer gives 10 points
+    }
+    const timeSpent = (Date.now() - startTime) / 1000;
+    setTotalTimeSpent(totalTimeSpent + timeSpent);
   };
 
   const startTimeout = () => {
@@ -109,8 +115,12 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   };
 
   const handleNextQuestion = () => {
-    setCurrentIndex((prev) => prev + 1);
-    resetState();
+    if (currentIndex + 1 < data.length) {
+      setCurrentIndex((prev) => prev + 1);
+      resetState();
+    } else {
+      setGameEnded(true);
+    }
   };
 
   const resetState = () => {
@@ -133,6 +143,22 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
       });
     }, 1000);
   };
+
+  if (gameEnded) {
+    return (
+      <View className="p-4">
+        <ThemedText variant="title1" className="font-semibold">
+          Game Over
+        </ThemedText>
+        <ThemedText variant="body" className="mt-4">
+          Total Score: {userScore}
+        </ThemedText>
+        <ThemedText variant="body" className="mt-2">
+          Total Time Spent: {totalTimeSpent.toFixed(2)} seconds
+        </ThemedText>
+      </View>
+    );
+  }
 
   return (
     <>
