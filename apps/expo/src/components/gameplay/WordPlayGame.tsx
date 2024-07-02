@@ -53,22 +53,28 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
   const [startTime, setStartTime] = useState<number>(Date.now());
   const [timer, setTimer] = useState<NodeJS.Timeout>();
+  const [gameEnded, setGameEnded] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<number>(15);
   const [totalTimeSpent, setTotalTimeSpent] = useState<number>(0);
-  const [gameEnded, setGameEnded] = useState<boolean>(false);
+  const [countdownInterval, setCountdownInterval] =
+    useState<NodeJS.Timeout | null>(null);
 
   const currentQuestion = data[currentIndex];
   const { word, origin, partOfSpeech, definition } = currentQuestion;
 
   useEffect(() => {
-    return () => clearTimeout(timer);
-  }, [timer]);
+    return () => {
+      clearTimeout(timer);
+      if (countdownInterval) clearInterval(countdownInterval);
+    };
+  }, [timer, countdownInterval]);
 
   useEffect(() => {
     if (countdown === 0) {
       setShowWord(true);
       setIsInputDisabled(true);
       setShowNextButton(true); // Show next button when countdown ends
+      if (countdownInterval) clearInterval(countdownInterval);
     }
   }, [countdown]);
 
@@ -102,6 +108,7 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
     }
     const timeSpent = (Date.now() - startTime) / 1000;
     setTotalTimeSpent(totalTimeSpent + timeSpent);
+    if (countdownInterval) clearInterval(countdownInterval);
   };
 
   const startTimeout = () => {
@@ -120,6 +127,10 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
       resetState();
     } else {
       setGameEnded(true);
+      console.log({
+        score: userScore,
+        timeSpent: totalTimeSpent.toFixed(2) + "secs",
+      });
     }
   };
 
@@ -134,14 +145,16 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   };
 
   const startCountdown = () => {
-    const countdownInterval = setInterval(() => {
+    if (countdownInterval) clearInterval(countdownInterval);
+    const intervalId = setInterval(() => {
       setCountdown((prev) => {
         if (prev === 1) {
-          clearInterval(countdownInterval);
+          clearInterval(intervalId);
         }
         return prev - 1;
       });
     }, 1000);
+    setCountdownInterval(intervalId);
   };
 
   if (gameEnded) {
@@ -224,7 +237,7 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
             returnKeyType="done"
             spellCheck={false}
             editable={!isInputDisabled}
-            onFocus={startCountdown}
+            onFocus={startCountdown} // Start countdown on focus
           />
         </View>
       </View>
@@ -246,7 +259,6 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
     </>
   );
 };
-
 export default WordPlayGame;
 
 const styles = StyleSheet.create({
