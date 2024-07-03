@@ -7,13 +7,6 @@
     "partOfSpeech": "adjective"
   },
   {
-    "word": "onomatopoeia",
-    "origin": "Greek",
-    "definition": "the formation of a word from a sound associated with what is named.",
-    "difficulty": "Hard",
-    "partOfSpeech": "noun"
-  },
-  {
     "word": "pneumonoultramicroscopicsilicovolcanoconiosis",
     "origin": "Coined",
     "definition": "a lung disease caused by the inhalation of very fine silica dust.",
@@ -70,20 +63,6 @@
     "partOfSpeech": "adjective"
   },
   {
-    "word": "schadenfreude",
-    "origin": "German",
-    "definition": "pleasure derived from the misfortunes of others",
-    "partOfSpeech": "noun",
-    "difficulty": "hard"
-  },
-  {
-    "word": "onomatopoeia",
-    "origin": "Greek",
-    "definition": "the formation of a word from a sound associated with what it is named",
-    "partOfSpeech": "noun",
-    "difficulty": "medium"
-  },
-  {
     "word": "serendipity",
     "origin": "Persian",
     "definition": "the occurrence and development of events by chance in a happy or beneficial way",
@@ -138,5 +117,68 @@
     "definition": "like a labyrinth; intricate and confusing",
     "partOfSpeech": "adjective",
     "difficulty": "hard"
+  },
+  {
+    "definition": "golden or like gold; gilded",
+    "difficulty": "medium",
+    "origin": "Latin",
+    "partOfSpeech": "adjective",
+    "word": "aureate"
+  },
+  {
+    "definition": "a noisy, confused commotion",
+    "difficulty": "medium",
+    "origin": "French",
+    "partOfSpeech": "noun",
+    "word": "brouhaha"
+  },
+  {
+    "definition": "bad handwriting; incorrect spelling",
+    "difficulty": "hard",
+    "origin": "Greek",
+    "partOfSpeech": "noun",
+    "word": "cacography"
+  },
+  {
+    "definition": "the use of trickery or deception to achieve a goal",
+    "difficulty": "hard",
+    "origin": "French",
+    "partOfSpeech": "noun",
+    "word": "chicanery"
+  },
+  {
+    "definition": "excessive indulgence in sensual pleasures",
+    "difficulty": "medium",
+    "origin": "French",
+    "partOfSpeech": "noun",
+    "word": "debauchery"
+  },
+  {
+    "definition": "a state of high excitement or activity",
+    "difficulty": "medium",
+    "origin": "Latin",
+    "partOfSpeech": "noun",
+    "word": "effervescence"
+  },
+  {
+    "definition": "emitting light as a result of being heated",
+    "difficulty": "easy",
+    "origin": "Latin",
+    "partOfSpeech": "adjective",
+    "word": "incandescent"
+  },
+  {
+    "definition": "a powerful whirlpool or a turbulent situation",
+    "difficulty": "medium",
+    "origin": "Dutch",
+    "partOfSpeech": "noun",
+    "word": "maelstrom"
+  },
+  {
+    "word": "onomatopoeia",
+    "definition": "the formation of a word from a sound associated with what it represents",
+    "difficulty": "hard",
+    "origin": "Greek",
+    "partOfSpeech": "noun"
   }
 ]
