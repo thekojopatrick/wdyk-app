@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Pressable, StyleSheet, Text, Vibration, View } from "react-native";
 import { colors } from "@/theme";
 import { Button, Input, ThemedText } from "@/ui";
@@ -51,23 +57,28 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
   const [showNextButton, setShowNextButton] = useState<boolean>(false);
   const [showWord, setShowWord] = useState<boolean>(false);
   const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
+  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [startTime, setStartTime] = useState<number>(Date.now());
-  const [timer, setTimer] = useState<NodeJS.Timeout>();
+
   const [gameEnded, setGameEnded] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<number>(15);
   const [totalTimeSpent, setTotalTimeSpent] = useState<number>(0);
   const [countdownInterval, setCountdownInterval] =
     useState<NodeJS.Timeout | null>(null);
 
-  const currentQuestion = data[currentIndex];
+  const currentQuestion = useMemo(
+    () => data[currentIndex],
+    [data, currentIndex],
+  );
   const { word, origin, partOfSpeech, definition } = currentQuestion;
 
   useEffect(() => {
     return () => {
-      clearTimeout(timer);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       if (countdownInterval) clearInterval(countdownInterval);
     };
-  }, [timer, countdownInterval]);
+  }, [countdownInterval]);
 
   useEffect(() => {
     if (countdown === 0) {
@@ -76,65 +87,56 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
       setShowNextButton(true); // Show next button when countdown ends
       if (countdownInterval) clearInterval(countdownInterval);
     }
-  }, [countdown]);
+  }, [countdown, countdownInterval]);
 
-  const handleTextChange = (text: string) => {
-    const inputWord = text.trim().toLowerCase();
-    const comparedWord = word.toLowerCase();
-    setUserInput(text);
+  const endGame = useCallback(() => {
+    setGameEnded(true);
+    console.log({
+      score: userScore,
+      timeSpent: totalTimeSpent.toFixed(2) + "secs",
+    });
+  }, [userScore, totalTimeSpent]);
 
-    if (inputWord === comparedWord) {
-      setCorrectState(true);
-    } else {
-      setIsCorrect(false);
-      setShowWord(false);
-      setShowNextButton(false);
+  const setCorrectState = useCallback(
+    (isCorrect: boolean) => {
+      setIsCorrect(isCorrect);
+      setShowNextButton(true);
+      setShowWord(true);
+      setIsInputDisabled(true);
 
-      if (inputWord.length > comparedWord.length) {
-        startTimeout();
-      } else {
-        clearTimeout(timer);
+      if (currentIndex + 1 >= data.length) {
+        endGame();
       }
-    }
-  };
 
-  const setCorrectState = (isCorrect: boolean) => {
-    setIsCorrect(isCorrect);
-    setShowNextButton(true);
-    setShowWord(true);
-    setIsInputDisabled(true);
-    if (isCorrect) {
-      setUserScore(userScore + 10); // Each correct answer gives 10 points
-    }
-    const timeSpent = (Date.now() - startTime) / 1000;
-    setTotalTimeSpent(totalTimeSpent + timeSpent);
-    if (countdownInterval) clearInterval(countdownInterval);
-  };
+      if (isCorrect) {
+        setUserScore(userScore + 10); // Each correct answer gives 10 points
+      }
+      const timeSpent = (Date.now() - startTime) / 1000;
+      setTotalTimeSpent(totalTimeSpent + timeSpent);
+      if (countdownInterval) clearInterval(countdownInterval);
+    },
+    [
+      currentIndex,
+      data.length,
+      startTime,
+      totalTimeSpent,
+      countdownInterval,
+      endGame,
+      userScore,
+    ],
+  );
 
-  const startTimeout = () => {
-    const timerId = setTimeout(() => {
+  const startTimeout = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
       if (userInput.trim() !== "") {
         setCorrectState(false);
         Vibration.vibrate();
       }
     }, 5000);
-    setTimer(timerId);
-  };
+  }, [userInput, setCorrectState]);
 
-  const handleNextQuestion = () => {
-    if (currentIndex + 1 < data.length) {
-      setCurrentIndex((prev) => prev + 1);
-      resetState();
-    } else {
-      setGameEnded(true);
-      console.log({
-        score: userScore,
-        timeSpent: totalTimeSpent.toFixed(2) + "secs",
-      });
-    }
-  };
-
-  const resetState = () => {
+  const resetState = useCallback(() => {
     setShowNextButton(false);
     setShowWord(false);
     setIsInputDisabled(false);
@@ -142,20 +144,60 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
     setStartTime(Date.now());
     setIsCorrect(null);
     setCountdown(15);
-  };
+    setIsTimerRunning(false);
+  }, []);
+
+  const handleNextQuestion = useCallback(() => {
+    if (currentIndex + 1 < data.length) {
+      setCurrentIndex((prev) => prev + 1);
+      resetState();
+    } else {
+      endGame();
+    }
+  }, [currentIndex, data, resetState, endGame]);
 
   const startCountdown = () => {
     if (countdownInterval) clearInterval(countdownInterval);
+    setIsTimerRunning(true);
     const intervalId = setInterval(() => {
       setCountdown((prev) => {
-        if (prev === 1) {
+        if (prev <= 1) {
           clearInterval(intervalId);
+          setIsTimerRunning(false);
+          setShowWord(true);
+          setIsInputDisabled(true);
+          setShowNextButton(true);
+          return 0;
         }
         return prev - 1;
       });
     }, 1000);
     setCountdownInterval(intervalId);
   };
+
+  const handleTextChange = useCallback(
+    (text: string) => {
+      const inputWord = text.trim().toLowerCase();
+      const comparedWord = word.toLowerCase();
+      setUserInput(text);
+
+      if (inputWord === comparedWord) {
+        setCorrectState(true);
+        if (countdownInterval) clearInterval(countdownInterval);
+        setIsTimerRunning(false);
+      } else {
+        setShowWord(false);
+        setShowNextButton(false);
+
+        if (inputWord.length > comparedWord.length) {
+          startTimeout();
+        } else {
+          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        }
+      }
+    },
+    [word, setCorrectState, countdownInterval, startTimeout],
+  );
 
   if (gameEnded) {
     return (
@@ -237,7 +279,9 @@ const WordPlayGame: React.FC<WordPlayGameProps> = ({ data }) => {
             returnKeyType="done"
             spellCheck={false}
             editable={!isInputDisabled}
-            onFocus={startCountdown} // Start countdown on focus
+            onFocus={() => {
+              if (!isTimerRunning) startCountdown();
+            }} // Start countdown on focus
           />
         </View>
       </View>

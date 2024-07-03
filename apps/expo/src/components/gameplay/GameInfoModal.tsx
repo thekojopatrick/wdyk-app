@@ -1,10 +1,10 @@
-import type { ReactNode } from "react";
-import { Pressable } from "react-native";
-import { Link } from "expo-router";
-import { useGeminiAPI } from "@/api/gemini";
-import colors from "@/theme/colors";
-import { Button, Modal, ThemedText, useModal, View } from "@/ui";
+import { Button, Modal, ThemedText, View, useModal } from "@/ui";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
+
+import { Link } from "expo-router";
+import { Pressable } from "react-native";
+import type { ReactNode } from "react";
+import colors from "@/theme/colors";
 import { useColorScheme } from "nativewind";
 
 interface GameInfoProps {
@@ -37,17 +37,15 @@ const ListItem = ({ text }: { text: string }) => {
 };
 
 export const GameInfoModal: React.FC<GameInfoModalProps> = ({
-  id,
   children,
   gameplay,
 }) => {
-  const { ref, present, dismiss } = useModal();
+  const { ref, present } = useModal();
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === "dark";
 
-  const handleDimiss = async () => {
+  const handleDimiss = () => {
     ref.current?.dismiss();
-    await useGeminiAPI();
   };
 
   return (
