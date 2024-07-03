@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { topUsers, users } from "@/api/dummyData";
 import LeaderboardScreen from "@/components/leaderboard/LeaderboardScreen";
@@ -15,10 +14,3 @@ export default function Leaderboard() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    top: 40,
-    flex: 1,
-  },
-});

@@ -5,15 +5,15 @@ import { useAuth } from "@/core/providers";
 import { Button, Image, SafeAreaView, Text, View } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 
-const onboardingImage = require("@assets/onboarding-image-02.png");
-
-//const onboardingImage = require("../../assets/onboarding-image-02.png");
+//const onboardingImage = require("@assets/onboarding-image-02.png");
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
+const onboardingImage: string = require("@assets/onboarding-image-02.png");
 
 const GetStarted = () => {
   const { session } = useAuth();
 
   if (session) {
-    return <Redirect href={"/(tabs)/"} />;
+    return <Redirect href={"/home"} />;
   }
 
   return (
@@ -28,7 +28,7 @@ const GetStarted = () => {
               className="h-full w-full rounded-t-xl"
               style={styles.image}
               contentFit="contain"
-              source={onboardingImage as string}
+              source={onboardingImage}
             />
           </View>
           <View style={styles.main}>

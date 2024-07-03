@@ -17,6 +17,18 @@ import WordPlayGame from "./WordPlayGame";
 //TODO:Implement game start
 
 const GamePlayScreen = ({ data }: { data: [] }) => {
+  /*
+  const handleGameEnd = (score: number, timeSpent: number) => {
+    console.log(
+      `Game ended. Score: ${score}, Time spent: ${timeSpent} seconds`,
+    );
+    // Here you can handle what happens when the game ends
+    // For example, you might want to navigate to a results screen
+    // or save the score to a database
+  };
+
+  */
+
   return (
     <View className={styles.container}>
       <WordPlayGame data={data as WordProps[]} />

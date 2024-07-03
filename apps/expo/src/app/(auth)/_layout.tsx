@@ -17,7 +17,7 @@ const AuthLayout = () => {
   }
 
   if (session) {
-    return <Redirect href={"/(tabs)/"} />;
+    return <Redirect href={"/(tabs)/home"} />;
   }
 
   return <Stack screenOptions={{ headerShown: false }} />;

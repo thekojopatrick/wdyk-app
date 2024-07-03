@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import { StyleSheet } from "react-native";
 import { useRouter } from "expo-router";

@@ -28,7 +28,7 @@ const SettingUpProfile = () => {
   const [formData, setFormData] = useState({});
 
   if (userName) {
-    return <Redirect href={"/(tabs)/"} />;
+    return <Redirect href={"/(tabs)/home"} />;
   }
 
   const handleNext = () => {

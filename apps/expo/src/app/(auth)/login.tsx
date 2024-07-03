@@ -1,9 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
 import { GoogleAuthButton, LoginForm } from "@/components/auth";
-import { Button, Text, View } from "@/ui";
+import { Button, SafeAreaView, Text, View } from "@/ui";
 import { PrimaryLogo } from "@/ui/icons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -42,5 +40,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const styles = StyleSheet.create({});
