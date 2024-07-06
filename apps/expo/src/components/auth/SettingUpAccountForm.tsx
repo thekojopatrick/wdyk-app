@@ -34,9 +34,8 @@ type FormType = z.infer<typeof schema>;
 export interface SettingUpAccountFormProps {
   onSubmit?: SubmitHandler<FormType>;
 }
-
 const SettingUpAccountForm = ({
-  onSubmit = () => {},
+  onSubmit = () => null,
 }: SettingUpAccountFormProps) => {
   const {
     handleSubmit,

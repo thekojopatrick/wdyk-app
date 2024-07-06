@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Alert, AppState, StyleSheet, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { Alert, AppState, TextInput, View } from "react-native";
 import { router } from "expo-router";
-import { useAuth } from "@/core/providers";
 import { Button, Checkbox, Text, ThemedText } from "@/ui";
 import { supabase } from "@/utils/supabase";
 
 // AppState management to handle auto-refreshing of the auth state
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
-    supabase.auth.startAutoRefresh();
+    void supabase.auth.startAutoRefresh();
   } else {
-    supabase.auth.stopAutoRefresh();
+    void supabase.auth.stopAutoRefresh();
   }
 });
 
 // Custom hook to manage auth state
-const useAuthState = () => {
-  const { signIn, session } = useAuth();
-  return { signIn, session };
-};
+// const useAuthState = () => {
+//   const { signIn, session } = useAuth();
+//   return { signIn, session };
+// };
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -56,7 +55,11 @@ const RegisterForm = () => {
         router.push("/(auth)/check-mail");
       }
     } catch (error) {
-      Alert.alert(error.message);
+      if (error instanceof Error) {
+        Alert.alert(error.message);
+      } else {
+        Alert.alert("An unknown error occurred.");
+      }
     } finally {
       setLoading(false);
     }

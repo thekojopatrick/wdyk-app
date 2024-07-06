@@ -1,3 +1,4 @@
+import React from "react";
 import { makeRedirectUri } from "expo-auth-session";
 import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as Linking from "expo-linking";
@@ -35,11 +36,7 @@ const performOAuth = async () => {
     },
   });
   if (error) throw error;
-
-  const res = await WebBrowser.openAuthSessionAsync(
-    data?.url ?? "",
-    redirectTo,
-  );
+  const res = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
 
   if (res.type === "success") {
     const { url } = res;
@@ -53,7 +50,13 @@ export default function GoogleAuthButton() {
   const url = Linking.useURL();
   console.log({ url });
 
-  if (url) createSessionFromUrl(url);
+  React.useEffect(() => {
+    const handleUrl = async () => {
+      if (url) await createSessionFromUrl(url);
+    };
+    void handleUrl();
+  }, [url]);
+
   return (
     <Button variant="outline" onPress={performOAuth} className="gap-3">
       <Google width={20} height={20} />
@@ -61,9 +64,3 @@ export default function GoogleAuthButton() {
     </Button>
   );
 }
-
-const styles = {
-  button:
-    "items-center gap-4 justify-center rounded-full p-4 border  border-charcoal-100 flex-row",
-  buttonText: "text-lg font-semibold text-center",
-};

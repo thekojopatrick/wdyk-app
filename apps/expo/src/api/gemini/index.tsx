@@ -2,7 +2,8 @@ import { Env } from "@env";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useQuery } from "@tanstack/react-query";
 
-const apiKey = Env.GOOGLE_GEMINI_API_KEY || "";
+const apiKey =
+  Env.GOOGLE_GEMINI_API_KEY || "AIzaSyBfCwzAh7bYioWPxGlbX49at4FclwDIRq8";
 
 if (!apiKey) {
   throw new Error(
